@@ -1,0 +1,23 @@
+{
+  "src/B47ANCEDPCFramework/42/icon.png": {
+    "sha256": "60e2a193a6c1e1190941e6c342ec23c673a561dbed895c80067fe2b89c7f7e83",
+    "dimensions": [
+      64,
+      64
+    ]
+  },
+  "src/B47ANCEDPCFramework/42/poster.png": {
+    "sha256": "0e30a776c77dbf66eeb9acfa7596c7f850cb5b334e8873ef94acbb3b071582c3",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  "preview.png": {
+    "sha256": "f775bff1783d59af91f331652740d5279fd5603f66d431c6349f38cbd2d9915b",
+    "dimensions": [
+      512,
+      512
+    ]
+  }
+}

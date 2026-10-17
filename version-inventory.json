@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "canonical": "VERSION",
+  "mirrors": [
+    {
+      "path": "src/B47ANCEDPCFramework/42/mod.info",
+      "pattern": "^modversion=(?P<version>\\S+)$"
+    },
+    {
+      "path": "src/B47ANCEDPCFramework/42/media/lua/shared/B47ANCEDPCFramework/Identity.lua",
+      "pattern": "version='(?P<version>[^']+)'"
+    },
+    {
+      "path": "README.md",
+      "pattern": "Development version: (?P<version>\\S+)\\."
+    },
+    {
+      "path": "docs/API.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/MOD_OVERVIEW.json",
+      "pattern": "^  \"version\": \"(?P<version>[^\\\"]+)\""
+    }
+  ],
+  "changelog": {
+    "path": "CHANGELOG.md",
+    "pattern": "^## \\[(?P<version>[^\\]]+)\\]"
+  },
+  "packaging": {
+    "artifacts": [
+      {
+        "glob": "dist/current/*.zip",
+        "pattern": "B47ANCEDPCFramework-(?P<version>.+)\\.zip",
+        "zip_members": [
+          {
+            "member": "B47ANCEDPCFramework/42/mod.info",
+            "pattern": "^modversion=(?P<version>[^\\r\\n]+)\\r?$"
+          }
+        ]
+      }
+    ]
+  },
+  "other_versions": [
+    {
+      "category": "pz",
+      "reference": "src/B47ANCEDPCFramework/42/mod.info:versionMin",
+      "reason": "PZ compatibility, not project version"
+    },
+    {
+      "category": "compatibility",
+      "reference": "Identity.lua apiVersion=1",
+      "reason": "Independent application registration contract"
+    }
+  ],
+  "historical": []
+}

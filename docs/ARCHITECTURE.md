@@ -1,0 +1,15 @@
+# Source and authority
+
+Project Version: 0.1.0-dev.1
+
+[VERIFIED source] `src/B47ANCEDPCFramework` is authoritative. `42/media/lua/client/B47ANCEDPCFramework` owns the desktop, app registry and world menu/navigation. `B47ANCEDPCUI` is an isolated copy of B47ANCE's owned embedded UI helpers, renamed to avoid overriding app UI or appearance files. Shared `Device.lua` validates the loaded stock desktop, adjacency, native power and multiplayer safehouse access. Shared `DriveService.lua` is called only through a consumer's authenticated server service. No `require` or reverse dependency on Quartermaster exists in runtime source.
+
+The desktop and pending navigation are local presentation; they persist no gameplay. App factories and proxies are trusted local presentation objects, never sender identity or server grants. No new gameplay network command is introduced. Each app owns its server transport, privacy, ledger/media interpretation, inventory mutation, timing and synchronization. Framework discovery/mount/eject bindings are server-owned through callback contracts; clients submit tokens, never trusted inventory claims.
+
+Original extraction baseline: Quartermaster commit `77ee0ebf43a74db299db60576fb504cedae35659` (0.18.0-dev.2). Sources: `ComputerUI.lua`, the native-world helpers from `LedgerMedia.lua`, `LedgerDrives.lua`, and the owned `B47ANCEDUI` helpers. These are B47ANCE project files, not external-mod code or assets. The CD writer's ledger-specific UI remains in Quartermaster. Runtime APIs are existing Lua-exposed native methods; no Java code is added or required. Source fingerprints are recorded in `PROVENANCE.json`.
+
+Quartermaster adapter retains `B47ANCEDQuartermasterLedgerDrives` schema 1, `B47LedgerDrive` and `B47LedgerDriveStorage`. Existing records are read in place by the extracted server engine; there is no destructive migration, snapshot rewrite or copying to a second store. Its ledger items and snapshots remain Quartermaster-owned. Old counterparts cannot join the new dependency combination safely; use matching peers and reconnect. Downgrading source does not require a reverse data migration because stored formats and command names are unchanged; actual native save rollback remains untested and backups are required before runtime testing.
+
+New apps must choose their own stable store and object keys and document their schema. Corrupt/future records are preserved and rejected. Framework disabling retains records. Every grant/read rechecks current access, real media, loaded-object identity and power. Join/reconnect, unloaded chunks, restarts, multi-app contention and real inventory notification remain native runtime gates.
+
+Source inventory: `scripts/production-files.json`. Generated ZIPs and SHA-256 receipts belong under ignored `dist/current/`; no artifacts have been built. Packaging checks and generated output cannot replace source or native evidence. Exact fallback PNG bytes were decoded and SHA-256/dimension checked against installed team branding; see `BRANDING.json`.
