@@ -1,0 +1,17 @@
+dist/
+.codex/
+.test-deps/
+__pycache__/
+*.pyc
+*.log
+server-console*
+console.txt
+local.settings*.json
+.env*
+*.pem
+*.key
+*.ini
+*.vdf
+*.zip
+*.zip.sha256
+docs/IMPLEMENTATION_DIFF.patch
