@@ -65,6 +65,10 @@
     {
       "path": "docs/WORKSHOP_CHANGELOG.md",
       "pattern": "^Version (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/NETWORK_AND_NOTIFICATIONS.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

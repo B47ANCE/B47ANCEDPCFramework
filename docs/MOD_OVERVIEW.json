@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.10.0-dev.1",
+  "version": "0.11.0-dev.1",
   "reviewed": true,
-  "source_digest": "e1fb095d7394c45970caf211cdf559131491745ecfac578972ea081e22f5c500",
+  "source_digest": "e2ebd2f64d7c33554111cc6e9db6effe4c17d75d278ed7676cc680646059a10d",
   "features": [
     {
       "status": "Source",
@@ -53,9 +53,13 @@
     {
       "status": "Source",
       "text": "User-approved PC Framework cover replaces fallback thumbnail/poster; text-free computer derivative supplies the 64px mod icon. Original sources and exact export hashes retained; visual/static checks only. The 64px icon now has real PNG alpha; thumbnail/poster bytes are preserved."
+    },
+    {
+      "status": "Source",
+      "text": "Connections API 1 and PC Network status/pairing app; persistent private/public links never grant inventory access. Notification API 1 adds guarded taskbar notices. Source iteration not packaged/published."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.10.0-dev.1. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; Workshop MP testing item 3822042011 uploaded; upload does not prove runtime acceptance. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented. Steam displayed a temporary automated-content-review hold after the approved 0.9.0-dev.4 artwork upload; configured public visibility remains unchanged.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.11.0-dev.1; G7/stable G8 BLOCKED. Source iteration not packaged, deployed or published. Connected offline/unloaded PCs cannot supply live data. Notifications are local presentation; consumers own data authority. Existing Workshop item 3822042011 retains its prior uploaded version.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -79,7 +83,8 @@
     "docs/WORKSHOP_DESCRIPTION.md",
     "docs/WORKSHOP_CHANGELOG.md",
     "docs/WORKSHOP_PUBLICATION.md",
-    "assets/branding/README.md"
+    "assets/branding/README.md",
+    "docs/NETWORK_AND_NOTIFICATIONS.md"
   ],
   "relations": []
 }

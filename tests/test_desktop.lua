@@ -14,8 +14,9 @@ function W:setVisible(v) self.visible=v end;function W:isVisible() return self.v
 function W:setEnable(v) self.enable=v end
 function W:addToUIManager() self.added=true end;function W:removeFromUIManager() self.removed=true end
 function W:insertNewLineOfButtons(...) self.joypadButtonsY[#self.joypadButtonsY+1]={...} end
-function W:clear() self.options={};self.selected=1 end
+function W:clear() self.options={};self.items={};self.selected=1 end
 function W:addOptionWithData(text,data) self.options[#self.options+1]={text=text,data=data} end
+function W:setTitle(text) self.title=text end
 function W:setText(text) self.text=text end;function W:getInternalText() return self.text or '' end
 function W:setTextRGBA(r,g,b,a) self.glyphColor={r=r,g=g,b=b,a=a} end
 function W:addItem(text,item) self.items=self.items or {};self.items[#self.items+1]={text=text,item=item,height=self.itemheight,itemindex=#self.items+1};return self.items[#self.items] end

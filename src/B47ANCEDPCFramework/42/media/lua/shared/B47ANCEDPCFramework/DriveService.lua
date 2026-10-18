@@ -81,6 +81,60 @@ function D.candidates(building,sq,range)
  return out
 end
 function D.provider(actor,id) return lookup(actor,id,nil,false) end
+-- Read-only, incremental media enumeration for trusted application adapters.
+-- It creates no drive binding, offer or inventory mutation.
+function D.validateMedia(actor,computer,row)
+ if isClient() or not A.enabled() or not Media.computer(actor,computer,false) or type(row)~='table' then return end
+ local t=A.target(row.target.obj,row.target.ci,actor)
+ if not accessible(actor,t) or not beside(computer,t) or t.container~=row.target.container
+  or row.item:getContainer()~=t.container or t.container:getItemWithID(row.item:getID())~=row.item then return end
+ return A.snapshot(row.item)
+end
+function D.scanMedia(actor,computer)
+ if isClient() or not A.enabled() or not Media.computer(actor,computer,false) then return end
+ local origin=computer:getSquare();local j={square=1,object=0,ci=0,item=0,visits=0,compartments=0,objects=0,rows={},seen={}}
+ local squares={};for x=-1,1 do for y=-1,1 do squares[#squares+1]={x=origin:getX()+x,y=origin:getY()+y} end end
+ function j.step()
+  if not A.enabled() or not Media.computer(actor,computer,false) then return nil,'unavailable' end
+  for _=1,64 do
+   if j.target then
+    if not accessible(actor,j.target) or not beside(computer,j.target) then return nil,'unavailable' end
+    local items=j.target.container:getItems()
+    if j.item>=items:size() then j.target=nil;j.item=0
+    else
+     local item=items:get(j.item);j.item=j.item+1;j.visits=j.visits+1
+     if j.visits>4096 then return nil,'tooLarge' end
+     if item:getFullType()==Media.disc and item:getContainer()==j.target.container and not j.seen[item] then
+      local snapshot=A.snapshot(item)
+      if snapshot then
+       if #j.rows>=32 then return nil,'tooLarge' end
+       j.seen[item]=true;j.rows[#j.rows+1]={item=item,target=j.target,snapshot=snapshot}
+      end
+     end
+    end
+   else
+    local pos=squares[j.square]
+    if not pos then return j.rows,'done' end
+    local sq=getCell():getGridSquare(pos.x,pos.y,origin:getZ());local objects=sq and sq:getObjects()
+    if not objects then j.square=j.square+1;j.object=0;j.ci=0
+    elseif objects:size()>512 then return nil,'tooLarge'
+    elseif j.object>=objects:size() then j.square=j.square+1;j.object=0;j.ci=0
+    else
+     local obj=objects:get(j.object);local count=obj:getContainerCount()
+     if count>100 then return nil,'tooLarge' end
+     if j.ci>=count then j.ci=0;j.object=j.object+1;j.objects=j.objects+1;if j.objects>1024 then return nil,'tooLarge' end
+     else
+      local ci=j.ci;j.ci=j.ci+1;j.compartments=j.compartments+1;if j.compartments>512 then return nil,'tooLarge' end
+      local t=not instanceof(obj,'IsoWorldInventoryObject') and A.target(obj,ci,actor)
+      if accessible(actor,t) then j.target=t;j.item=0 end
+     end
+    end
+   end
+  end
+  return nil,'waiting'
+ end
+ return j
+end
 local function description(item,id)
  local name=item:getDisplayName();if type(name)~='string' or #name>512 then name=item:getFullType() end
  return {id=item:getID(),name=name:gsub('%c',' '),fullType=item:getFullType(),drive=id}

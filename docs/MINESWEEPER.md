@@ -1,6 +1,6 @@
 # Bundled Minesweeper
 
-Project Version: 0.10.0-dev.1
+Project Version: 0.11.0-dev.1
 
 Minesweeper is installed with PC Framework under app ID `b47pc.minesweeper`. Use a powered accessible PC and select Minesweeper from the shared desktop or Start menu. Opening the desktop does not start the app. No CD or Quartermaster is required. Other installed apps and CD programs remain available on that same desktop and taskbar.
 
