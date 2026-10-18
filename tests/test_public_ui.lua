@@ -48,7 +48,7 @@ local listed=false;for _,entry in ipairs(host.desktopHost.entries) do if entry.i
 assert(listed and not host.driveIcon:isVisible(),'installed app missing from common launcher or inherited a drive')
 host.writerIcon.onclick();assert(opens==1 and host.content and host.content.b47PCSDKWindow)
 local window=host.content;host:prerender();local first=resizes
-host:setWidth(1050);host:prerender();assert(resizes>first)
+host:setWidth(1050);host:setHeight(950);host:prerender();assert(resizes>first)
 local count=received;host:desktop();host.task.onclick();assert(host.content==window and last.isActive(),'minimize invalidated app')
 window:onKeyRelease(Keyboard.KEY_ESCAPE);assert(closed==1 and not host.content);last.reply();assert(received==count,'closed window accepted stale reply')
 host:openProgram();assert(opens==2);local stale=last.reply

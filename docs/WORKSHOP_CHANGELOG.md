@@ -1,4 +1,4 @@
-Version 0.9.0-dev.4
+Version 0.10.0-dev.1
 MP testing build - dedicated multiplayer NOT TESTED
 
-Replace the fallback thumbnail and in-game poster with the supplied B47ANCE'd PC Framework artwork. Use a computer-only crop for the small mod icon. Gameplay, UI behavior, public APIs, sandbox options and saved data are unchanged. Native SP/dedicated acceptance remains pending; G7/stable G8 BLOCKED.
+Full front-facing 2D PC shell: CRT monitor and horizontal system unit, with the shared desktop/apps inside the monitor. No keyboard or mouse artwork. Uniform scaling preserves the 4:3 screen and hardware proportions. Case power retains local logoff. Includes the transparent small icon. Gameplay, public APIs, sandbox settings and saved data are unchanged. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED.

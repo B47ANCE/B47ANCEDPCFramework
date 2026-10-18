@@ -32,5 +32,26 @@
     "src/B47ANCEDPCFramework/42/media/lua/client/B47ANCEDPCFramework/Desktop.lua"
   ],
   "runtime_dependency": "Existing exposed native ISUI rectangles/text only; no custom Java/JAR, generated texture or raster editing.",
-  "evidence": "Source inspection and offline rendering only; native SP/dedicated NOT TESTED."
+  "evidence": "Source inspection and offline rendering only; native SP/dedicated NOT TESTED.",
+  "current_design": {
+    "requested": "2026-10-18: show the PC like the supplied cover/icon, from a 2D front-facing perspective, without keyboard or mouse",
+    "reference_artwork": "assets/branding/pc-framework-original.png",
+    "reference_sha256": "4cf4e0ed4947d5f69812de681b5a1fb1a942b2dbef36e14997bfbe91752ae641",
+    "authoring_canvas": [
+      1000,
+      840
+    ],
+    "screen": [
+      100,
+      48,
+      800,
+      600
+    ],
+    "components": [
+      "front-facing CRT",
+      "horizontal system unit"
+    ],
+    "scale": "Uniform centered fit; no isometric side panels or bitmap frame dependency",
+    "interaction": "Only existing in-screen native controls and case power/logoff target; other hardware is decorative"
+  }
 }

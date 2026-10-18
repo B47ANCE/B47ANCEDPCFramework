@@ -14,9 +14,10 @@ local function attempt(state,fn)
 end
 function D.new(C,num,computer)
  local m=UI.metrics();local actor=getSpecificPlayer(num)
- local minW,minH=math.max(700,m.font*28),math.max(680,m.font*19+400)
+ -- Uniform hardware scaling needs both axes to reserve a readable app screen.
+ local minH=math.max(680,m.font*22+380);local minW=math.max(800,minH,m.font*29)
  if getPlayerScreenWidth(num)<minW+20 or getPlayerScreenHeight(num)<minH+20 then actor:setHaloNote(tr('ScreenSmall'));return end
- local root=ISCollapsableWindowJoypad:new(0,0,math.max(minW,math.min(920,getPlayerScreenWidth(num)-20)),math.max(minH,math.min(780,getPlayerScreenHeight(num)-20)))
+ local root=ISCollapsableWindowJoypad:new(0,0,math.max(minW,math.min(1000,getPlayerScreenWidth(num)-20)),math.max(minH,math.min(840,getPlayerScreenHeight(num)-20)))
  root.playerNum=num;root.minimumWidth=minW;root.minimumHeight=minH;root.resizable=true;root.pin=true;root.drawFrame=false;root.clearStentil=false;root.title="Windows '93"
  root.titleBarHeight=function() return math.max(24,root:getHeight()*.065) end
  root:initialise();root:instantiate()

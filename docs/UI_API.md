@@ -1,6 +1,6 @@
 # Public PC UI and drawing assets
 
-Project Version: 0.9.0-dev.4
+Project Version: 0.10.0-dev.1
 
 Application API **1**, UI API **1**, drawing-assets API **1**. This is a client presentation SDK for trusted Lua mods. Consumers enable `B47ANCEDPCFramework` as a loader dependency and import it; they do not vendor the framework source or copy its global UI objects. No separate Java, texture generator or external OS runtime is required.
 
@@ -110,3 +110,5 @@ The shipped [Minesweeper app](MINESWEEPER.md) is a production consumer of `regis
 The approved CRT shell and refreshed original pixel icons in 0.9.0-dev.1 use Lua rectangles/text only; the seven icon IDs and nine public palette roles are unchanged. See UNIFIED_DESKTOP.md for app-only retirement, cleanup error handling, bounded provider/catalog polling and native acceptance gates.
 
 In 0.9.0-dev.2 the additive `minesweeper` asset depicts an original miniature minefield with an exposed mine, count and blue flag. The bundled app uses it on the shared desktop and taskbar. Its editable source is `Assets.lua`; it uses existing palette roles and rectangle rendering without bitmap dependencies. Assets API remains 1. Offline geometry checks cover 16, 20, 40, 56 and 80 pixels; native pixels remain a runtime gate.
+
+In 0.10.0-dev.1 the private CRT shell draws the front-facing monitor and horizontal system case with uniform scaling and a 4:3 live screen. No keyboard or mouse artwork is included. Native app controls, callbacks and server authority are unchanged. Existing crt-frame/UI/assets API 1 contracts remain compatible. The native root includes hardware outside the usable monitor surface, so app layout must use its hosted content panel dimensions; widening a height-limited root centers the PC instead of stretching it. Font-aware root minimums preserve readable consumer content. No new engine drawing calls, network state or sandbox options.

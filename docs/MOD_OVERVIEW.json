@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.9.0-dev.4",
+  "version": "0.10.0-dev.1",
   "reviewed": true,
-  "source_digest": "242decd6b7461a50935ff80efcf5f4ba12f28990628d313be5ca60ccfbecce28",
+  "source_digest": "41b72fa161eac5be149a4e83b18b7d4c0638156dbc7c87ab500f51836b07f369",
   "features": [
     {
       "status": "Source",
@@ -12,7 +12,7 @@
     },
     {
       "status": "Source",
-      "text": "One approved B47/CRT93 desktop and Start menu for all available apps, eight original pixel icons including a dedicated Minesweeper mine-and-flag asset, retained app/tool taskbar windows, paged catalogs and isolated CD provider selection; offline tested."
+      "text": "One shared front-facing PC shell: beige CRT and horizontal system unit, no peripheral artwork, 4:3 app screen, uniform letterboxing and retained app/tool taskbar sessions; client presentation, offline tested."
     },
     {
       "status": "Source",
@@ -52,10 +52,10 @@
     },
     {
       "status": "Source",
-      "text": "User-approved PC Framework cover replaces fallback thumbnail/poster; text-free computer derivative supplies the 64px mod icon. Original sources and exact export hashes retained; visual/static checks only."
+      "text": "User-approved PC Framework cover replaces fallback thumbnail/poster; text-free computer derivative supplies the 64px mod icon. Original sources and exact export hashes retained; visual/static checks only. The 64px icon now has real PNG alpha; thumbnail/poster bytes are preserved."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.9.0-dev.4. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; Workshop MP testing item 3822042011 uploaded; upload does not prove runtime acceptance. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented. Steam displayed a temporary automated-content-review hold after the approved 0.9.0-dev.4 artwork upload; configured public visibility remains unchanged.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.10.0-dev.1. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; Workshop MP testing item 3822042011 uploaded; upload does not prove runtime acceptance. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented. Steam displayed a temporary automated-content-review hold after the approved 0.9.0-dev.4 artwork upload; configured public visibility remains unchanged.",
   "evidence": [
     "README.md",
     "docs/API.md",
