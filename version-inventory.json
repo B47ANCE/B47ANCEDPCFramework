@@ -57,6 +57,14 @@
     {
       "path": "docs/UNIFIED_DESKTOP.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/WORKSHOP_DESCRIPTION.md",
+      "pattern": "Development version (?P<version>\\S+)\\."
+    },
+    {
+      "path": "docs/WORKSHOP_CHANGELOG.md",
+      "pattern": "^Version (?P<version>\\S+)$"
     }
   ],
   "changelog": {

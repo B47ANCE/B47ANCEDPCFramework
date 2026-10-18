@@ -2,7 +2,7 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.9.0-dev.2. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.9.0-dev.3. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
 Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
 
@@ -10,7 +10,7 @@ You can also use a PC while resting in native furniture directly in front of it.
 
 Other mods register trusted Lua apps. Quartermaster supplies `QUARTERMASTER.EXE` and its CD Writer through this interface; its ledger contents, permissions, inventory conversion and network authority stay in Quartermaster. Opening the screen or mounting a CD never automatically runs an app. All available apps now share one desktop and Start menu. Their windows remain on the same taskbar when switching apps. The shell uses the approved beige B47 / CRT 93 design, original pixel icons and physical logoff control. [Shared desktop, CD providers and lifecycle](docs/UNIFIED_DESKTOP.md).
 
-Enable `B47ANCEDPCFramework` on the server and every client alongside dependent apps. This repository has no assigned Workshop item; Workshop installation is not yet available. Quartermaster is not a dependency of this framework.
+Enable `B47ANCEDPCFramework` on the server and every client alongside dependent apps. A first public Workshop MP testing upload is authorized; its assigned item ID will be recorded in WORKSHOP_ID.txt after creation. Quartermaster is not a dependency of this framework.
 
 `B47ANCEDPCFramework.Enabled` is the server sandbox switch (default true). Disabling it closes screens and refuses device validation without deleting app records. App-specific gameplay settings remain with their apps. Computer identity, adjacent/seated reach, scan bounds and polling limits are implementation constraints, not user-adjustable gameplay values.
 
@@ -39,3 +39,5 @@ python -B tests/run_tests.py
 See [application API and authority contract](docs/API.md), [source provenance and persistence](docs/ARCHITECTURE.md), [validation and runtime gates](docs/TESTING.md), and [version policy](docs/VERSION_POLICY.md). Use `python -B scripts/build.py` only when packaging is requested. It does not deploy or upload.
 
 Mod ID: `B47ANCEDPCFramework`. Created by B47ANCE. Original owned code extracted from [Quartermaster](https://github.com/B47ANCE/B47ANCEDQuartermaster), with an isolated framework UI namespace and exact team fallback artwork. No Workshop ID has been invented.
+
+Publication preparation: canonical Workshop prose is in docs/WORKSHOP_DESCRIPTION.md and docs/WORKSHOP_CHANGELOG.md. The original standard B47 thumbnail is copied byte-for-byte to preview-client.png. After scripts/build.py, scripts/prepare_workshop.py stages exact package bytes and writes a source/package/VDF manifest without uploading or restarting Steam. First-item creation requires the explicit --create-public flag and refuses an existing WORKSHOP_ID.txt. Later submissions preserve existing visibility.

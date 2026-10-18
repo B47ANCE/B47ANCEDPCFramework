@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.9.0-dev.3] - 2026-10-17
+
+- PATCH-level publication metadata/tooling checkpoint within the pending 0.9.0 MINOR iteration. Prepare the explicitly authorized first public Workshop MP testing item, canonical player-facing prose, exact fallback thumbnail and guarded package-to-staging manifest.
+- Runtime gameplay, public APIs, sandbox settings and save schemas are unchanged. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED. Upload success must be recorded separately.
+
 ## [0.9.0-dev.2] - 2026-10-17
 
 - PATCH-level visual refinement within the pending 0.9.0 MINOR iteration: original mine-and-flag pixel icon for Minesweeper on the shared desktop and taskbar.

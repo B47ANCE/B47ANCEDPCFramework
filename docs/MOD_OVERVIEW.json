@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.9.0-dev.2",
+  "version": "0.9.0-dev.3",
   "reviewed": true,
-  "source_digest": "02e97ed3b281887a0dd197ab8b07700f6f807501ebb322ce4e5fc506470e8674",
+  "source_digest": "b1e5275509b403dfde8c2ff3d5f6ecac0b541d7d363e834e34a425880473dc9b",
   "features": [
     {
       "status": "Source",
@@ -51,7 +51,7 @@
       "text": "Feature roadmap proposes arbitrary window drag/snap, richer UI controls and provider dashboards; shared mail/notes, repairs and remote control remain separate authority/API design work."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.9.0-dev.2. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.9.0-dev.3. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; first public Workshop item creation authorized; upload pending. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -71,7 +71,9 @@
     "docs/SEATED_PC.md",
     "docs/SEATED_PC_API.json",
     "docs/UNIFIED_DESKTOP.md",
-    "docs/CRT_DESIGN.json"
+    "docs/CRT_DESIGN.json",
+    "docs/WORKSHOP_DESCRIPTION.md",
+    "docs/WORKSHOP_CHANGELOG.md"
   ],
   "relations": []
 }
