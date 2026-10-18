@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.9.0-dev.3
+Project Version: 0.9.0-dev.4
 
 [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` pass. Host dependency: `lupa==2.6`; it is not a game dependency. Native-shaped doubles prove only the listed offline behaviors.
 
@@ -48,3 +48,5 @@ Unified desktop 0.9.0-dev.1: `python -B tests/run_tests.py` adds test_unified_de
 Minesweeper icon 0.9.0-dev.2: [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` pass. Existing public-assets tests now include actual taskbar/desktop sizes (16/56), alongside 20/40/80 pixels, and the installed app test checks its custom asset binding in the common catalog. Original minefield geometry is editable Lua, uses existing palette roles and has no shipped bitmap dependency. Source-rendered icon/desktop/taskbar previews were visually inspected outside the repository; this is not native PZ rendering. No gameplay, authority, networking, schema or sandbox changes; UI geometry is an internal presentation constraint. The paired suite result above remains historical to 0.9.0-dev.1; this icon-only checkpoint reruns the full framework suite. Native SP/dedicated remain NOT TESTED; project G7/stable G8 remain BLOCKED. No packaging, deployment or publication.
 
 Workshop checkpoint 0.9.0-dev.3 changes publication metadata/tooling only. Reuse existing Lua gameplay source unchanged; rerun scripts/check_versions.py and tests/run_tests.py before packaging. scripts/build.py binds exact clean Git source/package hashes and checks ZIP integrity. scripts/prepare_workshop.py refuses existing staging, dirty/unmatched source, wrong archive hashes and duplicate first-item creation. Upload, Steam desktop restart and actual native validation are separate actions; G7/stable G8 remain BLOCKED.
+
+Artwork checkpoint 0.9.0-dev.4: original supplied cover is preserved with SHA-256; the built-in image editor supplies a text-free computer derivative for the icon. scripts/build_branding.py exports only 512px thumbnail/poster and 64px icon PNGs with manifest hashes. Structural/source/ZIP/stage checks and visual inspection of the actual exports are offline evidence. No gameplay/network/sandbox/schema changes. Native rendering NOT TESTED; project G7/stable G8 remain BLOCKED.

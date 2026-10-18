@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.9.0-dev.3",
+  "version": "0.9.0-dev.4",
   "reviewed": true,
-  "source_digest": "68cc3a7a6bc1d18e50ee3d4166d130837bae1a373e1f363ab543344e8e8ed169",
+  "source_digest": "242decd6b7461a50935ff80efcf5f4ba12f28990628d313be5ca60ccfbecce28",
   "features": [
     {
       "status": "Source",
@@ -49,9 +49,13 @@
     {
       "status": "Planned",
       "text": "Feature roadmap proposes arbitrary window drag/snap, richer UI controls and provider dashboards; shared mail/notes, repairs and remote control remain separate authority/API design work."
+    },
+    {
+      "status": "Source",
+      "text": "User-approved PC Framework cover replaces fallback thumbnail/poster; text-free computer derivative supplies the 64px mod icon. Original sources and exact export hashes retained; visual/static checks only."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.9.0-dev.3. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; Workshop MP testing item 3822042011 uploaded; upload does not prove runtime acceptance. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.9.0-dev.4. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; Workshop MP testing item 3822042011 uploaded; upload does not prove runtime acceptance. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented. Steam displayed a temporary automated-content-review hold after the approved 0.9.0-dev.4 artwork upload; configured public visibility remains unchanged.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -74,7 +78,8 @@
     "docs/CRT_DESIGN.json",
     "docs/WORKSHOP_DESCRIPTION.md",
     "docs/WORKSHOP_CHANGELOG.md",
-    "docs/WORKSHOP_PUBLICATION.md"
+    "docs/WORKSHOP_PUBLICATION.md",
+    "assets/branding/README.md"
   ],
   "relations": []
 }
