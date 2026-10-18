@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.7.0-dev.1
+Project Version: 0.8.0-dev.1
 
 [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` pass. Host dependency: `lupa==2.6`; it is not a game dependency. Native-shaped doubles prove only the listed offline behaviors.
 
@@ -40,3 +40,5 @@ The user requested a development ZIP. `python -B scripts/build.py` runs version/
 Minesweeper mood 0.7.0-dev.1: the suite adds server-board/reward and transport regressions in test_minesweeper_mood.lua and test_minesweeper_network.lua. It exercises server-only validation, hidden-cell redaction, sequential/replayed intent, elapsed progress, configured rates/default fallback, idle/flag/reset exclusion, disabling/power/expiry, stale stop, native-shaped stat removal/clamp and sync calls, missing-sync refusal, authenticated dispatch, target/correlation, cancellation/expiry and prior UI cases. MINESWEEPER_MOOD_API.json records exact-build source/binding evidence. These are offline tests; actual mood replication/persistence, SP and dedicated behavior are NOT TESTED. Gameplay G7/stable G8 remain BLOCKED. No new package/deploy/upload or actual save mutation is part of this iteration.
 
 The full Quartermaster/Rooms offline suite also passes against the final 0.7 mood-service source, using the paired command documented above. This remains offline compatibility evidence and does not validate native stat effects.
+
+Seated access 0.8.0-dev.1: `python -B tests/run_tests.py` adds `test_seated_pc.lua` for all four native facings, Computer/Facing metadata, missing/removed/stale furniture, native seating data, loaded-square identity, body offsets, floors and both reach barriers; power, safehouse and Enabled; forged seat-intent refusal and server Minesweeper revalidation; opening/refreshing the actual desktop with a queued rest-action double, no walking or queue edits, and closing after chair loss. `python -B tests/check_native_computers.py --game <installed-game-root>` checks current native facing metadata. SEATED_PC_API.json records source evidence for 42.21.0 / build 25485521. The full paired Quartermaster/Rooms command above also passes against this framework source. These are offline tests; no native animation, endurance recovery, seated stat replication, reconnect or dedicated restart is proven. Run the acceptance matrix in SEATED_PC.md. Native SP/dedicated NOT TESTED, G7/stable G8 BLOCKED. This iteration was not packaged, deployed or published.

@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.7.0-dev.1",
+  "version": "0.8.0-dev.1",
   "reviewed": true,
-  "source_digest": "1c514e66321a145b0b739f4e7e72aa634749c811e32cb29b9fc6e1350e54f87e",
+  "source_digest": "872fbb2d2dcd3f0423116a1e5ca882ca9adde03c6a10c2cc00ae4735b4b0e243",
   "features": [
     {
       "status": "Source",
@@ -17,6 +17,10 @@
     {
       "status": "Source",
       "text": "All powered vanilla PC orientations and other placed Computer-tagged tiles; access, electricity and server authority checks retained."
+    },
+    {
+      "status": "Source",
+      "text": "PC access from occupied native furniture directly in front, including while resting; shared facing/loaded-seat/barrier validation and no forced walking or rest queue edits. Native SP/dedicated pending."
     },
     {
       "status": "Source",
@@ -43,7 +47,7 @@
       "text": "Feature roadmap proposes multiwindow, richer UI controls and provider dashboards; shared mail/notes, repairs and remote control remain separate authority/API design work."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.7.0-dev.1. G7/stable G8 BLOCKED. One hosted content window; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.8.0-dev.1. G7/stable G8 BLOCKED. One hosted content window; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -59,7 +63,9 @@
     "docs/MINESWEEPER.md",
     "docs/MINESWEEPER_INPUT_API.json",
     "docs/MINESWEEPER_MOOD.md",
-    "docs/MINESWEEPER_MOOD_API.json"
+    "docs/MINESWEEPER_MOOD_API.json",
+    "docs/SEATED_PC.md",
+    "docs/SEATED_PC_API.json"
   ],
   "relations": []
 }

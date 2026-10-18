@@ -1,6 +1,6 @@
 # Bundled Minesweeper
 
-Project Version: 0.7.0-dev.1
+Project Version: 0.8.0-dev.1
 
 Minesweeper is installed with PC Framework under app ID `b47pc.minesweeper`. Use a powered accessible PC, choose Minesweeper's desktop from the world context menu when several apps are installed, then select its application icon or Start entry. Opening the desktop does not start the app. No CD or Quartermaster is required. Existing app-specific desktops and CD programs remain available through their context-menu entries.
 
@@ -26,3 +26,5 @@ Source is `shared/B47ANCEDPCFramework/Apps/MinesweeperGame.lua` (pure board rule
 Validation commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`. The latter tests all 81 first-reveal positions, mine/count invariants, flood/flags, win/loss, correct/incorrect chords, invalid coordinates, installed launch, mouse-shaped/controller-mode callbacks, minimize/reset, font/size bounds and stale/power guards. Package only on explicit request with `python -B scripts/build.py`, then `python -B scripts/check_versions.py --release`; its receipt records commit, dirty state, exact file hashes, ZIP hash, CRC/member/content checks and runtime limits. These commands do not deploy or publish.
 
 [TESTED OFFLINE] Native-shaped host tests are not native execution. [RUNTIME GATE] Native SP/dedicated NOT TESTED; project dedicated G7 and stable-release G8 remain BLOCKED. Mood effects are gameplay and require dedicated validation; offline tests cannot prove owner stat synchronization or persistence. Validate actual enabled-mod startup, powered-PC discovery, multi-app selection, pointer/controller play, minimize/resize, split-screen and power/logoff closure on disposable saves. Development packaging is distribution evidence only.
+
+In 0.8.0-dev.1 the common PC access check also supports occupied native furniture directly in front of the PC, including during native rest. Opening/playing does not clear the rest queue or stand the player up. Server board/mood authorization still revalidates actual seated reach, power and permissions. See SEATED_PC.md; simultaneous native endurance recovery and mood relief remain SP/dedicated acceptance gates.

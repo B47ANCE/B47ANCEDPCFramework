@@ -49,6 +49,10 @@
     {
       "path": "docs/MINESWEEPER_MOOD.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/SEATED_PC.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

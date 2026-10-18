@@ -1,6 +1,6 @@
 # Minesweeper mood benefits and authority
 
-Project Version: 0.7.0-dev.1
+Project Version: 0.8.0-dev.1
 
 Playing Minesweeper can reduce boredom and increase happiness. PZ represents the latter as **lower unhappiness**, so the server removes boredom/unhappiness through the existing enum stat API. Default benefits are **2 boredom points and 1 unhappiness point per 30 real seconds of qualifying play**, clamped by native stat bounds. No skill, item, stress, fatigue or other reward is added.
 
@@ -48,3 +48,5 @@ SP uses the same service directly. Multiplayer uses the `B47ANCEDPCMinesweeper` 
 [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`. The suite tests server-only authority, redaction, genuine progress/time, settings/invalid values, forged sender/rates, replay/order, flags/reset/idle exclusion, power/disable/expiry, stale stop, stat bounds/sync invocation, missing-sync refusal, targeted request correlation, and duplicate/canceled/expired replies. Prior board/UI/CD/media tests remain. Native-shaped doubles do not prove stat replication or persistence.
 
 [RUNTIME GATE] Native SP NOT TESTED; dedicated G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. Test real stat decrease and floor clamp, owner synchronization, two players/PCs, rapid/reordered/lost packets, close/minimize/AFK, movement/power/privacy loss, settings changes, disconnect/rejoin and dedicated restart/save persistence. No game/server launch, deployment, repackaging or publication is authorized by this implementation. The prior 0.6 development ZIP is preserved unchanged and does not contain this feature.
+
+Seated access 0.8.0-dev.1 retains this authority/rate model. An occupied native seat directly in front can satisfy Device reach; the server derives it from the actor, not client payload. No rest/endurance setter is added. Validate concurrent native endurance recovery and server mood synchronization on real SP/dedicated sessions; current evidence is source/offline only. See SEATED_PC.md.

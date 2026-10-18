@@ -2,15 +2,17 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.7.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.8.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
 Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
+
+You can also use a PC while resting in native furniture directly in front of it. The framework keeps the seat/rest action intact and checks the occupied seat, facing and barriers on both peers. [Seated access rules and runtime limits](docs/SEATED_PC.md).
 
 Other mods register trusted Lua apps. Quartermaster supplies `QUARTERMASTER.EXE` and its CD Writer through this interface; its ledger contents, permissions, inventory conversion and network authority stay in Quartermaster. Opening the screen or mounting a CD never automatically runs an app. Multiple registered apps can be selected from the computer context menu.
 
 Enable `B47ANCEDPCFramework` on the server and every client alongside dependent apps. This repository has no assigned Workshop item; Workshop installation is not yet available. Quartermaster is not a dependency of this framework.
 
-`B47ANCEDPCFramework.Enabled` is the server sandbox switch (default true). Disabling it closes screens and refuses device validation without deleting app records. App-specific gameplay settings remain with their apps. Computer identity, adjacency, scan bounds and polling limits are implementation constraints, not user-adjustable gameplay values.
+`B47ANCEDPCFramework.Enabled` is the server sandbox switch (default true). Disabling it closes screens and refuses device validation without deleting app records. App-specific gameplay settings remain with their apps. Computer identity, adjacent/seated reach, scan bounds and polling limits are implementation constraints, not user-adjustable gameplay values.
 
 ## Bundled Minesweeper
 
