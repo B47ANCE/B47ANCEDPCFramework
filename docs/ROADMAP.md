@@ -1,6 +1,6 @@
 # Features and functionality brainstorm
 
-Project Version: 0.3.0-dev.1
+Project Version: 0.4.0-dev.1
 
 The framework should provide a reusable PC shell and UI kit. Optional apps should provide the gameplay. This lets one powered PC host several mods without each mod duplicating desktop art, input handling or lifecycle code. The following are design proposals, not promises that their engine integrations exist.
 
@@ -9,7 +9,8 @@ The framework should provide a reusable PC shell and UI kit. Optional apps shoul
 | Now | Public PC UI kit: windows, panels, buttons, entries, dropdowns, lists, scalable icons, palette, layout/focus helpers | **Implemented source / offline tested** in UI/assets API 1 | Local presentation. Font-driven geometry and drawing limits remain internal. |
 | Now | Installed-app descriptors, explicit launcher, capability discovery, close/stale-response guards, gallery example | **Implemented source / offline tested**; existing media API retained | Trusted Lua app registration. PC power/privacy checks remain mandatory; consumers validate gameplay on the server. |
 | Now | Powered PCs, real storage-media binding, Quartermaster ledger/CD Writer integration | **Implemented source / offline tested** | Existing server-owned drive adapters, exact real-media validation, app-owned snapshots/transactions. Native SP/dedicated pending. |
-| Next | Tabs, toolbar/status bar, tree views, context menus, modal prompts, property grids | **Proposed** | Public presentation components with the same keyboard/controller, resize and translation contract. No shared state required. |
+| Now | Tabs, wrapping toolbar and status bar | **Implemented source / offline tested** in 0.4.0-dev.1; opt-in gallery demonstrates page focus and local actions | Local presentation; no shared state or new sandbox settings. |
+| Next | Tree views, context menus, modal prompts, property grids | **Proposed** | Public presentation components with the same keyboard/controller, resize and translation contract. No shared state required. |
 | Next | Better app discovery: desktop/Start launcher across all installed apps, missing-provider explanations, API-version diagnostics | **Proposed**; current app selection uses the context menu plus selected app's desktop | Bounded local metadata, no private server data. Missing/disabled apps should explain availability without exposing hidden records. |
 | Next | Multiple windows, per-window taskbar buttons, drag/snap, restore previous size | **Proposed**; current host has one content window | Local session state. Opt-in per-player presentation preferences; power/logoff must close every child and cancel app work. |
 | Next | High-contrast skins, larger labels, color-independent status icons, custom texture adapters, gentle boot/shutdown effects | **Proposed**; current palette copies and custom rectangle icons are available | Local accessibility/appearance options. New texture/sound use needs API/source and native pixel/audio checks. Effects must not invent server boot state. |
@@ -23,7 +24,7 @@ The framework should provide a reusable PC shell and UI kit. Optional apps shoul
 | App | Calculator, clock, journal drafts, small puzzles and local games | **Proposed** | Mostly local UI; use actual world time where appropriate. Shared scores/rewards become server gameplay and need explicit authority/configuration. |
 | Research | Cameras, live remote views, alarms and remote doors/machines | **Blocked on capability/authority research** | Do not invent camera capture, unloaded-world simulation or remote-control APIs. Where safe Lua routes are absent, offer authorized text/status snapshots or manual local controls. |
 
-Recommended next sequence: validate the public SDK in the native client; add reusable tabs/toolbars/dialogs and a better multi-app launcher; define a small read-only provider contract; then build one opt-in dashboard with its own server validation. Multiwindow and shared communications should follow only after ownership and lifecycle tests are clear.
+Recommended next sequence: validate the public SDK in the native client; validate the new tab/toolbar/status controls, then add dialogs and a better multi-app launcher; define a small read-only provider contract; then build one opt-in dashboard with its own server validation. Multiwindow and shared communications should follow only after ownership and lifecycle tests are clear.
 
 Every new gameplay app needs a design slice covering state ownership, authenticated intents, permissions, scope, vanilla/custom synchronization, persistence, join/reconnect/restart, duplicate requests and failure recovery. Meaningful shared behavior needs server sandbox settings with stable identifiers, localized names/tooltips, sensible defaults/bounds and existing-save semantics. Proposed settings in this brainstorm are candidates, not implemented options or final identifiers.
 

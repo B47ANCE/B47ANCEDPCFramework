@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.3.0-dev.1",
+  "version": "0.4.0-dev.1",
   "reviewed": true,
-  "source_digest": "057a256d23dc9fcc9478027db89309f9f4b4e1e6f4e1ab6430cbee8ba1869cae",
+  "source_digest": "8375473c9bb7f130b7b2548ac013d0f0f194020ee025f96fffc8ad86a964e520",
   "features": [
     {
       "status": "Source",
@@ -27,11 +27,15 @@
       "text": "Additive installed-app registration and capability query; opt-in Component Gallery consumer; legacy media API 1 retained."
     },
     {
+      "status": "Source",
+      "text": "Public nested tabs, wrapping action toolbars and font-sized status bars, demonstrated in the opt-in local gallery and tested offline."
+    },
+    {
       "status": "Planned",
       "text": "Feature roadmap proposes multiwindow, richer UI controls and provider dashboards; shared mail/notes, repairs and remote control remain separate authority/API design work."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.3.0-dev.1. G7/stable G8 BLOCKED. One hosted content window; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.4.0-dev.1. G7/stable G8 BLOCKED. One hosted content window; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
   "evidence": [
     "README.md",
     "docs/API.md",

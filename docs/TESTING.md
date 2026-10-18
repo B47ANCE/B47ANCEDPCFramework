@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.3.0-dev.1
+Project Version: 0.4.0-dev.1
 
 [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` pass. Host dependency: `lupa==2.6`; it is not a game dependency. Native-shaped doubles prove only the listed offline behaviors.
 
@@ -26,3 +26,5 @@ Powered-PC expansion validation (0.2.0-dev.1): `python -B tests/run_tests.py` ch
 Public SDK 0.3.0-dev.1: the independent suite now includes `test_public_ui.lua` and an actual opt-in consumer loaded from `examples/ComponentGallery.lua`. It tests palette/metric isolation, built-in/custom icon scale/bounds, public native controls, explicit installed-app launch, resize/font bounds, visible/enabled focus rows, synchronous and stale callbacks, power/privacy/actor loss, failed construction and cleanup exceptions. Original legacy app/drive tests and the complete Quartermaster/Rooms regression suite pass against the new framework checkout. Example localization keys are checked against its separate English strings; it is not part of the production manifest. New API source observations are recorded in `UI_NATIVE_API.json` and the local unmanaged API audit library; this is source evidence, not runtime proof.
 
 Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`; the paired command above with `--pc-framework` pointing to this SDK checkout. Packaging, native SP and dedicated multiplayer were not run. Prior 0.1/0.2 native receipts remain historical and are not relabeled as new runtime evidence. Validate actual native font/focus/tooltip/layering, split-screen, app switching/error recovery and server-authorized media behavior before claiming dedicated G7 or stable G8 PASS.
+
+Roadmap UI 0.4.0-dev.1: `python -B tests/run_tests.py` adds `test_composites.lua` and the updated real gallery. Offline checks cover tab visibility/selection/no-op notifications, retained page data, root focus exclusion for hidden pages, unchanged-paint focus retention, toolbar action isolation/disable, invalid descriptors without partial attachment, status sizing, and wrapping at widths 100/300/700 with fonts 14/24/32/42. These use the existing source-verified native panel/button/text APIs; no new engine APIs, gameplay state, network commands or sandbox values were introduced. UI API remains 1 with additive `tabs`, `toolbars`, `status-bars` capability flags. Native SP, keyboard/controller routing, split-screen and dedicated G7 remain NOT TESTED/BLOCKED; stable G8 remains BLOCKED.

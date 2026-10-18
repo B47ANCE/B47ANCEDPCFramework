@@ -4,7 +4,7 @@ local C=require 'B47ANCEDPCFramework/ComputerUI'
 local UI=require 'B47ANCEDPCFramework/UI'
 local Assets=require 'B47ANCEDPCFramework/Assets'
 P.UI=UI;P.Assets=Assets
-local features={['installed-apps']=true,['ui-controls']=true,['hosted-windows']=true,['drawing-assets']=true,['custom-icons']=true,['media-adapters']=true}
+local features={['installed-apps']=true,['ui-controls']=true,['hosted-windows']=true,['drawing-assets']=true,['custom-icons']=true,['media-adapters']=true,['tabs']=true,['toolbars']=true,['status-bars']=true}
 function P.supports(name) return features[name]==true end
 function P.getAPIInfo()
  local copy={};for k,v in pairs(features) do copy[k]=v end

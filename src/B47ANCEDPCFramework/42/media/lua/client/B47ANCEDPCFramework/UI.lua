@@ -9,7 +9,9 @@ local function caption(o) return o.textKey and getText(o.textKey) or o.text or '
 function UI.metrics()
  local copy={};for k,v in pairs(U.Theme.metrics()) do copy[k]=v end;return copy
 end
-function UI.place(...) return U.Layout.place(...) end
+function UI.place(w,...)
+ U.Layout.place(w,...);if w.b47PCComposite then w:layout() end;return w
+end
 function UI.style(w,kind)
  w.backgroundColor=Assets.color(kind=='input' and 'white' or 'grey')
  w.backgroundColorMouseOver=Assets.color('light');w.borderColor=Assets.color('shadow')
@@ -38,7 +40,7 @@ local function makeButton(parent,o)
  b.font=U.Theme.fonts.body
  b.prerender=function(self)
   Assets.panel(self,0,0,self:getWidth(),self:getHeight(),self.mouseOver and 'light' or 'grey')
-  Assets.bevel(self,0,0,self:getWidth(),self:getHeight(),self.pressed)
+  Assets.bevel(self,0,0,self:getWidth(),self:getHeight(),self.pressed or self.b47PCSelected)
  end
  b.render=function(self)
   local c=Assets.color(self.enable==false and 'muted' or 'black')
@@ -97,6 +99,94 @@ function UI.focus(panel,rows)
   local visible={};for _,w in ipairs(row) do if w:isVisible() and w.enable~=false and w.disabled~=true then visible[#visible+1]=w end end
   if #visible>0 then panel:insertNewLineOfButtons(unpack(visible)) end
  end
+end
+-- Composite controls use only the same native panels/buttons as the core kit.
+local function descriptors(rows)
+ local copy,seen={},{}
+ for _,row in ipairs(rows or {}) do
+  assert(type(row.id)=='string' and #row.id>0 and not seen[row.id],'duplicate or invalid PC control ID')
+  seen[row.id]=true;local item={};for k,v in pairs(row) do item[k]=v end;copy[#copy+1]=item
+ end
+ return copy
+end
+local function wrapButtons(panel,buttons)
+ local m=UI.metrics();local gap=4;local usable=math.max(1,panel:getWidth()-8)
+ local x,y=4,4;local rows={{}}
+ for _,b in ipairs(buttons) do
+  local width=math.min(usable,math.max(m.button,getTextManager():MeasureStringX(U.Theme.fonts.body,b.title or '')+24))
+  if x>4 and x+width>4+usable then x=4;y=y+m.button+gap;rows[#rows+1]={} end
+  UI.place(b,x,y,width,m.button);rows[#rows][#rows[#rows]+1]=b;x=x+width+gap
+ end
+ return rows,#buttons>0 and y+m.button+4 or 8
+end
+local function composite(w,afterPaint)
+ local paint=w.prerender;local width,height,font
+ w.prerender=function(self)
+  if width~=self:getWidth() or height~=self:getHeight() or font~=UI.metrics().font then
+   self:layout();width,height,font=self:getWidth(),self:getHeight(),UI.metrics().font
+  end
+  paint(self);if afterPaint then afterPaint(self) end
+ end
+ w:layout();width,height,font=w:getWidth(),w:getHeight(),UI.metrics().font;return w
+end
+function UI.toolbar(parent,o)
+ o=o or {};local actions=descriptors(o.actions);local w=UI.panel(parent,o);w.b47PCComposite=true;local buttons,byID={},{}
+ for _,action in ipairs(actions) do
+  local item=action
+  local b=UI.button(w,{textKey=item.textKey,text=item.text,tooltipKey=item.tooltipKey,onClick=function(control)
+   if control.enable~=false and item.onClick then item.onClick(control,item.id) end
+  end})
+  b:setEnable(item.enabled~=false);buttons[#buttons+1]=b;byID[item.id]=b
+ end
+ function w:button(id) return byID[id] end
+ function w:focusRows() return self.rows end
+ function w:layout() self.rows,self.contentHeight=wrapButtons(self,buttons);self:setHeight(self.contentHeight);UI.focus(self,self.rows) end
+ return composite(w)
+end
+function UI.statusBar(parent,o)
+ o=o or {};local w=UI.panel(parent,o);w.b47PCComposite=true
+ local label=UI.label(w,{textKey=o.textKey,text=o.text,textColor=o.textColor})
+ function w:setText(value) label:setText(value) end
+ function w:setTextKey(key) label:setTextKey(key) end
+ function w:layout()
+  self:setHeight(UI.metrics().font+12);UI.place(label,6,6,math.max(1,self:getWidth()-12),UI.metrics().font+4)
+ end
+ return composite(w,function(self) Assets.bevel(self,0,0,self:getWidth(),self:getHeight(),true) end)
+end
+function UI.tabView(parent,o)
+ o=o or {};local definitions=descriptors(o.tabs);assert(#definitions>0,'PC tabs require a page')
+ local validInitial=not o.selected;for _,item in ipairs(definitions) do if item.id==o.selected then validInitial=true end end
+ assert(validInitial,'unknown initial PC tab')
+ local w=UI.panel(parent,o);w.b47PCComposite=true;local buttons,pages,byID,focus={},{},{},{}
+ local selected
+ function w:page(id) return pages[id] end
+ function w:selectedID() return selected end
+ function w:setPageFocus(id,rows) assert(pages[id],'unknown PC tab');focus[id]=rows;self:layout() end
+ function w:focusRows()
+  local rows={};for _,row in ipairs(self.headerRows or {}) do rows[#rows+1]=row end
+  for _,row in ipairs(focus[selected] or {}) do rows[#rows+1]=row end
+  return rows
+ end
+ function w:select(id)
+  if not pages[id] then return false end
+  if selected==id then return true end
+  local previous=selected;selected=id
+  for key,page in pairs(pages) do page:setVisible(key==id);byID[key].b47PCSelected=key==id end
+  self:layout();if o.onChange then o.onChange(id,pages[id],previous) end;return true
+ end
+ function w:layout()
+  self.headerRows,self.headerHeight=wrapButtons(self,buttons)
+  for _,page in pairs(pages) do UI.place(page,4,self.headerHeight,math.max(1,self:getWidth()-8),math.max(1,self:getHeight()-self.headerHeight-4)) end
+  UI.focus(self,self:focusRows())
+ end
+ for _,definition in ipairs(definitions) do
+  local item=definition;pages[item.id]=UI.panel(w,{})
+  local b=UI.button(w,{textKey=item.textKey,text=item.text,tooltipKey=item.tooltipKey,onClick=function() w:select(item.id) end})
+  buttons[#buttons+1]=b;byID[item.id]=b
+ end
+ selected=o.selected or definitions[1].id
+ for id,page in pairs(pages) do page:setVisible(id==selected);byID[id].b47PCSelected=id==selected end
+ return composite(w)
 end
 function UI.window(host,o)
  o=o or {};assert(host and host.showApp and not host.closed,'PC window requires an open desktop host')

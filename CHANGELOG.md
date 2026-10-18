@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0-dev.1] - 2026-10-17
+
+- Compatible MINOR iteration from 0.3.0-dev.1 toward 0.4.0; public API versions and persistence schemas remain unchanged. Stable release remains gated.
+- Begin the UI roadmap with public `tabView`, wrapping `toolbar` and font-sized `statusBar` components; additive UI API 1 capabilities retain legacy consumers.
+- Extend the opt-in gallery with editor/about tabs, toolbar actions and status output; only local preview state is edited.
+- Offline tests cover selection, page visibility/focus, disabled actions, descriptor isolation, invalid IDs and 14/24/32/42-font layouts at narrow/wide widths. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED.
+
 ## [0.3.0-dev.1] - 2026-10-17
 
 - Add public UI API 1 and drawing-assets API 1 for modular PC panels, hosted windows, controls, palette and scalable icons.

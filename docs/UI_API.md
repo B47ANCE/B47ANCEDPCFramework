@@ -1,6 +1,6 @@
 # Public PC UI and drawing assets
 
-Project Version: 0.3.0-dev.1
+Project Version: 0.4.0-dev.1
 
 Application API **1**, UI API **1**, drawing-assets API **1**. This is a client presentation SDK for trusted Lua mods. Consumers enable `B47ANCEDPCFramework` as a loader dependency and import it; they do not vendor the framework source or copy its global UI objects. No separate Java, texture generator or external OS runtime is required.
 
@@ -45,7 +45,7 @@ The context contains `playerNum`, the current native `player`, `computer`, `host
 
 Builder errors close any constructed SDK panel before propagating the error. Cleanup callbacks run once; framework cleanup completes before a cleanup error propagates. Errors are not turned into success results or hidden. Public UI metadata and callbacks are trusted local mod code, never code loaded from a physical disc or arbitrary file.
 
-`getAPIInfo()` returns a fresh table with `frameworkVersion`, `applicationVersion`, `uiVersion`, `assetsVersion`, and a fresh `features` map. `supports(name)` supports `installed-apps`, `ui-controls`, `hosted-windows`, `drawing-assets`, `custom-icons`, and `media-adapters`. Feature/version compatibility does not imply native or multiplayer validation.
+`getAPIInfo()` returns a fresh table with `frameworkVersion`, `applicationVersion`, `uiVersion`, `assetsVersion`, and a fresh `features` map. `supports(name)` supports `installed-apps`, `ui-controls`, `hosted-windows`, `drawing-assets`, `custom-icons`, `media-adapters`, `tabs`, `toolbars`, and `status-bars`. Feature/version compatibility does not imply native or multiplayer validation.
 
 ## UI controls
 
@@ -61,10 +61,19 @@ All factories initialize, instantiate, style and attach the native widget to the
 | `UI.textEntry(parent,options)` | Editable native text entry with initial `value`; native glyphs are dark on the light input surface. |
 | `UI.combo(parent,options)` | `options={{textKey=...,value=...},...}` and `onChange(value,combo)`; values are local UI data. |
 | `UI.list(parent,options)` | Native scrolling list with readable selected/unselected rows; optional `rowHeight`. Use native `addItem(displayText,payload)`, selection and callbacks. |
+| `UI.tabView(parent,options)` | `tabs={{id,textKey/text,tooltipKey},...}`, optional `selected` and `onChange(id,page,previousID)`. `page(id)` returns a native nested panel; `selectedID()` reads selection; `select(id)` returns false for unknown IDs and true otherwise. Initial selection and repeated selection do not notify. |
+| `UI.toolbar(parent,options)` | `actions={{id,textKey/text,tooltipKey,enabled,onClick},...}`. `onClick(button,id)` runs for enabled actions. `button(id)` exposes the native control for later enable changes. Captions wrap into button rows. |
+| `UI.statusBar(parent,options)` | Recessed caption with `textKey`/`text`, optional `textColor`; `setText(value)` and `setTextKey(key)` update its local message. |
 | `UI.style(widget,kind)` | Apply PC colors to an existing native widget; `input` also sets native entry glyph colors; `list` sets selection colors. Does not instantiate or attach it. |
 | `UI.place(widget,x,y,width,height)` | Explicit bounds using the existing native anchoring discipline. |
 | `UI.focus(panel,rows)` | Rebuild controller focus rows; hidden/disabled controls are omitted. Rebuild after app visibility/enable changes. |
 | `UI.metrics()` | A fresh copy of current native font-derived dimensions. Mutating it does not change other apps. |
+
+Composite IDs must be unique nonempty strings within that control. Invalid tab lists, duplicate IDs or an unknown initial tab fail before attachment. Descriptor fields are copied at construction; callbacks and payloads remain trusted local Lua. Tabs preserve their page widgets and values when switching, and show only the selected page. Selection does not grant app access or authorize a gameplay operation.
+
+`UI.place` immediately lays out SDK composites. They also reflow on changed native dimensions/font height during prerender; unchanged painting preserves controller selection. Toolbars own their height (`contentHeight`), and status bars use `UI.metrics().font+12`; reserve that space when positioning siblings. Tab headers wrap and expose `headerHeight`; give the tab view at least `headerHeight+5` pixels plus the application's required body height. Keep page contents within `page(id)` bounds in the hosted window's resize callback; the component does not scroll or lay out arbitrary consumer children.
+
+Toolbar `focusRows()` exposes its action rows. Tabs provide `setPageFocus(id,rows)` and `focusRows()` combining current header rows and the selected page's rows. Feed those rows into `UI.focus` on the hosted window after resize, page selection, or enable/visibility changes. For nested toolbar actions include the toolbar's rows in that page's focus rows. `UI.focus` filters hidden/disabled controls; it does not infer hidden ancestors from arbitrary consumer widgets. Rebuild after a toolbar action is enabled/disabled. The gallery demonstrates root focus rebuilding on tab selection. Low-height layouts, native focus routing and clipping still need in-game acceptance.
 
 Window resize callbacks run on changed content dimensions or body-font height. `onUpdate` runs once per host prerender, including while minimized; it is for bounded local presentation work. Do not use it for world scans, gameplay mutations or per-frame network requests. Escape/controller B close the SDK panel and restore host focus. The host handles taskbar, minimize/restore, actor/permission/power loss and desktop shutdown. Native screen/input acceptance remains a runtime gate.
 
