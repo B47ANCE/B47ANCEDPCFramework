@@ -1,5 +1,18 @@
 # First Workshop MP testing publication
 
+## Transparent icon correction — 2026-10-18
+
+SteamCMD updated existing item **3822042011** to **0.9.0-dev.5**, reported `Committing update...Success` and exited 0 using cached authentication. Public Steam API metadata independently confirms the item/title, App ID 108600, configured visibility 0, current version and MP testing label. The unauthenticated page reader could not access the item; unrestricted page availability is not newly verified.
+
+- Uploaded source: `3be9dcb62e2b345e2ddb73351653ace9a6e402de`, public branch `feature/transparent-pc-icon`, included in stacked PR #9.
+- ZIP SHA-256: `ffbcf39c74818b551ef70a257b84bc5b92f96200bc333b560c7654a8057a60d9`; 90 exact source/ZIP/staged runtime files.
+- Transparent 64×64 RGBA icon SHA-256: `6b3a31de0c882a852d316eacd72fa9a4450d53d9b836e4359f419cf49c5c55e7`; alpha extrema 0/255, four zero-alpha corners and 1,272 fully transparent pixels. Light/teal background inspection is offline evidence.
+- Approved thumbnail/poster SHA-256 remains `3cc31d939acc58a0de5dfccb0f8b58ffab7b5815aa4bdf6a0476a0e557d08d4e`; both 512×512.
+- `python -B scripts/check_versions.py`, `python -B tests/run_tests.py`, `python -B scripts/build.py`, `python -B scripts/check_versions.py --release` and `python -B scripts/prepare_workshop.py` PASS OFFLINE. Clean source ancestry, exact-head push CI, VDF target/label/newlines, archive/member integrity, stage parity and art hashes passed before upload.
+- Ignored receipt: `dist/workshop-0.9.0-dev.5-3be9dcb62e2b/transparent-icon-upload-result.json`, with adjacent release manifest and retained private upload log. Earlier packages/evidence remain preserved.
+
+The new front-facing monitor/system-unit UI in **0.10.0-dev.1 / PR #9** is not included in this upload. This correction changes only the icon and version/publication metadata. Native SP/dedicated NOT TESTED; project G7/stable G8 BLOCKED. No local deployment or game/server launch. Steam desktop remains unchanged pending a separate affirmative restart reply.
+
 ## Approved artwork update — 2026-10-18
 
 SteamCMD updated the existing item **3822042011** to **0.9.0-dev.4**, reported `Committing update...Success` and exited 0 using cached authentication. The item identity, title and configured public visibility were preserved. The owner-visible Workshop page shows the new supplied cover and current version; it also displays Steam's temporary automated-content-review notice. Upload success is confirmed; unrestricted public availability remains pending Steam's review at this observation.
