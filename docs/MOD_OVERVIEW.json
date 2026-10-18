@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.1.0-dev.1",
+  "version": "0.2.0-dev.1",
   "reviewed": true,
-  "source_digest": "ab9af7869c7a3418bb1fdf891fcbeae8dfbe0834147ffd540c5a1aa7137f6bf4",
+  "source_digest": "5cbd97a034798d5e28532252749162b680591a1db0b29d5520f300962cb53f03",
   "features": [
     {
       "status": "Source",
@@ -13,6 +13,10 @@
     {
       "status": "Source",
       "text": "Runs without Quartermaster; hosts its registered ledger/CD Writer app through callback contracts."
+    },
+    {
+      "status": "Source",
+      "text": "All powered vanilla PC orientations and other placed Computer-tagged tiles; access, electricity and server authority checks retained."
     }
   ],
   "limits": "Native SP/dedicated NOT TESTED. G7/stable G8 BLOCKED. No Workshop item assigned. Apps retain gameplay authority and persistence.",
@@ -20,7 +24,8 @@
     "README.md",
     "docs/API.md",
     "docs/ARCHITECTURE.md",
-    "docs/TESTING.md"
+    "docs/TESTING.md",
+    "docs/POWERED_PC_API.json"
   ],
   "relations": []
 }

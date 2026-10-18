@@ -17,7 +17,7 @@ for path in LUA.rglob('*.lua'):
     for name in re.findall(r"require\s*\(?\s*['\"]([^'\"]+)",code):
         if name.startswith('B47ANCEDPC'):
             assert any((LUA/side/(name+'.lua')).is_file() for side in ('client','shared','server')),(path,name)
-for name in ('test_core.lua','test_desktop.lua'):
+for name in ('test_core.lua','test_devices.lua','test_desktop.lua'):
     lua.execute((ROOT/'tests'/name).read_text(encoding='utf-8'))
 english=json.loads((LUA/'shared/Translate/EN/UI.json').read_text(encoding='utf-8'))
 assert not re.search(r'Quartermaster|Supply Ledger|Supply Sheet',json.dumps(english),re.I),'application text leaked into framework translations'

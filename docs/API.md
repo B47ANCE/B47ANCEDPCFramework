@@ -1,6 +1,6 @@
 # Application API 1
 
-Project Version: 0.1.0-dev.1
+Project Version: 0.2.0-dev.1
 
 The trusted local Lua registration interface is client presentation, not a network RPC or authorization capability. Declare `B47ANCEDPCFramework` in the app mod's `mod.info` `require` list. Never bundle framework runtime files into an app.
 
@@ -38,3 +38,7 @@ Adapter fields: `store`, `computerKey`, `storageKey`; `media={object,computer,di
 The server re-resolves world objects, storage markers, exact native media and app snapshots; mount/eject require configure access. Discovery offers are sender/computer-bound and expire after 30 seconds. Real media remain in adjacent storage. Binding schema 1 persists under the supplied store and object keys; supply stable unique namespaces. Unknown/future/corrupt data fail closed and are not reset. Loaded-record indexing supports building/range providers; all usage revalidates current power, permissions and media. Technical caps remain internal: 256 bindings/store; 32 offers; bounded adjacent-world scans; one outstanding UI poll per two seconds. These are safety limits rather than game balance options.
 
 Applications retain ownership of join/reconnect handshakes, peer compatibility, authoritative gameplay transactions and persistence migrations. Services are isolated per adapter namespace; they do not provide global hardware locking between unrelated apps. Consumers that mutate media used by another app must coordinate those services explicitly. The framework supplies no client-owned shared state. A binding service must not be treated as dedicated MP proof until tested with the application's actual server transport.
+
+## Supported computers
+
+`require('B47ANCEDPCFramework/Device').isComputerSprite(sprite)` recognizes the four installed vanilla desktop orientations or exact sprite `CustomName=Computer` metadata. `Device.computer(actor,object,near)` additionally enforces loaded world-object identity, the server Enabled setting, current electricity, safehouse access and optional same-floor adjacent reachability. This recognition automatically applies to Quartermaster's server adapter; no client-selected sprite identifier authorizes an operation. App privacy callbacks remain additional requirements. Computer-like translated labels, arbitrary sprite-name substrings and inventory items are not identity evidence.

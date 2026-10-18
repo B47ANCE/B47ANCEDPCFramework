@@ -1,0 +1,38 @@
+{
+  "api_library": "Project Zomboid vanilla Lua/exposed engine APIs",
+  "receiver_type": "sprite from getSprite() and its property container",
+  "symbol": "getProperties / has / get (computer identity)",
+  "signature": "sprite:getProperties(); props:has(\"CustomName\"); props:get(\"CustomName\")",
+  "signature_scope": "observed_vanilla_call",
+  "game_version": "42.21.0",
+  "steam_build": "25485521",
+  "side": "shared",
+  "returns": "Observed property container and metadata values consumed by vanilla moveable naming. Full overload, nullability and runtime contract UNKNOWN.",
+  "mutation": "Read-only native sprite metadata. No gameplay, synchronization or persistence mutation. Server applications must independently resolve world objects and revalidate permissions/power.",
+  "status": "VERIFIED",
+  "runtime_status": "NOT_TESTED",
+  "verified_on": "2026-10-17",
+  "evidence": [
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/shared/Moveables/ISMoveableSpriteProps.lua",
+      "sha256": "a6a5ab5b36da07ce53587218bffd33963d9caf0b53e571107cc66dbe9f77ab4c",
+      "lines": [
+        86,
+        135
+      ],
+      "statement": "Vanilla shared moveable code obtains sprite properties and reads CustomName through has/get; no mutation in these observations."
+    },
+    {
+      "kind": "native_inspection",
+      "path": "media/newtiledefinitions.tiles.txt",
+      "sha256": "3c655f52c819fe5c64f104129fbb171d4eb55e9b84436ce44a9ee7987b7baff3",
+      "lines": [
+        2092,
+        2169
+      ],
+      "statement": "Installed metadata identifies four Desktop Computer facings: appliances_com_01_72/73/74/75; each CustomName is Computer."
+    }
+  ],
+  "notes": "Source observation only. Exact CustomName=Computer identifies all four installed desktop facings; other tiles may opt into the same identity metadata. Similar sprite names or translated display labels do not prove a PC. No SP/dedicated invocation or unknown mod identification is claimed. Execution-side observation is from the shared Lua file; native client and dedicated acceptance remain NOT TESTED."
+}
