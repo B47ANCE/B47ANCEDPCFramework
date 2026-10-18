@@ -3,6 +3,7 @@
 ## [0.9.0-dev.4] - 2026-10-18
 
 - PATCH-level branding checkpoint within the pending 0.9.0 iteration: replace the fallback Workshop thumbnail and in-game poster with the user-supplied PC artwork, plus a text-free computer icon crop. Preserve the supplied original and export provenance.
+- SteamCMD upload to existing item 3822042011 succeeded; new cover/version verified on the owner-visible Workshop page. Steam's automated content review temporarily hides the update pending review; configured public visibility is preserved.
 - Gameplay, public APIs, sandbox settings and save formats are unchanged. Artwork checks and package integrity are offline evidence; native SP/dedicated remain NOT TESTED, G7/stable G8 BLOCKED.
 
 ## [0.9.0-dev.3] - 2026-10-17

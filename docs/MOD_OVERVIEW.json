@@ -4,7 +4,7 @@
   "name": "B47ANCED PC Framework",
   "version": "0.9.0-dev.4",
   "reviewed": true,
-  "source_digest": "bee8b13e75b5d4b1435ebe72518e6974b97e5a93268c5359ca59714912b6f646",
+  "source_digest": "242decd6b7461a50935ff80efcf5f4ba12f28990628d313be5ca60ccfbecce28",
   "features": [
     {
       "status": "Source",
@@ -55,7 +55,7 @@
       "text": "User-approved PC Framework cover replaces fallback thumbnail/poster; text-free computer derivative supplies the 64px mod icon. Original sources and exact export hashes retained; visual/static checks only."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.9.0-dev.4. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; Workshop MP testing item 3822042011 uploaded; upload does not prove runtime acceptance. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.9.0-dev.4. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; Workshop MP testing item 3822042011 uploaded; upload does not prove runtime acceptance. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented. Steam displayed a temporary automated-content-review hold after the approved 0.9.0-dev.4 artwork upload; configured public visibility remains unchanged.",
   "evidence": [
     "README.md",
     "docs/API.md",
