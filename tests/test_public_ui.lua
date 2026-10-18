@@ -44,7 +44,8 @@ PC.registerApp({id='sdk.consumer',titleKey='UI_Test_Title',icon='document',
  end,onClose=function(ctx) assert(not ctx.isActive());closed=closed+1 end})
 assert(not pcall(PC.registerApp,{id='invalid',titleKey='Title',icon='missing',create=function() end}))
 local host=assert(PC.open(0,computer,'sdk.consumer'));assert(opens==0 and not host.content,'installed app auto-launched')
-assert(host.writerIcon:isVisible() and not host.driveIcon:isVisible(),'installed app inherited irrelevant drive controls')
+local listed=false;for _,entry in ipairs(host.desktopHost.entries) do if entry.id=='sdk.consumer' and entry.kind=='app' then listed=true end end
+assert(listed and not host.driveIcon:isVisible(),'installed app missing from common launcher or inherited a drive')
 host.writerIcon.onclick();assert(opens==1 and host.content and host.content.b47PCSDKWindow)
 local window=host.content;host:prerender();local first=resizes
 host:setWidth(1050);host:prerender();assert(resizes>first)
@@ -52,7 +53,7 @@ local count=received;host:desktop();host.task.onclick();assert(host.content==win
 window:onKeyRelease(Keyboard.KEY_ESCAPE);assert(closed==1 and not host.content);last.reply();assert(received==count,'closed window accepted stale reply')
 host:openProgram();assert(opens==2);local stale=last.reply
 allowed=false;stale();assert(received==count+1,'permission-denied reply ran')
-host:prerender();assert(not C.active[0] and closed==2 and host.removed)
+host:prerender();assert(not C.isLive(host) and closed==2 and host.removed,'privacy loss did not retire its app session')
 allowed=true
 host=assert(PC.open(0,computer,'sdk.consumer'));host:openProgram();local before=received
 PC_FIXTURE.home.power=false;last.reply();assert(received==before,'unpowered response ran');host:prerender();PC_FIXTURE.home.power=true

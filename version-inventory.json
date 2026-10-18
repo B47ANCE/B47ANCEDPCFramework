@@ -53,6 +53,10 @@
     {
       "path": "docs/SEATED_PC.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/UNIFIED_DESKTOP.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

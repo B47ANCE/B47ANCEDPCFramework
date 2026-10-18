@@ -17,11 +17,6 @@ local function menu(num,context,objects,test)
  for n=1,math.min(#objects,64) do local obj=objects[n]
   if Device.computer(actor,obj,false) and (not Device.isSeated(actor) or Device.computer(actor,obj,true)) then
    context:addOption(getText('UI_B47PC_ComputerUse'),nil,function() open(num,obj) end)
-   local ids=P.availableApplications(num,obj)
-   if #ids>1 then for _,id in ipairs(ids) do
-    local app=id
-    context:addOption(getText('UI_B47PC_ComputerOpenApplication',P.applicationTitle(app)),nil,function() open(num,obj,app) end)
-   end end
    break
   end
  end

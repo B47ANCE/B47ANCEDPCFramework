@@ -2,13 +2,17 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.8.0-dev.1",
+  "version": "0.9.0-dev.1",
   "reviewed": true,
-  "source_digest": "872fbb2d2dcd3f0423116a1e5ca882ca9adde03c6a10c2cc00ae4735b4b0e243",
+  "source_digest": "e544414b031966a5f229d1f41eb3c4a03de2de6835b84e837b1ad6c68e3d39e0",
   "features": [
     {
       "status": "Source",
       "text": "Standalone Windows 93 desktop, trusted Lua app registry, powered-device checks and reusable server-owned media bindings."
+    },
+    {
+      "status": "Source",
+      "text": "One approved B47/CRT93 desktop and Start menu for all available apps, original pixel icons, retained app/tool taskbar windows, paged catalogs and isolated CD provider selection; offline tested."
     },
     {
       "status": "Source",
@@ -44,10 +48,10 @@
     },
     {
       "status": "Planned",
-      "text": "Feature roadmap proposes multiwindow, richer UI controls and provider dashboards; shared mail/notes, repairs and remote control remain separate authority/API design work."
+      "text": "Feature roadmap proposes arbitrary window drag/snap, richer UI controls and provider dashboards; shared mail/notes, repairs and remote control remain separate authority/API design work."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.8.0-dev.1. G7/stable G8 BLOCKED. One hosted content window; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.8.0-dev.1. G7/stable G8 BLOCKED. One SDK content window per app; retained app/tool windows share the CRT surface; no independent drag/snap; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -65,7 +69,9 @@
     "docs/MINESWEEPER_MOOD.md",
     "docs/MINESWEEPER_MOOD_API.json",
     "docs/SEATED_PC.md",
-    "docs/SEATED_PC_API.json"
+    "docs/SEATED_PC_API.json",
+    "docs/UNIFIED_DESKTOP.md",
+    "docs/CRT_DESIGN.json"
   ],
   "relations": []
 }

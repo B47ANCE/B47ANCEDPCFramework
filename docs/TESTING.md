@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.8.0-dev.1
+Project Version: 0.9.0-dev.1
 
 [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` pass. Host dependency: `lupa==2.6`; it is not a game dependency. Native-shaped doubles prove only the listed offline behaviors.
 
@@ -42,3 +42,5 @@ Minesweeper mood 0.7.0-dev.1: the suite adds server-board/reward and transport r
 The full Quartermaster/Rooms offline suite also passes against the final 0.7 mood-service source, using the paired command documented above. This remains offline compatibility evidence and does not validate native stat effects.
 
 Seated access 0.8.0-dev.1: `python -B tests/run_tests.py` adds `test_seated_pc.lua` for all four native facings, Computer/Facing metadata, missing/removed/stale furniture, native seating data, loaded-square identity, body offsets, floors and both reach barriers; power, safehouse and Enabled; forged seat-intent refusal and server Minesweeper revalidation; opening/refreshing the actual desktop with a queued rest-action double, no walking or queue edits, and closing after chair loss. `python -B tests/check_native_computers.py --game <installed-game-root>` checks current native facing metadata. SEATED_PC_API.json records source evidence for 42.21.0 / build 25485521. The full paired Quartermaster/Rooms command above also passes against this framework source. These are offline tests; no native animation, endurance recovery, seated stat replication, reconnect or dedicated restart is proven. Run the acceptance matrix in SEATED_PC.md. Native SP/dedicated NOT TESTED, G7/stable G8 BLOCKED. This iteration was not packaged, deployed or published.
+
+Unified desktop 0.9.0-dev.1: `python -B tests/run_tests.py` adds test_unified_desktop.lua and updates the prior desktop/SDK expectations for one world action, common catalog and app-only retirement. Tests cover retained windows/background guards, no autorun, provider selection/isolation, replaced-browser mount replies, permissions, all-font icon/Start/task bounds, stale launchers, cleanup errors across several apps, actor replacement and global power loss. The paired Quartermaster/Rooms command now targets the matching 0.20.0-dev.1 UI checkout and this framework checkout. Its real ledger/writer tests cover table/details bounds, retained ledger/writer tasks and owner-bound completion while another app is active. Source-rendered previews are generated outside runtime source and use sample data/approximate native fonts. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED. No packaging/deployment/publication.

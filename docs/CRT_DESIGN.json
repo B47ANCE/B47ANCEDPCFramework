@@ -1,0 +1,36 @@
+{
+  "provenance": "User-supplied original B47/CRT93 UI references in this conversation. Runtime geometry independently authored as Lua rectangles/text; no OS asset sheets or reference screenshot pixels shipped.",
+  "references": [
+    {
+      "filename": "computer-1.png",
+      "sha256": "e404341d0ebeab3d594521228685f9616b9ce2bab94f1d961b37eb1e1b050a3b"
+    },
+    {
+      "filename": "computer-2.png",
+      "sha256": "f588b767c604e437d1459893fb6bfd89f22c91bf75c55a0add80e154f0e27b7b"
+    },
+    {
+      "filename": "computer-3.png",
+      "sha256": "dd764526ed53ece0ed0f18236c6a750525b9d937d415356a8a926ca4ca44fbbb"
+    },
+    {
+      "filename": "computer-4.png",
+      "sha256": "45659b09ca27ea144e6ec632eea6647011066b20cf2375d7a84e7b30a965a544"
+    },
+    {
+      "filename": "computer-5.png",
+      "sha256": "92c5de64847ac371bb8e3d281cb6bcb986e5f842cf9207054d19a43dd3560314"
+    },
+    {
+      "filename": "computer-ui-preview.png",
+      "sha256": "e4748d56046f4b9f210533f82e55f6fa7c11c8175a7be79e53ba756c25ce4109"
+    }
+  ],
+  "editable_sources": [
+    "src/B47ANCEDPCFramework/42/media/lua/client/B47ANCEDPCFramework/CRT.lua",
+    "src/B47ANCEDPCFramework/42/media/lua/client/B47ANCEDPCFramework/Assets.lua",
+    "src/B47ANCEDPCFramework/42/media/lua/client/B47ANCEDPCFramework/Desktop.lua"
+  ],
+  "runtime_dependency": "Existing exposed native ISUI rectangles/text only; no custom Java/JAR, generated texture or raster editing.",
+  "evidence": "Source inspection and offline rendering only; native SP/dedicated NOT TESTED."
+}

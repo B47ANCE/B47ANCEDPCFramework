@@ -12,7 +12,7 @@ function Context.launch(d,num,computer,host,extra,valid)
  local ctx=Context.probe(num,computer,host);local panel;local alive=true
  for k,v in pairs(extra or {}) do ctx[k]=v end
  function ctx.isActive()
-  return alive and not host.closed and C.active[num]==host and getSpecificPlayer(num)==ctx.player
+  return alive and C.isLive(host) and getSpecificPlayer(num)==ctx.player
    and Device.computer(ctx.player,computer,true) and (not d.enabled or d.enabled(ctx))
    and (not d.canUse or d.canUse(ctx,true)) and (not valid or valid())
    and (not panel or not panel.closed and host.content==panel)

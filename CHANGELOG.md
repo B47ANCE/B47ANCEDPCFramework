@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.9.0-dev.1] - 2026-10-17
+
+- Compatible MINOR expansion toward 0.9.0: one CRT desktop and Start menu for all available registered apps, retaining app-specific windows and media authority. Public API/schema versions remain unchanged.
+- Restore the user-approved beige CRT, pixel icons, inset screen, taskbar and physical power control with original Lua geometry.
+- Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED.
+
 ## [0.8.0-dev.1] - 2026-10-17
 
 - Compatible MINOR expansion toward 0.8.0: allow PC use from occupied native furniture directly in front of the PC, including while resting. Existing direct adjacency and public API/schema versions remain unchanged.

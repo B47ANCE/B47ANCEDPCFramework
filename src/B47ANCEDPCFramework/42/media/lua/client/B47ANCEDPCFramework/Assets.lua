@@ -19,14 +19,25 @@ function A.panel(w,x,y,width,height,role)
 end
 local drawings={}
 function drawings.computer(r)
- r(1,0,36,26,'grey');r(5,4,28,17,'black');r(7,6,24,13,'teal');r(15,26,8,4,'grey');r(8,30,24,4,'light')
+ r(1,1,37,27,'black');r(3,3,33,23,'grey');r(5,5,29,19,'light');r(7,7,25,15,'shadow')
+ r(9,9,21,11,'teal');r(15,28,9,4,'shadow');r(11,32,18,3,'grey');r(6,35,29,3,'light')
 end
 function drawings.disc(r)
- for n=0,5 do local inset=math.abs(2.5-n)*3;r(inset,n*5,36-inset*2,5,n%2==0 and 'light' or 'grey') end
- r(15,12,7,7,'teal')
+ r(12,0,15,2,'black');r(8,2,23,3,'black');r(5,5,29,4,'black');r(3,9,33,15,'black');r(6,24,27,4,'black')
+ r(12,2,14,2,'white');r(9,4,21,3,'light');r(6,7,27,5,'light');r(5,12,29,10,'grey');r(8,22,23,4,'light')
+ r(15,11,10,2,'shadow');r(13,13,14,9,'shadow');r(16,13,8,8,'teal');r(17,11,6,2,'teal')
+ r(2,27,36,12,'black');r(4,28,32,8,'grey');r(5,29,30,2,'light');r(7,33,24,2,'shadow');r(31,35,3,2,'teal')
 end
-function drawings.writer(r) r(0,10,38,23,'grey');r(4,15,29,4,'black');r(27,25,5,3,'teal') end
-function drawings.application(r) r(1,2,36,30,'light');r(3,4,32,7,'blue');r(6,15,9,12,'teal');r(19,15,13,3,'shadow');r(19,22,10,3,'shadow') end
+function drawings.writer(r)
+ r(1,12,36,26,'black');r(3,14,32,21,'grey');r(4,14,29,4,'light');r(5,21,26,6,'black');r(7,23,22,2,'shadow')
+ r(23,1,13,3,'black');r(21,4,17,23,'black');r(23,5,12,18,'grey');r(25,6,8,10,'light');r(26,8,4,7,'teal')
+ r(5,29,15,3,'shadow');r(8,33,3,7,'light');r(12,28,3,9,'light');r(16,25,3,8,'light');r(27,31,6,3,'teal')
+end
+function drawings.application(r)
+ r(1,1,29,25,'black');r(3,3,25,20,'grey');r(5,5,21,15,'blue');r(7,7,17,11,'teal');r(10,26,12,3,'shadow');r(6,29,21,3,'grey')
+ r(21,13,17,26,'black');r(23,15,13,22,'light');r(25,17,9,3,'blue')
+ for y=23,32,4 do r(25,y,2,2,'teal');r(29,y,5,2,'shadow') end
+end
 function drawings.folder(r) r(1,7,17,7,'light');r(1,12,36,21,'grey');r(4,15,32,17,'light') end
 function drawings.document(r) r(7,1,25,33,'light');for y=8,26,6 do r(11,y,17,2,'shadow') end end
 function drawings.settings(r) r(1,3,36,29,'grey');for x=8,30,11 do r(x,7,2,21,'shadow');r(x-3,x==19 and 11 or 20,8,4,'light') end end
