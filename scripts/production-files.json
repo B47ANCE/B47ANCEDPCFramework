@@ -3,6 +3,7 @@
   "42/media/AnimSets/.keep",
   "42/media/actiongroups/.keep",
   "42/media/lua/client/B47ANCEDPCFramework/API.lua",
+  "42/media/lua/client/B47ANCEDPCFramework/ComputerArt.lua",
   "42/media/lua/client/B47ANCEDPCFramework/ComputerUI.lua",
   "42/media/lua/client/B47ANCEDPCFramework/Startup.lua",
   "42/media/lua/client/B47ANCEDPCUI/Appearance.lua",

@@ -1,6 +1,6 @@
 # Application API 1
 
-Project Version: 0.2.0-dev.1
+Project Version: 0.3.0-dev.1
 
 The trusted local Lua registration interface is client presentation, not a network RPC or authorization capability. Declare `B47ANCEDPCFramework` in the app mod's `mod.info` `require` list. Never bundle framework runtime files into an app.
 
@@ -42,3 +42,13 @@ Applications retain ownership of join/reconnect handshakes, peer compatibility, 
 ## Supported computers
 
 `require('B47ANCEDPCFramework/Device').isComputerSprite(sprite)` recognizes the four installed vanilla desktop orientations or exact sprite `CustomName=Computer` metadata. `Device.computer(actor,object,near)` additionally enforces loaded world-object identity, the server Enabled setting, current electricity, safehouse access and optional same-floor adjacent reachability. This recognition automatically applies to Quartermaster's server adapter; no client-selected sprite identifier authorizes an operation. App privacy callbacks remain additional requirements. Computer-like translated labels, arbitrary sprite-name substrings and inventory items are not identity evidence.
+
+## Retained desktop panels — 0.3.0-dev.1
+
+Registration API remains 1. `host:showApp(panel,title,key)` supports the existing two-argument form (default `ledger`, the media application), plus `drive` and `writer` keys for bounded host slots. These are presentation slots, not registration IDs or permissions. `host:view(title,key)` creates a decorated tool panel; the default key is `writer`. An optional `writer(host,hooks)` builds that app-owned tool and may use exported button/choice/text helpers. `host.drivePending` and `host.driveReady` mirror the current local polling status; they are never authoritative state.
+
+Each panel has an independent task button. Clicking the active task minimizes; an inactive task restores. `minimizeApp(key)`, `activateApp(key)`, `closeApp(key)` and `release(panel)` operate on these slots; omitting key uses the active slot where supported. A panel's close callback must release it. Closing one panel does not close the others. Show Desktop restores only panels it minimized. Retained panels must not consume keyboard input while hidden; controller B minimizes a hosted panel.
+
+A media app is tied to the mounted native media ID and drive binding. Media loss closes that slot even when hidden. When a cached panel resumes, optional `panel:onComputerResume()` runs so the application can clear cached rows and request a fresh server-authorized read before revealing private data. The framework does not confer access through caching. Run rechecks device and application access immediately; regular screen checks additionally close the host on power/access/enable loss. Late drive replies never revive a closed host. Domain read callbacks must independently ignore stale replies and server operations must always revalidate authority.
+
+Power/Log Off closes the local host and calls `hooks.close()` to preserve application cancellation. It does not toggle building electricity or mutate actual media. CRT geometry and bounded icon drawing are local implementation constants; no new gameplay sandbox setting is warranted.

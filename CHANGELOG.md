@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0-dev.1] - 2026-10-17
+
+- Port the original bulky CRT, pixel icons and retained taskbar from the owned Quartermaster presentation into the independent framework. Retain device, drive and app ownership boundaries.
+- Add independent drive/tool/app tasks, minimize/restore, Show Desktop and authenticated resume hooks; preserve existing registration API 1, empty standalone desktop, wrong-media refusal and application callbacks.
+- Source-only compatible UI addition. Native/dedicated NOT TESTED; no packaging, deployment or publication.
+
 ## [0.2.0-dev.1] - 2026-10-17
 
 - Accept every verified vanilla PC orientation and other placed tiles declaring native `CustomName=Computer`, replacing the single-sprite restriction.

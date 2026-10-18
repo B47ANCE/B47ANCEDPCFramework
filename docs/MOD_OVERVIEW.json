@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.2.0-dev.1",
+  "version": "0.3.0-dev.1",
   "reviewed": true,
-  "source_digest": "5cbd97a034798d5e28532252749162b680591a1db0b29d5520f300962cb53f03",
+  "source_digest": "b867b5363766436baaf883095d59658a6c826c84de3c5703bc72b24b51d845be",
   "features": [
     {
       "status": "Source",
@@ -17,6 +17,10 @@
     {
       "status": "Source",
       "text": "All powered vanilla PC orientations and other placed Computer-tagged tiles; access, electricity and server authority checks retained."
+    },
+    {
+      "status": "Source",
+      "text": "Original bulky CRT/pixel art, retained drive/tool/media-app tasks, minimize/restore, Show Desktop, per-panel close and application resume callbacks; API 1 preserved."
     }
   ],
   "limits": "Native SP/dedicated NOT TESTED. G7/stable G8 BLOCKED. No Workshop item assigned. Apps retain gameplay authority and persistence.",

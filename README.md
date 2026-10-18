@@ -2,9 +2,9 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.2.0-dev.1. Source only; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.3.0-dev.1. Source only; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
-Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and shows an empty desktop when no application is installed. No arbitrary executable code, filesystem access or external OS assets are loaded.
+Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies a bulky beige CRT frame, original pixel icons, drive browser, retained taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. Drive, app tool and media application retain separate tasks with minimize/restore, per-task close and Show Desktop. It runs without Quartermaster and shows an empty desktop when no application is installed. No arbitrary executable code, filesystem access or external OS assets are loaded.
 
 Other mods register trusted Lua apps. Quartermaster supplies `QUARTERMASTER.EXE` and its CD Writer through this interface; its ledger contents, permissions, inventory conversion and network authority stay in Quartermaster. Opening the screen or mounting a CD never automatically runs an app. Multiple registered apps can be selected from the computer context menu.
 
