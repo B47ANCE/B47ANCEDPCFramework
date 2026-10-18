@@ -1,5 +1,18 @@
 # First Workshop MP testing publication
 
+## PC Network / Stock API MP testing upload — 2026-10-18
+
+[VERIFIED distribution] PR #11 merged after both offline checks passed; release-text PR #12 merged after its checks. Existing Workshop item **3822042011** was updated to **0.11.0-dev.1**. SteamCMD used the user-refreshed cached login, exited 0 and reported `Committing update...Success`. Public Steam metadata independently matches every staged description line (normalizing CRLF/LF) and retains App ID 108600, title and visibility 0/public.
+
+- Release commit: `d8b80d4c1cee6d4c7c29bdd9ca41ece97e0c722e`; clean source equalled origin/main before packaging and immediately before upload. Exact merged-head Ubuntu CI passed.
+- Package SHA-256: `d10a6abc4a21dcdf9846de75781e79ec0404e80b39c76b40003de078e017edb7`; 95 exact source/ZIP/staged files. CRC, duplicate/member/path/case and per-file parity checks passed. Source inputs: docs/WORKSHOP_DESCRIPTION.md and docs/WORKSHOP_CHANGELOG.md; generated description: workshop/description.bbcode.
+- Preview/poster remain `3cc31d939acc58a0de5dfccb0f8b58ffab7b5815aa4bdf6a0476a0e557d08d4e`; transparent icon remains `6b3a31de0c882a852d316eacd72fa9a4450d53d9b836e4359f419cf49c5c55e7`.
+- Ignored evidence: dist/workshop-0.11.0-dev.1-d8b80d4c1cee/release-manifest.json, upload-result.json, metadata-before.json and metadata-after.json in the stock-network-release worktree. Prior packages/staging are preserved. SteamCMD executable and credentials are not included in the release.
+
+[TESTED OFFLINE — Windows/Python/Lupa Lua 5.1] `python -B scripts/build.py`; `python -B scripts/check_versions.py --release`; `python -B scripts/prepare_workshop.py`; shared `Build-WorkshopDescription.py --repo . --input docs/WORKSHOP_DESCRIPTION.md --output workshop/description.bbcode --check`; all passed. Quartermaster full paired regressions with Rooms 0.2.0-dev.7 and current UI 0.3.0-dev.1 also passed against this Framework source. New topology/notifications/media scanning checks are documented in NETWORK_AND_NOTIFICATIONS.md.
+
+MP testing build - dedicated multiplayer NOT TESTED. [RUNTIME GATE] Native SP, download/subscription, pairing across unloaded buildings, permission/power changes, two-client concurrency, reconnect and server restart NOT TESTED. G7/stable G8 BLOCKED. Upload success is not runtime acceptance. No local deployment, game/server launch, remote modification or Steam desktop restart.
+
 ## Front-facing PC UI MP testing build — 2026-10-18
 
 [VERIFIED distribution] PRs #7, #8 and #9 were merged in order into public main after their offline CI passed. SteamCMD updated existing item **3822042011** to **0.10.0-dev.1**, reported `Committing update...Success` and exited 0. Steam's public API independently confirms the item/title, App ID 108600, configured visibility 0/public and an exact line-for-line match of the new canonical description, including **MP testing build - dedicated multiplayer NOT TESTED**.
