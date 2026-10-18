@@ -11,4 +11,6 @@
 - Ignored local receipt: dist/workshop-0.9.0-dev.3-5a6ef83fd8ee/creation-result.json and release-manifest.json. Initial creation VDF now contains the assigned ID; never resubmit a zero-ID descriptor.
 - This follow-up records identity/documentation only; the uploaded runtime bytes and version are unchanged.
 
-MP testing build - dedicated multiplayer NOT TESTED. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED. Publication is distribution evidence only. No live deployment or game/server launch. Steam desktop was not restarted; a separate explicit confirmation is required after publication. Public page/subscription/download and native runtime acceptance are separate verification gates.
+Public Steam API metadata independently confirms item 3822042011, title B47ANCED PC Framework, App ID 108600, visibility 0/public, version 0.9.0-dev.3 and the MP testing label. Quartermaster item 3807217050 now lists this item as a required dependency alongside Rooms; its loader requirement and player-facing links agree.
+
+MP testing build - dedicated multiplayer NOT TESTED. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED. Publication is distribution evidence only. No live deployment or game/server launch. Steam desktop was not restarted; a separate explicit confirmation is required after publication. Subscription/download and native runtime acceptance remain separate verification gates.
