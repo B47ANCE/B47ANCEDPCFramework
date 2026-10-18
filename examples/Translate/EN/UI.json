@@ -1,0 +1,10 @@
+{
+  "UI_PCGallery_Title": "Component Gallery",
+  "UI_PCGallery_Heading": "PC Framework controls — local presentation example",
+  "UI_PCGallery_Value": "Example document",
+  "UI_PCGallery_Document": "Document",
+  "UI_PCGallery_Folder": "Folder",
+  "UI_PCGallery_Settings": "Settings",
+  "UI_PCGallery_Add": "Add preview row",
+  "UI_PCGallery_Status": "Preview rows are local and are discarded when this app closes."
+}

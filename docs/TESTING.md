@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.2.0-dev.1
+Project Version: 0.3.0-dev.1
 
 [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` pass. Host dependency: `lupa==2.6`; it is not a game dependency. Native-shaped doubles prove only the listed offline behaviors.
 
@@ -22,3 +22,7 @@ python -B tests/test_deployment.py
 [RUNTIME GATE] Native SP NOT TESTED. Dedicated G7 BLOCKED / NOT TESTED. Stable-release G8 BLOCKED. Validate enable/load order, standalone context/desktop, Quartermaster app availability, writer/native timing, screen scaling/tooltips/controller, two clients on one drive, delayed/reordered replies, privacy changes, power loss, CD transfers, restart/rejoin and unchanged older persisted binding records on disposable save fixtures. No real save was changed. No game/server was launched, package built, local mod deployed or Workshop upload performed. No Workshop item is assigned to PC Framework.
 
 Powered-PC expansion validation (0.2.0-dev.1): `python -B tests/run_tests.py` checks electricity on/off per orientation, alternate metadata, nil/missing properties, invalid labels, server safehouse denial, detached objects, distance/floor and sandbox disable. `python -B tests/check_native_computers.py --game <installed-game-root>` reads the installed native tile definitions, verifies all four facing records, and checks recognition against the production Lua helper. These are source/offline results, not native invocation. Source evidence and method observations are recorded in `POWERED_PC_API.json`; game 42.21.0 / installed Steam build 25485521, runtime NOT TESTED.
+
+Public SDK 0.3.0-dev.1: the independent suite now includes `test_public_ui.lua` and an actual opt-in consumer loaded from `examples/ComponentGallery.lua`. It tests palette/metric isolation, built-in/custom icon scale/bounds, public native controls, explicit installed-app launch, resize/font bounds, visible/enabled focus rows, synchronous and stale callbacks, power/privacy/actor loss, failed construction and cleanup exceptions. Original legacy app/drive tests and the complete Quartermaster/Rooms regression suite pass against the new framework checkout. Example localization keys are checked against its separate English strings; it is not part of the production manifest. New API source observations are recorded in `UI_NATIVE_API.json` and the local unmanaged API audit library; this is source evidence, not runtime proof.
+
+Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`; the paired command above with `--pc-framework` pointing to this SDK checkout. Packaging, native SP and dedicated multiplayer were not run. Prior 0.1/0.2 native receipts remain historical and are not relabeled as new runtime evidence. Validate actual native font/focus/tooltip/layering, split-screen, app switching/error recovery and server-authorized media behavior before claiming dedicated G7 or stable G8 PASS.

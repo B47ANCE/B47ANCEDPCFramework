@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0-dev.1] - 2026-10-17
+
+- Add public UI API 1 and drawing-assets API 1 for modular PC panels, hosted windows, controls, palette and scalable icons.
+- Add descriptor-based installed apps and guarded UI callbacks without changing legacy application API 1, Quartermaster hooks, media commands or saved binding schemas.
+- Supply an opt-in component gallery, consumer guide and feature roadmap that separates implemented UI from proposed gameplay integrations.
+- Compatible MINOR SDK expansion. Source/offline evidence only; native SP/dedicated NOT TESTED, G7/stable G8 BLOCKED. No package/deployment/Workshop upload.
+
 ## [0.2.0-dev.1] - 2026-10-17
 
 - Accept every verified vanilla PC orientation and other placed tiles declaring native `CustomName=Computer`, replacing the single-sprite restriction.
