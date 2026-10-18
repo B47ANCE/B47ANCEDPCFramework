@@ -1,5 +1,20 @@
 # First Workshop MP testing publication
 
+## Front-facing PC UI MP testing build — 2026-10-18
+
+[VERIFIED distribution] PRs #7, #8 and #9 were merged in order into public main after their offline CI passed. SteamCMD updated existing item **3822042011** to **0.10.0-dev.1**, reported `Committing update...Success` and exited 0. Steam's public API independently confirms the item/title, App ID 108600, configured visibility 0/public and an exact line-for-line match of the new canonical description, including **MP testing build - dedicated multiplayer NOT TESTED**.
+
+- Uploaded merged source: `33c84cb5f654803c97f97bc9a7e1ee5121f65a7f` (PR #9 merge); clean HEAD matched origin/main before packaging and immediately before upload.
+- ZIP SHA-256: `a2f00b03d7434ca725a77ad6c60fdddc94648a9e0b2a43e9c4e74197ed91cca6`; 90 exact source/ZIP/staged runtime files, with CRC, member/path/case checks and per-file SHA-256 parity.
+- Front-facing beige monitor and horizontal system unit are included, without keyboard/mouse/cables; apps share the 4:3 monitor, desktop, Start menu and taskbar. The native root and case logoff target keep the existing input/lifecycle behavior.
+- Preview/poster SHA-256 remains `3cc31d939acc58a0de5dfccb0f8b58ffab7b5815aa4bdf6a0476a0e557d08d4e`; small transparent icon remains `6b3a31de0c882a852d316eacd72fa9a4450d53d9b836e4359f419cf49c5c55e7`. All approved artwork is preserved.
+- Release manifest target: Project Zomboid 42.21.0 / Steam build 25485521; Mod ID B47ANCEDPCFramework; Workshop item 3822042011. Canonical inputs remain docs/WORKSHOP_DESCRIPTION.md and docs/WORKSHOP_CHANGELOG.md; generated description is workshop/description.bbcode. VDF omits visibility and preserves existing identity.
+- Ignored evidence: `dist/workshop-0.10.0-dev.1-33c84cb5f654/full-pc-ui-upload-result.json`, adjacent release-manifest.json and private SteamCMD log. Earlier packages/staging/provenance remain preserved in their original worktrees. Reverting Workshop content requires a separately authorized, freshly validated upload; subscription/download and save/runtime acceptance have not been tested.
+
+[TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/build.py` reran version checks and all framework regressions, then deterministic packaging and release version checks. `python -B scripts/prepare_workshop.py` and the shared description renderer's `--check` passed. Independent `python -B scripts/check_versions.py --release` passed again immediately before upload. The full paired Quartermaster command was `python -B tests/run_tests.py --require-rooms --rooms "<Rooms checkout>" --pc-framework "<clean merged PC Framework checkout>"`, from the Quartermaster 0.20.0-dev.2 checkout; it passed with the real Rooms checkout and this uploaded source. Exact merged-head Ubuntu push CI passed.
+
+Only CRT/Desktop presentation and version mirrors changed in production relative to the 0.9.0-dev.5 upload; server/gameplay/API/sandbox/save source is unchanged. The web page reader could not access the item, so unrestricted page availability is not newly verified. [RUNTIME GATE] Native SP, download/subscription and dedicated MP NOT TESTED; project G7/stable G8 remain BLOCKED. No live deployment, game/server launch or Steam desktop restart. This follow-up records upload evidence without changing uploaded runtime bytes.
+
 ## Transparent icon correction — 2026-10-18
 
 SteamCMD updated existing item **3822042011** to **0.9.0-dev.5**, reported `Committing update...Success` and exited 0 using cached authentication. Public Steam API metadata independently confirms the item/title, App ID 108600, configured visibility 0, current version and MP testing label. The unauthenticated page reader could not access the item; unrestricted page availability is not newly verified.
