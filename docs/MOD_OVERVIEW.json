@@ -59,7 +59,7 @@
       "text": "Connections API 1 and PC Network status/pairing app; persistent private/public links never grant inventory access. Notification API 1 adds guarded taskbar notices. MP testing candidate; no native/dedicated acceptance claim."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.11.0-dev.2; G7/stable G8 BLOCKED. Prepared for authorized MP testing distribution; actual upload receipts remain separate. Connected offline/unloaded PCs cannot supply live data. Notifications are local presentation; consumers own data authority. Existing public Workshop item 3822042011 now has the verified 0.11.0-dev.2 MP test upload; no runtime acceptance is implied.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.11.0-dev.2; G7/stable G8 BLOCKED. Prepared for authorized MP testing distribution; actual upload receipts remain separate. Connected offline/unloaded PCs cannot supply live data. Notifications are local presentation; consumers own data authority. Existing public Workshop item 3822042011 remains on the verified 0.11.0-dev.1 MP test upload. Branding correction 0.11.0-dev.2 is source-only; no runtime acceptance is implied.",
   "evidence": [
     "README.md",
     "docs/API.md",
