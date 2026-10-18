@@ -78,4 +78,7 @@ roots.FixturePCBindings.schema=99;assert(call('list').status=='schema' and D.pro
 roots.FixturePCBindings.schema=1
 enabled=false;assert(call('list').status=='disabled');enabled=true
 PC_FIXTURE={actor=actor,computer=computer,home=home,advance=function(n) now=now+n end}
+PC_FIXTURE.server={drive=D,media=cd,container=container,snapshot=snapshot,position=position,
+ permission=function(value) allowed=value end,client=function(value) client=value end,
+ rebuild=function() return Service.new(config) end}
 print('PASS OFFLINE independent device and server drive: power, bounds, safehouse, malformed/client refusal, sender/TTL, permissions, persistence, media loss, stale eject, future schema and no item moves')

@@ -8,5 +8,7 @@
   "UI_PCGallery_Folder": "Folder",
   "UI_PCGallery_Settings": "Settings",
   "UI_PCGallery_Add": "Add preview row",
-  "UI_PCGallery_Status": "Preview rows are local and are discarded when this app closes."
+  "UI_PCGallery_Status": "Preview rows are local and are discarded when this app closes.",
+  "UI_PCCD_Title": "CD Program Example",
+  "UI_PCCD_Ready": "The server validated this mounted program CD."
 }

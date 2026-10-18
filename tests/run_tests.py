@@ -18,12 +18,12 @@ for path in LUA.rglob('*.lua'):
     for name in re.findall(r"require\s*\(?\s*['\"]([^'\"]+)",code):
         if name.startswith('B47ANCEDPC'):
             assert any((LUA/side/(name+'.lua')).is_file() for side in ('client','shared','server')),(path,name)
-for name in ('test_core.lua','test_devices.lua','test_desktop.lua','test_public_ui.lua','test_composites.lua','test_example.lua'):
+for name in ('test_core.lua','test_cd_programs_server.lua','test_devices.lua','test_desktop.lua','test_public_ui.lua','test_composites.lua','test_example.lua','test_cd_programs_client.lua','test_cd_program_example.lua'):
     lua.execute((ROOT/'tests'/name).read_text(encoding='utf-8'))
 english=json.loads((LUA/'shared/Translate/EN/UI.json').read_text(encoding='utf-8'))
-example_text=(ROOT/'examples/ComponentGallery.lua').read_text(encoding='utf-8')
+example_text='\n'.join(p.read_text(encoding='utf-8') for p in (ROOT/'examples').glob('*.lua'))
 example_keys=json.loads((ROOT/'examples/Translate/EN/UI.json').read_text(encoding='utf-8'))
-assert set(re.findall(r"['\"](UI_PCGallery_[^'\"]+)['\"]",example_text))==set(example_keys)
+assert set(re.findall(r"['\"](UI_PC(?:Gallery|CD)_[^'\"]+)['\"]",example_text))==set(example_keys)
 assert not re.search(r'Quartermaster|Supply Ledger|Supply Sheet',json.dumps(english),re.I),'application text leaked into framework translations'
 for path in (LUA/'client/B47ANCEDPCFramework').glob('*.lua'):
     for key in re.findall(r"tr\('([^']+)'",path.read_text(encoding='utf-8')):

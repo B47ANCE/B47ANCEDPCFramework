@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0-dev.1] - 2026-10-17
+
+- Compatible MINOR iteration toward 0.5.0: public CD-program registration and server authorization helpers. Legacy application/media API 1 and binding schema 1 remain supported.
+- Add `registerCDProgram`, `cdProgramVersion`/`cd-programs` discovery, shared hosted lifecycle and one-shot launch guards with exact version/item/binding checks.
+- Add server `CDPrograms` list/authorize/resolve over real DriveService bindings; private snapshots stay server-side. No burning, item moves, persisted format or transport changes.
+- Add executable opt-in client/server examples, server/client/end-to-end offline regressions, English fallback status strings and full API/authority documentation.
+- Native SP/dedicated NOT TESTED. G7/stable G8 BLOCKED.
+
 ## [0.4.0-dev.1] - 2026-10-17
 
 - Compatible MINOR iteration from 0.3.0-dev.1 toward 0.4.0; public API versions and persistence schemas remain unchanged. Stable release remains gated.

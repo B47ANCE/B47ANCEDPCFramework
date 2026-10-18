@@ -1,6 +1,6 @@
 # Features and functionality brainstorm
 
-Project Version: 0.4.0-dev.1
+Project Version: 0.5.0-dev.1
 
 The framework should provide a reusable PC shell and UI kit. Optional apps should provide the gameplay. This lets one powered PC host several mods without each mod duplicating desktop art, input handling or lifecycle code. The following are design proposals, not promises that their engine integrations exist.
 
@@ -10,6 +10,7 @@ The framework should provide a reusable PC shell and UI kit. Optional apps shoul
 | Now | Installed-app descriptors, explicit launcher, capability discovery, close/stale-response guards, gallery example | **Implemented source / offline tested**; existing media API retained | Trusted Lua app registration. PC power/privacy checks remain mandatory; consumers validate gameplay on the server. |
 | Now | Powered PCs, real storage-media binding, Quartermaster ledger/CD Writer integration | **Implemented source / offline tested** | Existing server-owned drive adapters, exact real-media validation, app-owned snapshots/transactions. Native SP/dedicated pending. |
 | Now | Tabs, wrapping toolbar and status bar | **Implemented source / offline tested** in 0.4.0-dev.1; opt-in gallery demonstrates page focus and local actions | Local presentation; no shared state or new sandbox settings. |
+| Now | Public CD-program registration, explicit EXE launch, server list/authorize/resolve and client/server examples | **Implemented source / offline tested** in 0.5.0-dev.1 | Physical binding and private program snapshots stay with authenticated server adapters; CD contents never execute Lua. Burning and generic file installation remain proposed. |
 | Next | Tree views, context menus, modal prompts, property grids | **Proposed** | Public presentation components with the same keyboard/controller, resize and translation contract. No shared state required. |
 | Next | Better app discovery: desktop/Start launcher across all installed apps, missing-provider explanations, API-version diagnostics | **Proposed**; current app selection uses the context menu plus selected app's desktop | Bounded local metadata, no private server data. Missing/disabled apps should explain availability without exposing hidden records. |
 | Next | Multiple windows, per-window taskbar buttons, drag/snap, restore previous size | **Proposed**; current host has one content window | Local session state. Opt-in per-player presentation preferences; power/logoff must close every child and cancel app work. |

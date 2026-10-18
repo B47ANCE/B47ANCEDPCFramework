@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.4.0-dev.1",
+  "version": "0.5.0-dev.1",
   "reviewed": true,
-  "source_digest": "8375473c9bb7f130b7b2548ac013d0f0f194020ee025f96fffc8ad86a964e520",
+  "source_digest": "ae5f8b5b257d093e999f571407af57d43e633cf32dbf2d289b09780b16068be6",
   "features": [
     {
       "status": "Source",
@@ -31,11 +31,15 @@
       "text": "Public nested tabs, wrapping action toolbars and font-sized status bars, demonstrated in the opt-in local gallery and tested offline."
     },
     {
+      "status": "Source",
+      "text": "CD program API 1: physical-media descriptor registration, explicit authorized EXE launch, server list/authorize/resolve, exact identity/version checks and opt-in client/server examples. Private snapshots stay server-side; no burning or code loaded from CDs."
+    },
+    {
       "status": "Planned",
       "text": "Feature roadmap proposes multiwindow, richer UI controls and provider dashboards; shared mail/notes, repairs and remote control remain separate authority/API design work."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.4.0-dev.1. G7/stable G8 BLOCKED. One hosted content window; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.5.0-dev.1. G7/stable G8 BLOCKED. One hosted content window; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
   "evidence": [
     "README.md",
     "docs/API.md",
@@ -44,7 +48,10 @@
     "docs/POWERED_PC_API.json",
     "docs/UI_API.md",
     "docs/ROADMAP.md",
-    "examples/ComponentGallery.lua"
+    "examples/ComponentGallery.lua",
+    "docs/CD_PROGRAM_API.md",
+    "examples/CDProgram.lua",
+    "examples/CDProgramServer.lua"
   ],
   "relations": []
 }

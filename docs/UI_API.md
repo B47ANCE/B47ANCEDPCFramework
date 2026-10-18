@@ -1,6 +1,6 @@
 # Public PC UI and drawing assets
 
-Project Version: 0.4.0-dev.1
+Project Version: 0.5.0-dev.1
 
 Application API **1**, UI API **1**, drawing-assets API **1**. This is a client presentation SDK for trusted Lua mods. Consumers enable `B47ANCEDPCFramework` as a loader dependency and import it; they do not vendor the framework source or copy its global UI objects. No separate Java, texture generator or external OS runtime is required.
 
@@ -45,7 +45,7 @@ The context contains `playerNum`, the current native `player`, `computer`, `host
 
 Builder errors close any constructed SDK panel before propagating the error. Cleanup callbacks run once; framework cleanup completes before a cleanup error propagates. Errors are not turned into success results or hidden. Public UI metadata and callbacks are trusted local mod code, never code loaded from a physical disc or arbitrary file.
 
-`getAPIInfo()` returns a fresh table with `frameworkVersion`, `applicationVersion`, `uiVersion`, `assetsVersion`, and a fresh `features` map. `supports(name)` supports `installed-apps`, `ui-controls`, `hosted-windows`, `drawing-assets`, `custom-icons`, `media-adapters`, `tabs`, `toolbars`, and `status-bars`. Feature/version compatibility does not imply native or multiplayer validation.
+`getAPIInfo()` returns a fresh table with `frameworkVersion`, `applicationVersion`, `uiVersion`, `assetsVersion`, `cdProgramVersion`, and a fresh `features` map. `supports(name)` supports `installed-apps`, `ui-controls`, `hosted-windows`, `drawing-assets`, `custom-icons`, `media-adapters`, `tabs`, `toolbars`, `status-bars`, and `cd-programs`. Feature/version compatibility does not imply native or multiplayer validation.
 
 ## UI controls
 
@@ -102,3 +102,5 @@ Low-level components: `Assets.panel(widget,x,y,width,height,colorToken)`, `bevel
 [Component Gallery](../examples/ComponentGallery.lua) and its [English strings](../examples/Translate/EN/UI.json) are opt-in consumer source, excluded from the production package. Put the script and translations in your own mod's native client/Translate paths and declare the framework dependency. The gallery changes only disposable local rows; it is not a persistent notes or inventory system.
 
 [TESTED OFFLINE] Independent consumer tests cover public imports, palette/metric isolation, built-in/custom icons at several sizes, native constructors/callback shape, controls, focus, resize/font layout, explicit launch, synchronous/stale replies, permission/power loss, and builder/cleanup errors. The legacy Quartermaster regression suite is exercised against the new SDK. [RUNTIME GATE] Native pixels, keyboard/controller focus, split-screen behavior and dedicated multiplayer remain NOT TESTED; G7/stable G8 remain BLOCKED. No consumer publication or deployment is implied by this API.
+
+CD-backed descriptors reuse the same context/window implementation as installed apps. [CD program API 1](CD_PROGRAM_API.md) adds `ctx.program`/`ctx.media` identity copies only after server authorization, and guards also check mounted-media identity. Use `registerCDProgram` for this flow; `registerApp` stays the installed/non-media entry point.

@@ -3,12 +3,14 @@ local Device=require 'B47ANCEDPCFramework/Device'
 local C=require 'B47ANCEDPCFramework/ComputerUI'
 local UI=require 'B47ANCEDPCFramework/UI'
 local Assets=require 'B47ANCEDPCFramework/Assets'
+local Context=require 'B47ANCEDPCFramework/ProgramContext'
+local CD=require 'B47ANCEDPCFramework/CDPrograms'
 P.UI=UI;P.Assets=Assets
-local features={['installed-apps']=true,['ui-controls']=true,['hosted-windows']=true,['drawing-assets']=true,['custom-icons']=true,['media-adapters']=true,['tabs']=true,['toolbars']=true,['status-bars']=true}
+local features={['installed-apps']=true,['ui-controls']=true,['hosted-windows']=true,['drawing-assets']=true,['custom-icons']=true,['media-adapters']=true,['tabs']=true,['toolbars']=true,['status-bars']=true,['cd-programs']=true}
 function P.supports(name) return features[name]==true end
 function P.getAPIInfo()
  local copy={};for k,v in pairs(features) do copy[k]=v end
- return {frameworkVersion=P.version,applicationVersion=P.apiVersion,uiVersion=UI.version,assetsVersion=Assets.version,features=copy}
+ return {frameworkVersion=P.version,applicationVersion=P.apiVersion,uiVersion=UI.version,assetsVersion=Assets.version,cdProgramVersion=CD.version,features=copy}
 end
 local apps={};local titles={}
 function P.registerApplication(id,factory,title)
@@ -37,46 +39,72 @@ function P.registerApp(definition)
  local d={};for _,key in ipairs({'id','titleKey','icon','create','enabled','canUse','onClose'}) do d[key]=definition[key] end
  for _,key in ipairs({'enabled','canUse','onClose'}) do assert(d[key]==nil or type(d[key])=='function','invalid PC app callback: '..key) end
  d.icon=d.icon or 'application';assert(Assets.hasIcon(d.icon),'unknown PC app icon')
- local function context(num,computer,host)
-  return {playerNum=num,player=getSpecificPlayer(num),computer=computer,host=host,ui=UI,assets=Assets}
- end
  P.registerApplication(d.id,function(num,computer)
-  local probe=context(num,computer)
+  local probe=Context.probe(num,computer)
   if d.enabled and not d.enabled(probe) then return end
   return {hasDrive=false,programTitle=getText(d.titleKey),icon=d.icon,
    enabled=function() return not d.enabled or d.enabled(probe) end,
    canUse=function(_,_,near) return not d.canUse or d.canUse(probe,near) end,
-   launch=function(host)
-    host:closeApp()
-    local ctx=context(num,computer,host);local panel;local alive=true
-    function ctx.isActive()
-     return alive and not host.closed and C.active[num]==host and getSpecificPlayer(num)==ctx.player
-      and Device.computer(ctx.player,computer,true) and (not d.enabled or d.enabled(ctx))
-      and (not d.canUse or d.canUse(ctx,true)) and (not panel or not panel.closed and host.content==panel)
+   launch=function(host) return Context.launch(d,num,computer,host) end}
+ end,getText(d.titleKey))
+ return d.id
+end
+-- CD descriptors reuse authenticated real-media bindings; there is no autorun.
+function P.registerCDProgram(definition)
+ local d=CD.describe(definition)
+ for _,key in ipairs({'titleKey','file','create','drive','requestRun','enabled','canUse','onClose','onDenied'}) do d[key]=definition[key] end
+ assert(type(d.titleKey)=='string' and #d.titleKey>0,'CD program requires titleKey')
+ assert(type(d.file)=='string' and #d.file<=80 and d.file:match('^[%w_.-]+%.[Ee][Xx][Ee]$'),'CD program requires an EXE display filename')
+ for _,key in ipairs({'create','drive','requestRun'}) do assert(type(d[key])=='function','CD program requires '..key) end
+ for _,key in ipairs({'enabled','canUse','onClose','onDenied'}) do assert(d[key]==nil or type(d[key])=='function','invalid CD program callback: '..key) end
+ P.registerApplication(d.id,function(num,computer)
+  local probe=Context.probe(num,computer);local pending
+  if d.enabled and not d.enabled(probe) then return end
+  local function usable(host)
+   return not host.closed and C.active[num]==host and getSpecificPlayer(num)==probe.player
+    and Device.computer(probe.player,computer,true) and (not d.enabled or d.enabled(probe))
+    and (not d.canUse or d.canUse(probe,true))
+  end
+  local function matches(host,id,drive,fullType)
+   local current=host.mounted
+   return usable(host) and host.driveReady and current and current.drive==drive
+    and current:getID()==id and current:getFullType()==fullType
+  end
+  return {file=d.file,hasDrive=true,
+   enabled=function() return not d.enabled or d.enabled(probe) end,
+   canUse=function(_,_,near) return not d.canUse or d.canUse(probe,near) end,
+   busy=function()
+    if pending and getTimestampMs()-pending.at>15000 then
+     local expired=pending;pending=nil
+     if usable(expired.host) and expired.host.content==expired.source then expired.host:message('ComputerRunTimedOut') end
     end
-    function ctx.guard(callback)
-     assert(type(callback)=='function','PC guard requires a callback')
-     return function(...) if ctx.isActive() then return callback(...) end end
-    end
-    function ctx.window(options)
-     assert(not panel,'PC installed app owns one hosted window')
-     local o={};for k,v in pairs(options or {}) do o[k]=v end
-     o.titleKey=o.titleKey or d.titleKey
-     local onClose=o.onClose
-     o.onClose=function(reason)
-      alive=false
-      local ok,err=pcall(function() if onClose then onClose(reason) end end)
-      local done,issue=pcall(function() if d.onClose then d.onClose(ctx,reason) end end)
-      if not ok then error(err) end;if not done then error(issue) end
+    return pending~=nil
+   end,
+   close=function() pending=nil end,
+   canRun=function(media) return CD.acceptsType(d,media:getFullType()) end,
+   drive=function(command,args,reply) return d.drive(probe,command,args,reply) end,
+   read=function(media,host)
+    if pending then return end
+    local id,drive,fullType=media:getID(),media.drive,media:getFullType()
+    if not matches(host,id,drive,fullType) then return end
+    local ticket={at=getTimestampMs(),source=host.content,host=host};pending=ticket;host:message('ComputerCheckingCD')
+    local request={program=d.id,media=id,drive=drive}
+    local ok,err=pcall(d.requestRun,probe,request,function(result)
+     if pending~=ticket then return end;pending=nil
+     if host.content~=ticket.source or not matches(host,id,drive,fullType) then return end
+     if getTimestampMs()-ticket.at>15000 then host:message('ComputerRunTimedOut');return end
+     local valid=type(result)=='table' and result.status=='ok' and type(result.program)=='table' and type(result.media)=='table'
+      and result.program.id==d.id and result.program.version==d.version and result.media.id==id
+      and result.media.drive==drive and result.media.fullType==fullType
+     if not valid then
+      host:message('ComputerNoApplication')
+      local status=type(result)=='table' and type(result.status)=='string' and result.status or 'invalid'
+      if d.onDenied then d.onDenied(probe,status=='ok' and 'incompatible' or status) end;return
      end
-     panel=UI.window(host,o);return panel
-    end
-    local ok,result=pcall(d.create,ctx)
-    if not ok or not panel or result~=nil and result~=panel then
-     alive=false;if panel and not panel.closed then pcall(panel.close,panel,'error') end
-     error(not ok and result or 'PC app create must construct ctx.window and return that window or nil')
-    end
-    return panel
+     Context.launch(d,num,computer,host,{program={id=d.id,version=d.version},media={id=id,drive=drive,fullType=fullType}},
+      function() return matches(host,id,drive,fullType) end)
+    end)
+    if not ok then if pending==ticket then pending=nil end;error(err) end
    end}
  end,getText(d.titleKey))
  return d.id

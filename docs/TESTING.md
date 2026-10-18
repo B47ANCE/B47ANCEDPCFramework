@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.4.0-dev.1
+Project Version: 0.5.0-dev.1
 
 [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` pass. Host dependency: `lupa==2.6`; it is not a game dependency. Native-shaped doubles prove only the listed offline behaviors.
 
@@ -28,3 +28,7 @@ Public SDK 0.3.0-dev.1: the independent suite now includes `test_public_ui.lua` 
 Commands: `python -B scripts/check_versions.py`; `python -B tests/run_tests.py`; the paired command above with `--pc-framework` pointing to this SDK checkout. Packaging, native SP and dedicated multiplayer were not run. Prior 0.1/0.2 native receipts remain historical and are not relabeled as new runtime evidence. Validate actual native font/focus/tooltip/layering, split-screen, app switching/error recovery and server-authorized media behavior before claiming dedicated G7 or stable G8 PASS.
 
 Roadmap UI 0.4.0-dev.1: `python -B tests/run_tests.py` adds `test_composites.lua` and the updated real gallery. Offline checks cover tab visibility/selection/no-op notifications, retained page data, root focus exclusion for hidden pages, unchanged-paint focus retention, toolbar action isolation/disable, invalid descriptors without partial attachment, status sizing, and wrapping at widths 100/300/700 with fonts 14/24/32/42. These use the existing source-verified native panel/button/text APIs; no new engine APIs, gameplay state, network commands or sandbox values were introduced. UI API remains 1 with additive `tabs`, `toolbars`, `status-bars` capability flags. Native SP, keyboard/controller routing, split-screen and dedicated G7 remain NOT TESTED/BLOCKED; stable G8 remains BLOCKED.
+
+CD programs 0.5.0-dev.1: `python -B tests/run_tests.py` executes new `test_cd_programs_server.lua`, `test_cd_programs_client.lua` and `test_cd_program_example.lua`. Disposable fixtures use the real DriveService to list/mount/authorize and simulate physical media removal. Tests cover private-payload exclusion, client/forged-ID/type/version/permission/power refusal, binding reload/re-registration, no item moves, descriptor isolation, explicit launch, invalid/duplicate/late replies, browser/actor/enable changes, timeout retry and common hosted cleanup. The opt-in client/server examples are executed together, with their own translation keys checked. Existing native APIs are reused; no newly assumed engine signatures or runtime invocations were introduced. Existing exact-build receipts remain source evidence. Native SP/dedicated G7 and stable G8 remain blocked; actual authenticated transport, two-client contention, delayed/reordered traffic, unload/reload, reconnect/restart, keyboard/controller and native item events require runtime tests per consumer.
+
+The full Quartermaster/Rooms offline regression command above also passes against 0.5.0-dev.1. This checks the unchanged legacy consumer interface after sharing hosted lifecycle code; it supplies no native MP evidence.

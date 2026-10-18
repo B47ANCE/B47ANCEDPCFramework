@@ -1,7 +1,7 @@
 name=B47ANCED PC Framework
 id=B47ANCEDPCFramework
 author=B47ANCE
-modversion=0.4.0-dev.1
+modversion=0.5.0-dev.1
 versionMin=42.21.0
 description=Standalone Lua-only Windows '93 desktop and app registration framework. Provides powered stock-computer validation and reusable server-owned bindings to real media in physical storage. Applications validate their own permissions, data and media operations. Does not require Quartermaster. Development build: native SP and dedicated multiplayer NOT TESTED; G7 and stable G8 BLOCKED. No Workshop item assigned.
 poster=poster.png
