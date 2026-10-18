@@ -5,7 +5,7 @@
   "provenance": "Full cover supplied by B47ANCE; computer-only icon derivative made with the built-in image editor. No external-mod/OS artwork.",
   "sources": {
     "pc-framework-original.png": "4cf4e0ed4947d5f69812de681b5a1fb1a942b2dbef36e14997bfbe91752ae641",
-    "pc-framework-computer-crop.png": "58c668a2249a9bfe66396b0d7e98812f1f42335d2dde49d50c0b2c086204dea8"
+    "pc-framework-computer-transparent.png": "4cbfe22a4c74dd110288e08f4429dc4547cfb6b2997488710767abd3db830bfc"
   },
   "outputs": {
     "preview-client.png": {
@@ -27,7 +27,12 @@
         64,
         64
       ],
-      "sha256": "df177859ae9fb37aae05b0e3a8b84bf92b55eb12d005f14f402a2a85f019bc22"
+      "sha256": "6b3a31de0c882a852d316eacd72fa9a4450d53d9b836e4359f419cf49c5c55e7",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1272
     }
   }
 }

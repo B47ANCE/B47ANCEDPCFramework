@@ -1,6 +1,6 @@
 # Minesweeper mood benefits and authority
 
-Project Version: 0.9.0-dev.4
+Project Version: 0.9.0-dev.5
 
 Playing Minesweeper can reduce boredom and increase happiness. PZ represents the latter as **lower unhappiness**, so the server removes boredom/unhappiness through the existing enum stat API. Default benefits are **2 boredom points and 1 unhappiness point per 30 real seconds of qualifying play**, clamped by native stat bounds. No skill, item, stress, fatigue or other reward is added.
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.9.0-dev.5] - 2026-10-18
+
+- PATCH-level icon correction within pending 0.9.0: remove the computer icon background using genuine PNG alpha; preserve interior screen/vent shading and the current thumbnail/poster bytes. Retain the opaque source and transparent derivative separately.
+- Add icon-only export and alpha/corner validation to the host branding tool. Gameplay, public APIs, sandbox settings and save formats are unchanged. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED.
+
 ## [0.9.0-dev.4] - 2026-10-18
 
 - PATCH-level branding checkpoint within the pending 0.9.0 iteration: replace the fallback Workshop thumbnail and in-game poster with the user-supplied PC artwork, plus a text-free computer icon crop. Preserve the supplied original and export provenance.

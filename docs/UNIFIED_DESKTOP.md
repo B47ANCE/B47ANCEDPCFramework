@@ -1,6 +1,6 @@
 # Shared Windows '93 desktop
 
-Project Version: 0.9.0-dev.4
+Project Version: 0.9.0-dev.5
 
 The native world action opens one desktop for the current player and PC. Every registered, enabled, currently authorized app appears on that desktop and its Start menu. Installed apps launch explicitly from either place; media apps open their CD browser and still require a real compatible mounted CD and explicit EXE/Run authorization. No app is automatically run when the computer opens. App registration after opening is discovered during the bounded two-second catalog refresh. Unavailable apps are omitted; availability callbacks must remain pure. Large catalogs page identically in both launchers, and taskbar buttons page independently when needed.
 

@@ -2,7 +2,7 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.9.0-dev.4. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.9.0-dev.5. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
 Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
 
@@ -45,3 +45,5 @@ Publication preparation: canonical Workshop prose is in docs/WORKSHOP_DESCRIPTIO
 Artwork checkpoint 0.9.0-dev.4 uses the user-supplied B47ANCE'd PC Framework illustration for the Workshop preview and in-game poster, with a computer-only small icon. Editable source, export settings and hashes are in assets/branding; artwork replaces the earlier fallback independently for all three approved roles. No gameplay behavior changes.
 
 The 0.9.0-dev.4 artwork upload succeeded. Steam displayed a temporary automated-content-review notice at verification; the configured visibility remains public. See docs/WORKSHOP_PUBLICATION.md for exact source/package hashes and the observed availability limit. Native runtime acceptance remains NOT TESTED.
+
+Icon correction 0.9.0-dev.5 removes the small computer icon's exterior backdrop into genuine PNG transparency. The approved 512px thumbnail/poster remain byte-identical. The original opaque crop and current transparent derivative are retained separately in assets/branding, with icon-only export, alpha/corner checks and exact hashes. No gameplay or API changes.

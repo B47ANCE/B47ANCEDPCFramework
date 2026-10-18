@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.9.0-dev.4
+Project Version: 0.9.0-dev.5
 
 [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` pass. Host dependency: `lupa==2.6`; it is not a game dependency. Native-shaped doubles prove only the listed offline behaviors.
 
@@ -50,3 +50,5 @@ Minesweeper icon 0.9.0-dev.2: [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `pyt
 Workshop checkpoint 0.9.0-dev.3 changes publication metadata/tooling only. Reuse existing Lua gameplay source unchanged; rerun scripts/check_versions.py and tests/run_tests.py before packaging. scripts/build.py binds exact clean Git source/package hashes and checks ZIP integrity. scripts/prepare_workshop.py refuses existing staging, dirty/unmatched source, wrong archive hashes and duplicate first-item creation. Upload, Steam desktop restart and actual native validation are separate actions; G7/stable G8 remain BLOCKED.
 
 Artwork checkpoint 0.9.0-dev.4: original supplied cover is preserved with SHA-256; the built-in image editor supplies a text-free computer derivative for the icon. scripts/build_branding.py exports only 512px thumbnail/poster and 64px icon PNGs with manifest hashes. Structural/source/ZIP/stage checks and visual inspection of the actual exports are offline evidence. No gameplay/network/sandbox/schema changes. Native rendering NOT TESTED; project G7/stable G8 remain BLOCKED.
+
+Transparent icon 0.9.0-dev.5: `python -B scripts/build_branding.py --icon-only` preserves thumbnail/poster SHA-256 while exporting the transparent source into 64px RGBA. Validate alpha extrema 0/255, four zero-alpha corners and 1,272 fully transparent pixels; inspect on light/teal backgrounds and retain near-opaque interior shading (sample alpha 252/253). This is a cutout with real alpha, not a checkerboard bitmap. Version/framework checks and package parity remain offline evidence; native rendering/SP/dedicated remain NOT TESTED and project G7/stable G8 remain BLOCKED.
