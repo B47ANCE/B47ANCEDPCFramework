@@ -1,0 +1,20 @@
+{
+  "owner": "B47ANCE",
+  "source_repository": "https://github.com/B47ANCE/B47ANCEDQuartermaster",
+  "source_commit": "77ee0ebf43a74db299db60576fb504cedae35659",
+  "source_version": "0.18.0-dev.2",
+  "source_sha256": {
+    "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDQuartermaster/ComputerUI.lua": "b3a867743ccdb58f74c84ef127068222df568474035e393358a43e5edc98cd43",
+    "src/B47ANCEDQuartermaster/42/media/lua/shared/B47ANCEDQuartermaster/LedgerMedia.lua": "b66071c1df09f73e307ea3311e36ddb54844e8aaafbd3d73144652bda42039fd",
+    "src/B47ANCEDQuartermaster/42/media/lua/shared/B47ANCEDQuartermaster/LedgerDrives.lua": "49505f76c461f330d9d1cd52d13f8421853b54424d312b0a828e2efb3701f481",
+    "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Appearance.lua": "b668446aba3c87cf10705985eac2556b9be7c4abbbaef37870b19fa51541d192",
+    "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Controls.lua": "992b8fe7bb012942baf55ab9959d018f7ec10f74140e22a3c58486356928d8cc",
+    "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Dialog.lua": "27578ddd8d0e09a870369ef77e59222939c07c996cb51cdcf85621fcf6ae392d",
+    "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Renderer.lua": "836e454dde26de4f8a0c94962b11693a6e30c9ea210b6a7a18a329c356ce33fb",
+    "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/RowTooltip.lua": "599670855f85e8d8e5e04e07b7ffb3f6badf0b3db1ec2b9ea4d7d0b397b0ce47",
+    "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Theme.lua": "e4bcdf30c28b3f2eb37c42f6361abe98c4140b5a505f80a22e9fdbfc1f794d54",
+    "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Tooltip.lua": "2fc7de7bc7f64c2b59f22078f420b172f7222c3333e3f3d0b1547c0bdde0d88f"
+  },
+  "reuse": "Owned original Lua; no external-mod implementation or assets imported",
+  "runtime": "NOT TESTED"
+}

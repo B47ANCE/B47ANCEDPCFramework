@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "id": "local-2c6a6aca81aa",
+  "name": "B47ANCED PC Framework",
+  "version": "0.2.0-dev.1",
+  "reviewed": true,
+  "source_digest": "5cbd97a034798d5e28532252749162b680591a1db0b29d5520f300962cb53f03",
+  "features": [
+    {
+      "status": "Source",
+      "text": "Standalone Windows 93 desktop, trusted Lua app registry, powered-device checks and reusable server-owned media bindings."
+    },
+    {
+      "status": "Source",
+      "text": "Runs without Quartermaster; hosts its registered ledger/CD Writer app through callback contracts."
+    },
+    {
+      "status": "Source",
+      "text": "All powered vanilla PC orientations and other placed Computer-tagged tiles; access, electricity and server authority checks retained."
+    }
+  ],
+  "limits": "Native SP/dedicated NOT TESTED. G7/stable G8 BLOCKED. No Workshop item assigned. Apps retain gameplay authority and persistence.",
+  "evidence": [
+    "README.md",
+    "docs/API.md",
+    "docs/ARCHITECTURE.md",
+    "docs/TESTING.md",
+    "docs/POWERED_PC_API.json"
+  ],
+  "relations": []
+}

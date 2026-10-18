@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-17",
+  "game_fixture": "42.21.0",
+  "steam_build_fixture": "25485521",
+  "runtime": "NOT TESTED",
+  "files": {
+    "media/lua/client/ISUI/ISComboBox.lua": {
+      "sha256": "3c313fe9c30711fef341bc4358d3d66e6f38591c224f5fe92e7c77db508f2e66",
+      "matches_prior_source_receipt": true
+    },
+    "media/lua/client/ISUI/ISWorldObjectContextMenu.lua": {
+      "sha256": "980e67622e34422983cd33d64ea4f6dbff5cdf151a6dd9aef6acb669261fb47f",
+      "matches_prior_source_receipt": true
+    },
+    "media/lua/shared/luautils.lua": {
+      "sha256": "8763eed57a0fa02d671ff9156e51a3deda4e0355ef164690193119868f5c8a70",
+      "matches_prior_source_receipt": true
+    },
+    "media/lua/shared/TimedActions/ISBaseTimedAction.lua": {
+      "sha256": "ad72e57f976bd1564d59d08d98d06f8c8d4acea6386aace48e0d99ce9d02a1f0",
+      "matches_prior_source_receipt": true
+    }
+  },
+  "prior_receipt": "Quartermaster docs/LEDGER_NATIVE_EVIDENCE_2026-10-16.json at 0.14.0-dev.1; history retained"
+}
