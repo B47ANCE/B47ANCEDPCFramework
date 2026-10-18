@@ -4,7 +4,7 @@
   "name": "B47ANCED PC Framework",
   "version": "0.10.0-dev.1",
   "reviewed": true,
-  "source_digest": "cd88be00ee6ead039c927b438b55a1ec5c3a14f969c6bcf3a2bed7f8755da933",
+  "source_digest": "41b72fa161eac5be149a4e83b18b7d4c0638156dbc7c87ab500f51836b07f369",
   "features": [
     {
       "status": "Source",
@@ -12,7 +12,7 @@
     },
     {
       "status": "Source",
-      "text": "One shared front-facing whole-PC shell: beige CRT, horizontal system unit, keyboard/mouse, 4:3 app screen, uniform letterboxing and retained app/tool taskbar sessions; client presentation, offline tested."
+      "text": "One shared front-facing PC shell: beige CRT and horizontal system unit, no peripheral artwork, 4:3 app screen, uniform letterboxing and retained app/tool taskbar sessions; client presentation, offline tested."
     },
     {
       "status": "Source",

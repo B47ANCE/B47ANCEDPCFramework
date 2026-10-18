@@ -6,8 +6,7 @@ for _,font in ipairs({14,24,32,42}) do
   assert(g.width>0 and g.desktopHeight>0 and math.abs(g.width/g.height-4/3)<.01,'screen aspect distorted')
   assert(g.x>=0 and g.y>=0 and g.x+g.width<=w and g.y+g.height<=h)
   assert(g.parts.monitor.y+g.parts.monitor.height<g.parts.systemUnit.y)
-  assert(g.parts.systemUnit.y+g.parts.systemUnit.height<g.parts.keyboard.y)
-  assert(g.parts.keyboard.x+g.parts.keyboard.width<g.parts.mouse.x)
+  assert(g.parts.keyboard==nil and g.parts.mouse==nil,'shell must contain only monitor and system unit')
   for _,part in pairs(g.parts) do assert(part.x>=0 and part.y>=0 and part.x+part.width<=w and part.y+part.height<=h) end
   local unit=g.parts.systemUnit
   assert(g.powerX>=unit.x and g.powerY>=unit.y and g.powerX+g.powerWidth<=unit.x+unit.width and g.powerY+g.powerHeight<=unit.y+unit.height)
@@ -16,6 +15,6 @@ for _,font in ipairs({14,24,32,42}) do
   end,drawText=function() end},w,h);assert(calls>0 and calls<2500,'unbounded shell rendering')
  end
 end
-local a=F.geometry(1000,880,{font=14,button=26});local b=F.geometry(1400,880,{font=14,button=26})
+local a=F.geometry(1000,700,{font=14,button=26});local b=F.geometry(1400,700,{font=14,button=26})
 assert(a.width==b.width and a.height==b.height and b.x>a.x,'widening should center, not stretch the computer')
 print('PASS OFFLINE full PC: straight-on component bounds, 4:3 screen, aspect-preserving resize, case power target and bounded drawing')

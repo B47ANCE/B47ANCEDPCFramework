@@ -5,7 +5,7 @@ local R=B47ANCEDPCUI.Renderer
 local F={}
 local function color(r,g,b) return {r=r/255,g=g/255,b=b/255,a=1} end
 local P={body=color(204,184,145),edge=color(121,103,73),shade=color(171,148,111),light=color(234,218,182),
- dark=color(61,54,39),rim=color(89,83,61),black=color(8,18,16),green=color(105,165,90),key=color(217,207,180)}
+ dark=color(61,54,39),rim=color(89,83,61),black=color(8,18,16),green=color(105,165,90)}
 local shapes={
  {color='edge',points={40,20,60,0,940,0,960,20,960,688,940,708,60,708,40,688}},
  {color='body',points={46,23,63,6,937,6,954,23,954,684,937,702,63,702,46,684}},
@@ -14,11 +14,7 @@ local shapes={
  {color='rim',points={91,50,103,39,897,39,909,50,909,646,897,657,103,657,91,646}},
  {color='black',points={96,51,103,44,897,44,904,51,904,645,897,652,103,652,96,645}},
  {color='edge',points={50,732,60,722,940,722,950,732,950,822,940,832,60,832,50,822}},
- {color='body',points={56,734,63,728,937,728,944,734,944,818,937,826,63,826,56,818}},
- {color='edge',points={65,860,75,850,830,850,840,860,840,978,830,988,75,988,65,978}},
- {color='body',points={71,863,78,856,827,856,834,863,834,975,827,982,78,982,71,975}},
- {color='edge',points={894,850,932,850,950,868,956,956,944,978,886,978,874,958,878,868}},
- {color='body',points={896,856,930,856,944,870,950,954,940,972,890,972,880,956,884,870}}
+ {color='body',points={56,734,63,728,937,728,944,734,944,818,937,826,63,826,56,818}}
 }
 -- Scan once in normalized authoring coordinates; render cached horizontal spans.
 local spans={}
@@ -43,8 +39,8 @@ for _,shape in ipairs(shapes) do
  spans[#spans+1]={color=P[shape.color],runs=runs}
 end
 local function transform(w,h)
- local scale=math.min(w/1000,h/1000)
- return scale,math.floor((w-1000*scale)/2),math.floor((h-1000*scale)/2)
+ local scale=math.min(w/1000,h/840)
+ return scale,math.floor((w-1000*scale)/2),math.floor((h-840*scale)/2)
 end
 function F.geometry(w,h,metrics)
  local scale,ox,oy=transform(w,h)
@@ -53,7 +49,7 @@ function F.geometry(w,h,metrics)
  local bar=metrics.button+8;local status=metrics.font+10
  return {x=x,y=y,width=width,height=height,desktopHeight=math.max(1,height-bar-status),bar=bar,status=status,
   powerX=ox+math.floor(856*scale),powerY=oy+math.floor(753*scale),powerWidth=math.max(28,math.floor(40*scale)),powerHeight=math.max(28,math.floor(40*scale)),
-  parts={monitor=box(40,0,920,708),systemUnit=box(50,722,900,110),keyboard=box(65,850,775,138),mouse=box(874,850,82,128)}}
+  parts={monitor=box(40,0,920,708),systemUnit=box(50,722,900,110)}}
 end
 function F.draw(widget,w,h)
  local scale,ox,oy=transform(w,h)
@@ -76,18 +72,5 @@ function F.draw(widget,w,h)
  rect(316,782,313,2,P.shade);rect(649,777,15,12,P.shade);rect(318,778,6,3,P.green)
  for row=0,5 do for col=0,8 do rect(714+col*12,747+row*9,8,3,P.dark) end end
  rect(846,744,60,61,P.shade);rect(915,758,6,5,P.green)
- -- Keyboard and mouse stay decorative; all native app input remains in the CRT.
- rect(400,832,4,18,P.dark);rect(950,792,26,4,P.dark);rect(972,792,4,43,P.dark)
- rect(912,831,64,4,P.dark);rect(912,832,4,18,P.dark)
- local function key(x,y,a,b)
-  rect(x,y,a,b,P.edge);rect(x+1,y+1,a-3,b-3,P.key);rect(x+1,y+1,a-3,2,P.light)
- end
- for n=0,14 do key(84+n*32,865,25,11) end
- for row=0,3 do for col=0,14-row do key(84+row*5+col*33,886+row*20,28,16) end end
- key(84,966,58,11);key(149,966,58,11);key(214,966,230,11);key(451,966,58,11);key(516,966,58,11)
- for row=0,1 do for col=0,2 do key(613+col*31,886+row*20,26,16) end end
- key(644,936,26,16);for col=0,2 do key(613+col*31,956,26,16) end
- for row=0,3 do for col=0,2 do key(722+col*32,886+row*20,27,16) end end
- rect(886,900,57,3,P.edge);rect(912,858,3,43,P.edge);rect(907,866,13,24,P.dark);rect(910,869,7,17,P.shade)
 end
 return F
