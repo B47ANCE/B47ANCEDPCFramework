@@ -1,6 +1,6 @@
 # Public PC UI and drawing assets
 
-Project Version: 0.8.0-dev.1
+Project Version: 0.9.0-dev.2
 
 Application API **1**, UI API **1**, drawing-assets API **1**. This is a client presentation SDK for trusted Lua mods. Consumers enable `B47ANCEDPCFramework` as a loader dependency and import it; they do not vendor the framework source or copy its global UI objects. No separate Java, texture generator or external OS runtime is required.
 
@@ -33,19 +33,19 @@ PC.registerApp({
 })
 ```
 
-Supply your own localized keys and translate files. Registration creates an app entry, not a running app. The user explicitly selects its desktop/Start-menu icon. `PC.open(playerNum,computer,id)` opens that app's desktop; it does not launch the app. The installed-app flow needs no CD and hides irrelevant drive controls. Existing factory/media apps continue to use `registerApplication`, authenticated drive offers and explicit EXE launch unchanged.
+Supply your own localized keys and translate files. Registration creates an app entry, not a running app. The user explicitly selects its desktop/Start-menu icon. `PC.open(playerNum,computer)` opens the unified desktop. Passing an ID creates/focuses that app's host session without launching it. Installed apps need no CD; unrelated apps and valid media providers remain visible in the shared launcher. Existing factory/media apps continue to use `registerApplication`, authenticated drive offers and explicit EXE launch unchanged.
 
 ## App descriptor and context
 
 `registerApp({id,titleKey,icon,create,enabled,canUse,onClose})` is additive to application API 1. `id`, `titleKey` and `create` are required. IDs use letters/digits/underscore/dot/hyphen, at most 80 characters; use your mod's namespace. Icons default to `application`. Register each ID once. The supported descriptor fields are copied at registration, so later descriptor edits do not silently change the app.
 
-`enabled(context)` and `canUse(context,near)` are optional availability/privacy filters. They must be pure and may run while building context menus; availability probes have no host/window helpers. The framework still requires a loaded, powered, accessible PC and safehouse permission. A filter cannot override those checks. `create(context)` runs only on explicit launch and receives the hosted lifecycle helpers. It must construct exactly one `ctx.window(options)` and return that panel or nil. Use native nested panels inside it; independent simultaneous top-level windows are not implemented.
+`enabled(context)` and `canUse(context,near)` are optional availability/privacy filters. They must be pure and may run while building context menus; availability probes have no host/window helpers. The framework still requires a loaded, powered, accessible PC and safehouse permission. A filter cannot override those checks. `create(context)` runs only on explicit launch and receives the hosted lifecycle helpers. It must construct exactly one `ctx.window(options)` and return that panel or nil. Use native nested panels inside it. Different apps and legacy tools retain independent taskbar windows in one CRT root; multiple SDK windows within one app and arbitrary drag/snap are not implemented.
 
-The context contains `playerNum`, the current native `player`, `computer`, `host`, `ui`, and `assets`. `ctx.window(options)` connects window cleanup to `onClose(context,reason)`. `ctx.isActive()` checks current window, actor, PC, power, framework/app enable state and access. `ctx.guard(callback)` returns a function that ignores stale calls after closure, actor replacement or access/power loss. Synchronous callbacks after `ctx.window()` are accepted. Guards do not authenticate server requests or cancel an app's background work; implement cancellation in `onClose` and validate gameplay on the server. Closing a panel invalidates its context even if the desktop stays open. Minimize/restore preserves a live context.
+The context contains `playerNum`, the current native `player`, `computer`, `host`, `ui`, and `assets`. `ctx.window(options)` connects window cleanup to `onClose(context,reason)`. `ctx.isActive()` checks current window, actor, PC, power, framework/app enable state and access. `ctx.guard(callback)` returns a function that ignores stale calls after closure, actor replacement or access/power loss. Synchronous callbacks after `ctx.window()` are accepted. Guards do not authenticate server requests or cancel an app's background work; implement cancellation in `onClose` and validate gameplay on the server. Closing a panel invalidates its context even if the desktop stays open. Minimize, switching apps and restore preserve a live context. `ctx.isActive()` checks session lifetime and authorization, not foreground focus. Each session retains independent mounted media and pending work. A host is a facade over `host.root`, the native widget.
 
 Builder errors close any constructed SDK panel before propagating the error. Cleanup callbacks run once; framework cleanup completes before a cleanup error propagates. Errors are not turned into success results or hidden. Public UI metadata and callbacks are trusted local mod code, never code loaded from a physical disc or arbitrary file.
 
-`getAPIInfo()` returns a fresh table with `frameworkVersion`, `applicationVersion`, `uiVersion`, `assetsVersion`, `cdProgramVersion`, and a fresh `features` map. `supports(name)` supports `installed-apps`, `ui-controls`, `hosted-windows`, `drawing-assets`, `custom-icons`, `media-adapters`, `tabs`, `toolbars`, `status-bars`, and `cd-programs`. Feature/version compatibility does not imply native or multiplayer validation.
+`getAPIInfo()` returns a fresh table with `frameworkVersion`, `applicationVersion`, `uiVersion`, `assetsVersion`, `cdProgramVersion`, and a fresh `features` map. `supports(name)` supports `installed-apps`, `ui-controls`, `hosted-windows`, `drawing-assets`, `custom-icons`, `media-adapters`, `tabs`, `toolbars`, `status-bars`, `cd-programs`, `unified-desktop`, `retained-app-windows`, and `crt-frame`. Feature/version compatibility does not imply native or multiplayer validation.
 
 ## UI controls
 
@@ -83,7 +83,7 @@ The SDK deliberately does not introduce game-balance settings. Coordinates, icon
 
 `Assets.palette()` returns fresh color tables; `Assets.color(name)` returns one copy. Tokens: `case`, `grey`, `light`, `shadow`, `black`, `white`, `blue`, `teal`, `muted`. Changing a returned table does not reskin other apps or the desktop. Global theme replacement is not part of API 1.
 
-`Assets.icons()` returns a sorted fresh list. Built-in IDs: **computer, disc, writer, application, folder, document, settings**. `hasIcon(id)` checks availability. `drawIcon(widget,id,x,y,size)` draws original Lua geometry at the requested square size (default 40). Unknown IDs, invalid sizes or out-of-bounds geometry fail explicitly. There are no copied OS icon sheets or generated bitmap dependencies.
+`Assets.icons()` returns a sorted fresh list. Built-in IDs: **computer, disc, writer, application, folder, document, settings, minesweeper**. `hasIcon(id)` checks availability. `drawIcon(widget,id,x,y,size)` draws original Lua geometry at the requested square size (default 40). Unknown IDs, invalid sizes or out-of-bounds geometry fail explicitly. There are no copied OS icon sheets or generated bitmap dependencies.
 
 ```lua
 Assets.registerIcon('yourmod.alert',function(rect)
@@ -106,3 +106,7 @@ Low-level components: `Assets.panel(widget,x,y,width,height,colorToken)`, `bevel
 CD-backed descriptors reuse the same context/window implementation as installed apps. [CD program API 1](CD_PROGRAM_API.md) adds `ctx.program`/`ctx.media` identity copies only after server authorization, and guards also check mounted-media identity. Use `registerCDProgram` for this flow; `registerApp` stays the installed/non-media entry point.
 
 The shipped [Minesweeper app](MINESWEEPER.md) is a production consumer of `registerApp`, hosted contexts and public UI/assets. It registers at client startup and is included in the framework ZIP, unlike the opt-in Component Gallery/CD examples. Its disposable board and mood effects are now server-owned; the UI submits intent through the bundled app transport. See [mood authority](MINESWEEPER_MOOD.md).
+
+The approved CRT shell and refreshed original pixel icons in 0.9.0-dev.1 use Lua rectangles/text only; the seven icon IDs and nine public palette roles are unchanged. See UNIFIED_DESKTOP.md for app-only retirement, cleanup error handling, bounded provider/catalog polling and native acceptance gates.
+
+In 0.9.0-dev.2 the additive `minesweeper` asset depicts an original miniature minefield with an exposed mine, count and blue flag. The bundled app uses it on the shared desktop and taskbar. Its editable source is `Assets.lua`; it uses existing palette roles and rectangle rendering without bitmap dependencies. Assets API remains 1. Offline geometry checks cover 16, 20, 40, 56 and 80 pixels; native pixels remain a runtime gate.

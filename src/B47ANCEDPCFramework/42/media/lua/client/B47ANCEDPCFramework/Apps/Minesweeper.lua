@@ -5,7 +5,7 @@ local installed=false
 local function tr(key,...) return getText('UI_B47PC_Mines_'..key,...) end
 return function(PC)
  local id='b47pc.minesweeper';if installed then return id end
- PC.registerApp({id=id,titleKey='UI_B47PC_Mines_Title',icon='application',create=function(ctx)
+ PC.registerApp({id=id,titleKey='UI_B47PC_Mines_Title',icon='minesweeper',create=function(ctx)
   local UI,A=ctx.ui,ctx.assets;local started,finished;local flagMode=false;local panel
   local token,seq,cancel,pending,pendingAt,issue;local generation=0;local reliefUntil=0
   local function elapsed()

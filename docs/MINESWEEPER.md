@@ -1,8 +1,8 @@
 # Bundled Minesweeper
 
-Project Version: 0.8.0-dev.1
+Project Version: 0.9.0-dev.2
 
-Minesweeper is installed with PC Framework under app ID `b47pc.minesweeper`. Use a powered accessible PC, choose Minesweeper's desktop from the world context menu when several apps are installed, then select its application icon or Start entry. Opening the desktop does not start the app. No CD or Quartermaster is required. Existing app-specific desktops and CD programs remain available through their context-menu entries.
+Minesweeper is installed with PC Framework under app ID `b47pc.minesweeper`. Use a powered accessible PC and select Minesweeper from the shared desktop or Start menu. Opening the desktop does not start the app. No CD or Quartermaster is required. Other installed apps and CD programs remain available on that same desktop and taskbar.
 
 The original Lua game provides a 9×9 board with 10 mines. The first reveal and its immediate neighbors are safe; zero regions reveal connected safe tiles. The board is not guaranteed to be solvable without guessing. Reveal every safe tile to win; hitting a mine ends the game. Flags are limited to 10 and protect a tile from reveal. Wrong flags can cause a loss when chording.
 
@@ -19,7 +19,7 @@ The counter shows unplaced flags and elapsed seconds since the first reveal. Tim
 
 The server now owns each disposable board and validates reveal/flag moves. Active progress can reduce boredom and unhappiness (increasing happiness): defaults are 2 boredom and 1 unhappiness point per 30 qualifying real seconds. Idle windows, flag spam, resets and replayed requests provide no benefit. There are no shared scores, items or experience rewards. See the [complete mood configuration and authority contract](MINESWEEPER_MOOD.md).
 
-Minimize/restore preserves the current board, but idle time alone does not earn benefits. Close, app switching, invalid power/access or server session expiry discards it. Boards/activity credit are not saved or resumed after reconnect/restart. Base-game mood stats remain vanilla-owned and are synchronized by the server. The display timer is separate from reward eligibility. Client inputs never write mood values or claim rewards.
+Minimize/restore preserves the current board, but idle time alone does not earn benefits. Close, invalid power/access or server session expiry discards it. Switching apps now retains the current board/window; idle time still earns no benefits. Boards/activity credit are not saved or resumed after reconnect/restart. Base-game mood stats remain vanilla-owned and are synchronized by the server. The display timer is separate from reward eligibility. Client inputs never write mood values or claim rewards.
 
 Source is `shared/B47ANCEDPCFramework/Apps/MinesweeperGame.lua` (pure board rules) and `Minesweeper.lua` (installed UI using the public PC app/UI/assets API). Startup registers it once. The independent Lua-only implementation uses no copied game code, sprites, OS artwork or third-party mod source. It is included in the production manifest; examples remain excluded. The historical 0.6 development ZIP remains unchanged and does not contain the new mood feature. This is a compatible MINOR addition with no public API or persistence-schema changes.
 
@@ -28,3 +28,5 @@ Validation commands: `python -B scripts/check_versions.py`; `python -B tests/run
 [TESTED OFFLINE] Native-shaped host tests are not native execution. [RUNTIME GATE] Native SP/dedicated NOT TESTED; project dedicated G7 and stable-release G8 remain BLOCKED. Mood effects are gameplay and require dedicated validation; offline tests cannot prove owner stat synchronization or persistence. Validate actual enabled-mod startup, powered-PC discovery, multi-app selection, pointer/controller play, minimize/resize, split-screen and power/logoff closure on disposable saves. Development packaging is distribution evidence only.
 
 In 0.8.0-dev.1 the common PC access check also supports occupied native furniture directly in front of the PC, including during native rest. Opening/playing does not clear the rest queue or stand the player up. Server board/mood authorization still revalidates actual seated reach, power and permissions. See SEATED_PC.md; simultaneous native endurance recovery and mood relief remain SP/dedicated acceptance gates.
+
+The 0.9.0-dev.2 presentation checkpoint gives Minesweeper its own original minefield icon on the shared desktop and taskbar. The public asset ID is `minesweeper`; `client/B47ANCEDPCFramework/Assets.lua` is its editable Lua geometry source. This is a PATCH-level visual refinement within the pending 0.9.0 MINOR iteration. Registration, gameplay, sandbox settings, server authority and persistence are unchanged.

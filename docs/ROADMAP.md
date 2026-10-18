@@ -1,6 +1,6 @@
 # Features and functionality brainstorm
 
-Project Version: 0.8.0-dev.1
+Project Version: 0.9.0-dev.2
 
 The framework should provide a reusable PC shell and UI kit. Optional apps should provide the gameplay. This lets one powered PC host several mods without each mod duplicating desktop art, input handling or lifecycle code. The following are design proposals, not promises that their engine integrations exist.
 
@@ -13,8 +13,8 @@ The framework should provide a reusable PC shell and UI kit. Optional apps shoul
 | Now | Public CD-program registration, explicit EXE launch, server list/authorize/resolve and client/server examples | **Implemented source / offline tested** in 0.5.0-dev.1 | Physical binding and private program snapshots stay with authenticated server adapters; CD contents never execute Lua. Burning and generic file installation remain proposed. |
 | Now | Use PCs while resting in furniture directly in front | **Implemented source / offline tested** in 0.8.0-dev.1 | Native seating/rest remains engine-owned; shared server/device checks validate actual occupied furniture and bounded barrier reach. Native SP/dedicated pending. |
 | Next | Tree views, context menus, modal prompts, property grids | **Proposed** | Public presentation components with the same keyboard/controller, resize and translation contract. No shared state required. |
-| Next | Better app discovery: desktop/Start launcher across all installed apps, missing-provider explanations, API-version diagnostics | **Proposed**; current app selection uses the context menu plus selected app's desktop | Bounded local metadata, no private server data. Missing/disabled apps should explain availability without exposing hidden records. |
-| Next | Multiple windows, per-window taskbar buttons, drag/snap, restore previous size | **Proposed**; current host has one content window | Local session state. Opt-in per-player presentation preferences; power/logoff must close every child and cancel app work. |
+| Now | Common desktop/Start launcher across all available apps, original CRT shell, paged icons/menu and provider selection | **Implemented source / offline tested** in 0.9.0-dev.1; richer diagnostics remain proposed | Bounded local metadata, no private server data. Missing/disabled apps should explain availability without exposing hidden records. |
+| Now / Next | Retained app/tool windows and taskbar buttons; arbitrary drag/snap and size restoration | **Retained windows implemented source / offline tested** in 0.9.0-dev.1; drag/snap/preferences proposed | Local session state. Opt-in per-player presentation preferences; power/logoff must close every child and cancel app work. |
 | Next | High-contrast skins, larger labels, color-independent status icons, custom texture adapters, gentle boot/shutdown effects | **Proposed**; current palette copies and custom rectangle icons are available | Local accessibility/appearance options. New texture/sound use needs API/source and native pixel/audio checks. Effects must not invent server boot state. |
 | Next | Provider contract for read-only dashboard cards, paging/search/filter, refresh age and unavailable-data states | **Proposed** | Providers expose authorized summaries only. Server bounds scope/rate; clients display freshness rather than claiming omniscient live data. |
 | App | Inventory, stock targets, requests, orders, printable supply sheets | **Quartermaster app exists**; other dashboards are **proposals** | Keep ledger knowledge, ownership, permissions and exact-item transactions in Quartermaster or the responsible provider. No duplicate inventory authority. |
@@ -32,3 +32,5 @@ Recommended next sequence: validate the public SDK in the native client; validat
 Every new gameplay app needs a design slice covering state ownership, authenticated intents, permissions, scope, vanilla/custom synchronization, persistence, join/reconnect/restart, duplicate requests and failure recovery. Meaningful shared behavior needs server sandbox settings with stable identifiers, localized names/tooltips, sensible defaults/bounds and existing-save semantics. Proposed settings in this brainstorm are candidates, not implemented options or final identifiers.
 
 [RUNTIME GATE] The implemented SDK is source/offline evidence only. Gameplay dedicated G7 is BLOCKED / NOT TESTED and stable-release G8 is BLOCKED. This roadmap authorizes no game/server launch, deployment, new Workshop item, publication, remote computer access or paid asset generation. Future integrations remain separate optional app work, not silent framework dependencies.
+
+The approved B47 / CRT 93 design is now production Lua geometry, with refreshed original icons, inset surface, in-screen taskbar/status, physical logoff and matching Quartermaster table/details. See UNIFIED_DESKTOP.md for the implemented scope and runtime gates; missing-provider diagnostics and additional per-app windows are still proposals.

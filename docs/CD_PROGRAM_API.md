@@ -1,6 +1,6 @@
 # Public CD program API 1
 
-Project Version: 0.8.0-dev.1
+Project Version: 0.9.0-dev.2
 
 CD programs are trusted Lua supplied by installed mods. A physical CD identifies compatible program data; it never supplies executable Lua, paths to load, or operating-system code. Application, UI and drawing-assets API 1 remain compatible. Query `PC.supports('cd-programs')` and `PC.getAPIInfo().cdProgramVersion == 1` before using this additive contract.
 
@@ -30,7 +30,7 @@ PC.registerCDProgram({
 
 `id`, `version`, `titleKey`, `file`, `mediaTypes`, `drive`, `requestRun` and `create` are required. IDs/versions are nonempty strings containing letters, digits, underscore, dot or hyphen, at most 80 characters. The independently versioned program `version` is matched exactly; it is not the framework version. `file` is a display-only EXE filename of at most 80 characters, without directory separators. `mediaTypes` is a nonempty list of distinct full item types, each at most 128 characters. Registration copies supported fields/type lists, rejects duplicate application IDs and creates a selectable app entry. Supply the CD item and translations in your own mod; the example item name above is a placeholder, not a framework item.
 
-Optional callbacks `enabled(ctx)`, `canUse(ctx,near)` and `onClose(ctx,reason)` have the [installed-app semantics](UI_API.md). `onDenied(probe,status)` observes a rejected/malformed authorization response; a success response with mismatched program/version/media reports `incompatible`. Pure availability probes have player/computer/UI/assets fields but no hosted window or media. Registration/probing never reads a CD or starts a request. CD programs do not acquire an installed-app launch icon; select the app's desktop, load a compatible CD from adjacent authorized storage, then choose **Run application** or double-click its EXE. Mounting a CD does not run it.
+Optional callbacks `enabled(ctx)`, `canUse(ctx,near)` and `onClose(ctx,reason)` have the [installed-app semantics](UI_API.md). `onDenied(probe,status)` observes a rejected/malformed authorization response; a success response with mismatched program/version/media reports `incompatible`. Pure availability probes have player/computer/UI/assets fields but no hosted window or media. Registration/probing never reads a CD or starts a request. CD programs appear in the shared desktop/Start launcher as media-app entries. Selecting one opens its browser; load a compatible CD from adjacent authorized storage, then choose **Run application** or double-click its EXE. Mounting a CD does not run it.
 
 `drive(probe,command,args,reply)` implements the existing [list/mount/eject protocol](API.md). Reply with server-approved media descriptors, not client inventory assertions. `requestRun(probe,request,reply)` runs only after explicit launch and sends:
 
@@ -94,3 +94,5 @@ This API does not burn, clone, install, trade or consume CDs. Writing needs an a
 [Opt-in client example](../examples/CDProgram.lua) and [server example](../examples/CDProgramServer.lua) accept the owning mod's DriveService, item types and transports. They are excluded from production. The independent offline suite executes both examples against the actual binding service and disposable fixture items; no game is launched.
 
 [TESTED OFFLINE] Registration, native-shaped UI, real service list/mount/authorize, forged/mismatched replies, exact item/type/version checks, power/access loss, timeout/duplicate handling, media-loss closure, persisted-binding reload and no item movement. [RUNTIME GATE] Native SP and dedicated multiplayer NOT TESTED; G7 and stable G8 BLOCKED. Validate two-client contention, request correlation/delay, real item notifications, reconnect/rejoin, storage unload/reload, restart and controller/input with each actual consumer transport before claiming runtime correctness.
+
+In 0.9.0-dev.1 media-app sessions coexist with installed apps on one CRT desktop. A common CD-ROM browser exposes an explicit provider selector when necessary; provider offers/bindings and pending run authorizations remain isolated. Switching apps preserves a live context; closing/replacing its browser still rejects a late launch. No cross-provider authority or global hardware locking is added. See UNIFIED_DESKTOP.md.

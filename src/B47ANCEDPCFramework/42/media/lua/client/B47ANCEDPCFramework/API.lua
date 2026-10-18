@@ -6,7 +6,7 @@ local Assets=require 'B47ANCEDPCFramework/Assets'
 local Context=require 'B47ANCEDPCFramework/ProgramContext'
 local CD=require 'B47ANCEDPCFramework/CDPrograms'
 P.UI=UI;P.Assets=Assets
-local features={['installed-apps']=true,['ui-controls']=true,['hosted-windows']=true,['drawing-assets']=true,['custom-icons']=true,['media-adapters']=true,['tabs']=true,['toolbars']=true,['status-bars']=true,['cd-programs']=true}
+local features={['installed-apps']=true,['ui-controls']=true,['hosted-windows']=true,['drawing-assets']=true,['custom-icons']=true,['media-adapters']=true,['tabs']=true,['toolbars']=true,['status-bars']=true,['cd-programs']=true,['unified-desktop']=true,['retained-app-windows']=true,['crt-frame']=true}
 function P.supports(name) return features[name]==true end
 function P.getAPIInfo()
  local copy={};for k,v in pairs(features) do copy[k]=v end
@@ -61,7 +61,7 @@ function P.registerCDProgram(definition)
   local probe=Context.probe(num,computer);local pending
   if d.enabled and not d.enabled(probe) then return end
   local function usable(host)
-   return not host.closed and C.active[num]==host and getSpecificPlayer(num)==probe.player
+   return C.isLive(host) and getSpecificPlayer(num)==probe.player
     and Device.computer(probe.player,computer,true) and (not d.enabled or d.enabled(probe))
     and (not d.canUse or d.canUse(probe,true))
   end
@@ -112,8 +112,8 @@ end
 function P.open(num,computer,id)
  local hooks
  if id then hooks=available(num,computer,id,true);if not hooks then return end
- else for _,key in ipairs(P.applications()) do hooks=available(num,computer,key,true);if hooks then id=key;break end end end
- hooks=hooks or {};hooks.id=id or 'desktop'
+ end
+ hooks=hooks or {};hooks.id=id or 'desktop';hooks.isDesktop=id==nil
  hooks.enabled=hooks.enabled or Device.enabled;hooks.canUse=hooks.canUse or Device.computer
  hooks.busy=hooks.busy or function() return false end;hooks.close=hooks.close or function() end
  hooks.text=hooks.text or function(k,...) return getText('UI_B47PC_'..k,...) end
@@ -122,4 +122,17 @@ function P.open(num,computer,id)
  hooks.read=hooks.read or function() end
  return C.open(num,computer,hooks)
 end
+C.launcher={open=P.open,openTool=function(num,computer,id)
+ local hooks=available(num,computer,id,true);if not hooks or not hooks.writer then return end
+ hooks.id=id;hooks.sessionKey='\0tool:'..id
+ return C.open(num,computer,hooks)
+end,list=function(num,computer)
+ local rows={}
+ for _,id in ipairs(P.applications()) do
+  local h=available(num,computer,id,true)
+  if h then rows[#rows+1]={id=id,title=h.launcherTitle or P.applicationTitle(id),icon=h.icon or 'application',hasDrive=h.hasDrive~=false,
+   toolTitle=h.writer and (h.toolTitle or getText('UI_B47PC_ComputerApplications')) or nil} end
+ end
+ return rows
+end}
 return P
