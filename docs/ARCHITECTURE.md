@@ -1,6 +1,6 @@
 # Source and authority
 
-Project Version: 0.2.0-dev.1
+Project Version: 0.3.0-dev.1
 
 [VERIFIED source] `src/B47ANCEDPCFramework` is authoritative. `42/media/lua/client/B47ANCEDPCFramework` owns the desktop, app registry and world menu/navigation. `B47ANCEDPCUI` is an isolated copy of B47ANCE's owned embedded UI helpers, renamed to avoid overriding app UI or appearance files. Shared `Device.lua` recognizes all four native desktop orientations and other `CustomName=Computer` tiles, then validates loaded identity, adjacency, native power and multiplayer safehouse access. Shared `DriveService.lua` is called only through a consumer's authenticated server service. No `require` or reverse dependency on Quartermaster exists in runtime source.
 
@@ -15,3 +15,9 @@ New apps must choose their own stable store and object keys and document their s
 Source inventory: `scripts/production-files.json`. Generated ZIPs and SHA-256 receipts belong under ignored `dist/current/`; no artifacts have been built. Packaging checks and generated output cannot replace source or native evidence. Exact fallback PNG bytes were decoded and SHA-256/dimension checked against installed team branding; see `BRANDING.json`.
 
 Powered-PC support 0.2.0-dev.1 is a compatible MINOR expansion from 0.1.0-dev.1; registration API and binding schema remain 1. Native `appliances_com_01_72`/73/74/75 are the S/E/N/W PC orientations. Other placed tiles qualify only through exact, nonlocalized `CustomName=Computer` sprite metadata. This avoids English display-name and sprite-name substring guesses. Modded PCs without that metadata cannot be identified safely; they must declare it in their tile definitions on server and clients. Merely standing beside a powered appliance or carrying a computer item does not qualify. Recognition is read-only on each peer; authoritative app operations still revalidate the server object. Hardware identity is a compatibility contract rather than a gameplay setting; the existing server Enabled switch still governs all devices.
+
+## Owned CRT/taskbar integration — 0.3.0-dev.1
+
+Compatible MINOR presentation addition, from framework 0.2.0-dev.1. Registration API 1, binding schema 1, server drive engine, powered-device validation and application transport remain unchanged. With explicit user approval, the newer original Quartermaster ComputerArt/ComputerUI presentation at commit 9c8207a7f63a4fbc1abf1307e7ca8f7c2efe08ce was ported into the framework. See the additional provenance receipt. No external-mod source, images or OS assets were copied.
+
+ComputerArt draws the bulky CRT and pixel icons. ComputerUI owns a bounded set of drive/tool/media-app panels with independent tasks, MRU activation, minimize/restore, Show Desktop, focus and tooltip cleanup. Domain writer code remains outside the framework. The standalone desktop has no writer icon when no tool hook exists. Power closes presentation and invokes the consumer cancellation callback; it never alters electricity or inventory. Resume callbacks and Run access checks complement, never replace, the consumer server authorization.

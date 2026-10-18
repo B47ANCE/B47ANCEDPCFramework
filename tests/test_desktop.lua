@@ -28,10 +28,10 @@ assert(B47ANCEDQuartermaster==nil and B47ANCEDUI==nil,'standalone loaded Quarter
 local bare=assert(P.open(0,computer));assert(bare.application=='desktop' and not bare.content and not bare.writerIcon:isVisible())
 bare:prerender();for _,row in ipairs(bare.joypadButtonsY) do for _,button in ipairs(row) do assert(button:isVisible(),'hidden tool in controller focus') end end
 bare:openDrive();assert(not bare.mounted and not bare.content.run.enable);bare:runDisc();bare:close()
-local reads,closes=0,0;local available=true;local pending
+local reads,closes=0,0;local available=true;local allowed=true;local pending
 P.registerApplication('fixture',function()
  if not available then return end
- return {file='FIXTURE.EXE',canRun=function(i) return i:getFullType()=='Fixture.Media' end,
+ return {file='FIXTURE.EXE',canUse=function() return allowed end,canRun=function(i) return i:getFullType()=='Fixture.Media' end,
  drive=function(command,args,reply)
   if command=='list' then pending=reply else reply({status='ok'}) end
  end,read=function() reads=reads+1 end,close=function() closes=closes+1 end}
@@ -46,6 +46,11 @@ screen:applyDrive({status='ok',mounted={id=41,name='Other',fullType='Wrong.Media
 screen:runDisc();assert(reads==1,'wrong media ran registered app')
 screen:close();old({status='ok',mounted={id=41,name='Late',fullType='Fixture.Media',drive='drive'}})
 assert(not C.active[0] and closes==1,'late response revived closed screen')
+local denied=assert(P.open(0,computer,'fixture'));denied:openDrive()
+pending({status='ok',mounted={id=42,name='Fixture',fullType='Fixture.Media',drive='drive'}})
+allowed=false;denied:runDisc()
+assert(not C.active[0] and reads==1,'Run bypassed application permission loss before next render')
+allowed=true
 available=false;assert(not P.open(0,computer,'fixture'))
 local standalone=assert(P.open(0,computer));assert(standalone.application=='desktop')
 SandboxVars.B47ANCEDPCFramework.Enabled=false;standalone:prerender();assert(not C.active[0])

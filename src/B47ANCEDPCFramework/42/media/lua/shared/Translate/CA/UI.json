@@ -26,5 +26,6 @@
   "UI_B47PC_ScreenSmall": "The computer desktop needs more screen space. Increase resolution or reduce the UI font size.",
   "UI_B47PC_ComputerApplications": "Applications",
   "UI_B47PC_busy": "Another application operation is active. Finish or cancel it first.",
-  "UI_B47PC_ComputerOpenApplication": "Use computer: %1"
+  "UI_B47PC_ComputerOpenApplication": "Use computer: %1",
+  "UI_B47PC_ComputerShowDesktop": "Show desktop"
 }

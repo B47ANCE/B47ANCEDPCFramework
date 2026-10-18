@@ -16,5 +16,15 @@
     "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDUI/Tooltip.lua": "2fc7de7bc7f64c2b59f22078f420b172f7222c3333e3f3d0b1547c0bdde0d88f"
   },
   "reuse": "Owned original Lua; no external-mod implementation or assets imported",
-  "runtime": "NOT TESTED"
+  "runtime": "NOT TESTED",
+  "crt_taskbar_port": {
+    "source_commit": "9c8207a7f63a4fbc1abf1307e7ca8f7c2efe08ce",
+    "source_version": "0.18.0-dev.8",
+    "source_sha256": {
+      "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDQuartermaster/ComputerArt.lua": "86e3c2d8ea17db532c884d41d532ccbc8bf7c96b83fd02159d6a835963f41995",
+      "src/B47ANCEDQuartermaster/42/media/lua/client/B47ANCEDQuartermaster/ComputerUI.lua": "4d35eedcbdc4cf5be36cebc4fc2016b5532c1b0898c1415ccb8d191ce76188d3"
+    },
+    "reuse": "Owned B47ANCE original code; generalized as framework presentation, no Quartermaster runtime imports",
+    "runtime": "NOT TESTED"
+  }
 }
