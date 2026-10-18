@@ -1,6 +1,10 @@
 # Application API 1
 
-Project Version: 0.3.0-dev.1
+Project Version: 0.5.0-dev.2
+
+The public SDK now also exposes **UI API 1** and **drawing-assets API 1** through `require 'B47ANCEDPCFramework/UI'`, `require 'B47ANCEDPCFramework/Assets'`, `PC.UI` and `PC.Assets`. Use descriptor-based `PC.registerApp` for installed, non-media apps. See the [public UI contract, controls, assets, lifecycle and working example](UI_API.md). The factory/media API below remains supported unchanged. [Feature ideas and implementation status](ROADMAP.md).
+
+For descriptor-based physical-CD programs, use `PC.registerCDProgram` with authenticated drive/run callbacks and a server `CDPrograms` registry. See [CD program API 1](CD_PROGRAM_API.md) for exact request/reply types, server resolve checks, stale reply guards and opt-in examples. This additive API retains all legacy hooks below.
 
 The trusted local Lua registration interface is client presentation, not a network RPC or authorization capability. Declare `B47ANCEDPCFramework` in the app mod's `mod.info` `require` list. Never bundle framework runtime files into an app.
 

@@ -1,0 +1,38 @@
+{
+  "api_library": "Project Zomboid vanilla Lua/exposed engine APIs",
+  "receiver_type": "ISComboBox (client native UI Lua class)",
+  "symbol": "ISComboBox:new / onChange (public UI controls)",
+  "signature": "ISComboBox:new(x, y, width, height, target, onChange, arg1, arg2); onChange(target, combo, arg1, arg2)",
+  "signature_scope": "observed_vanilla_call",
+  "game_version": "42.21.0",
+  "steam_build": "25485521",
+  "side": "client",
+  "returns": "Constructor returns a Lua UI object with options/selected fields. Selection callbacks receive target then combo before the two saved arguments. Native pixels and focus acceptance NOT TESTED.",
+  "mutation": "Client presentation and local control state only. No world, network or save mutation. Shared gameplay must use a consumer server service.",
+  "status": "VERIFIED",
+  "runtime_status": "NOT_TESTED",
+  "verified_on": "2026-10-17",
+  "evidence": [
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISComboBox.lua",
+      "sha256": "3c313fe9c30711fef341bc4358d3d66e6f38591c224f5fe92e7c77db508f2e66",
+      "lines": [
+        247,
+        253
+      ],
+      "statement": "Vanilla combo selection invokes the saved onChange with target, combo and saved arguments."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISComboBox.lua",
+      "sha256": "3c313fe9c30711fef341bc4358d3d66e6f38591c224f5fe92e7c77db508f2e66",
+      "lines": [
+        586,
+        627
+      ],
+      "statement": "Vanilla constructor stores target/onChange/onChangeArgs and initializes local control state."
+    }
+  ],
+  "notes": "Source observation supports the public UI.combo wrapper callback shape. Text-entry and scrolling-list constructors reuse the existing native Lua routes; no custom Java/UI class is created. Offline consumer tests are not native rendering or dedicated acceptance."
+}

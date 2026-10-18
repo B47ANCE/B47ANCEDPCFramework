@@ -29,6 +29,18 @@
     {
       "path": "docs/MOD_OVERVIEW.json",
       "pattern": "^  \"version\": \"(?P<version>[^\\\"]+)\""
+    },
+    {
+      "path": "docs/UI_API.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/CD_PROGRAM_API.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {
@@ -59,6 +71,16 @@
       "category": "compatibility",
       "reference": "Identity.lua apiVersion=1",
       "reason": "Independent application registration contract"
+    },
+    {
+      "category": "compatibility",
+      "reference": "UI.lua version=1; Assets.lua version=1; getAPIInfo()",
+      "reason": "Independently versioned additive public UI and drawing-assets contracts, not project versions."
+    },
+    {
+      "category": "compatibility",
+      "reference": "CDPrograms.lua version=1; getAPIInfo().cdProgramVersion; consumer program version",
+      "reason": "CD program contract and independently versioned consumer program data, not framework project versions."
     }
   ],
   "historical": []

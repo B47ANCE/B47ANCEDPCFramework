@@ -5,6 +5,7 @@ require 'ISUI/ISComboBox'
 local U=B47ANCEDPCUI
 local Media=require 'B47ANCEDPCFramework/Device'
 local Art=require 'B47ANCEDPCFramework/ComputerArt'
+local Assets=require 'B47ANCEDPCFramework/Assets'
 local C={active={}};B47ANCEDPCFramework.ComputerUI=C
 local function color(r,g,b) return {r=r,g=g,b=b,a=1} end
 C.colors={case=color(.25,.24,.21),grey=color(.75,.75,.72),light=color(.96,.96,.91),shadow=color(.36,.36,.34),
@@ -114,7 +115,7 @@ function C.open(num,computer,hooks)
   for _,row in ipairs(result.choices or {}) do available[#available+1]=media(row) end
  end
  function screen:refreshDrive()
-  if drivePending or getTimestampMs()-driveAt<2000 then return end
+  if hooks.hasDrive==false or drivePending or getTimestampMs()-driveAt<2000 then return end
   drivePending=true;self.drivePending=true;driveAt=getTimestampMs()
   hooks.drive('list',{},function(r)
    if self.closed or getSpecificPlayer(num)~=actor then return end
@@ -173,7 +174,9 @@ function C.open(num,computer,hooks)
  end
  function screen:closeApp(key)
   local app=self.apps[key or self.activeKey];if not app then return end
-  if app.content.close then app.content:close() else self:release(app.content) end
+  local ok,err=pcall(function() if app.content.close then app.content:close() else self:release(app.content) end end)
+  if self.apps[app.key]==app then self:release(app.content) end
+  if not ok then error(err) end
  end
  function screen:showApp(content,title,key)
   key=key or 'ledger'
@@ -208,9 +211,11 @@ function C.open(num,computer,hooks)
  function screen:close()
   if self.closed then return end;self.closed=true
   local keys={};for _,key in ipairs(self.taskOrder) do keys[#keys+1]=key end
-  for _,key in ipairs(keys) do self:closeApp(key) end
+  local issue
+  for _,key in ipairs(keys) do local ok,err=pcall(self.closeApp,self,key);if not ok then issue=issue or err end end
   C.active[num]=nil;self.mounted=nil;self.content=nil;self.desktopRestore=nil
-  U.Tooltip.dispose(self);self:removeFromUIManager();hooks.close();U.Focus.restore(num)
+  U.Tooltip.dispose(self);self:removeFromUIManager();local ok,err=pcall(hooks.close);U.Focus.restore(num)
+  if issue then error(issue) end;if not ok then error(err) end
  end
  function screen:eject()
   if self.closed then return end
@@ -281,13 +286,21 @@ function C.open(num,computer,hooks)
   self:refreshDrive();if self.apps.writer then return self:activateApp('writer') end
   return hooks.writer(self,hooks)
  end
+ function screen:openProgram()
+  if self.closed or C.active[num]~=self or getSpecificPlayer(num)~=actor then return end
+  if not Media.computer(actor,computer,true) or not hooks.enabled() or not hooks.canUse(actor,computer,true) then self:close();return end
+  if hooks.busy() then status=tr('busy');return end
+  if hooks.launch then return hooks.launch(self) end
+  return self:openWriter()
+ end
  screen.driveIcon=button(desktop,tr('ComputerDrive'),function() screen:openDrive() end)
- screen.writerIcon=button(desktop,hooks.toolTitle or tr('ComputerApplications'),function() screen:openWriter() end)
+ screen.writerIcon=button(desktop,hooks.programTitle or hooks.toolTitle or tr('ComputerApplications'),function() screen:openProgram() end)
  for _,entry in ipairs({{screen.driveIcon,'disc'},{screen.writerIcon,'writer'}}) do
   local b,kind=entry[1],entry[2]
   b.prerender=function(self) if self.mouseOver or self.joypadFocused then R.border(self,0,0,self:getWidth(),self:getHeight(),P.light) end end
   b.render=function(self)
-   Art.icon(self,kind,math.floor((self:getWidth()-64)/2),8,2)
+   if kind=='writer' and hooks.icon then Assets.drawIcon(self,hooks.icon,math.floor((self:getWidth()-64)/2),8,64)
+   else Art.icon(self,kind,math.floor((self:getWidth()-64)/2),8,2) end
    local caption=R.fit(self.title,self:getWidth()-12);local x=math.floor((self:getWidth()-getTextManager():MeasureStringX(U.Theme.fonts.body,caption))/2)
    text(self,caption,x+1,81,self:getWidth()-12,P.black);text(self,caption,x,80,self:getWidth()-12,P.white);R.focus(self)
   end
@@ -302,9 +315,10 @@ function C.open(num,computer,hooks)
  screen.power.tooltip=tr('ComputerPowerOff');screen.power.prerender=Art.power;screen.power.render=function(self) R.focus(self) end
  frame.minimize=button(frame,'_',function() screen:minimizeApp() end);frame.exit=button(frame,'X',function() screen:closeApp() end)
  menu.drive=button(menu,tr('ComputerDrive'),function() screen:openDrive() end)
- menu.writer=button(menu,hooks.toolTitle or tr('ComputerApplications'),function() screen:openWriter() end)
+ menu.writer=button(menu,hooks.programTitle or hooks.toolTitle or tr('ComputerApplications'),function() screen:openProgram() end)
  menu.off=button(menu,tr('ComputerPowerOff'),function() screen:close() end)
- screen.writerIcon:setVisible(hooks.writer~=nil);menu.writer:setVisible(hooks.writer~=nil)
+ screen.writerIcon:setVisible(hooks.writer~=nil or hooks.launch~=nil);menu.writer:setVisible(hooks.writer~=nil or hooks.launch~=nil)
+ screen.driveIcon:setVisible(hooks.hasDrive~=false);menu.drive:setVisible(hooks.hasDrive~=false)
  function screen:layoutComputer()
   local w,h=self:getWidth(),self:getHeight()
   if not self.crt or self.crt.windowWidth~=w or self.crt.windowHeight~=h then
@@ -315,7 +329,7 @@ function C.open(num,computer,hooks)
   local dw,dh=desktop:getWidth(),desktop:getHeight();U.Layout.place(frame,10,10,dw-20,dh-20)
   U.Layout.place(frame.minimize,frame:getWidth()-2*m.button-8,4,m.button,m.button);U.Layout.place(frame.exit,frame:getWidth()-m.button-4,4,m.button,m.button)
   if self.content then U.Layout.place(self.content,4,m.button+8,frame:getWidth()-8,frame:getHeight()-m.button-12) end
-  U.Layout.place(self.driveIcon,12,14,math.max(180,m.font*12),m.font+96);U.Layout.place(self.writerIcon,12,m.font+126,math.max(180,m.font*12),m.font+96)
+  U.Layout.place(self.driveIcon,12,14,math.max(180,m.font*12),m.font+96);U.Layout.place(self.writerIcon,12,hooks.hasDrive==false and 14 or m.font+126,math.max(180,m.font*12),m.font+96)
   U.Layout.place(self.start,g.x+4,g.taskY,math.max(90,m.font*5),m.button)
   U.Layout.place(self.showDesktop,self.start.x+self.start:getWidth()+8,g.taskY,m.button,m.button)
   self.showDesktop:setEnable(#self.taskOrder>0);self.showDesktop.osActive=not self.activeKey and self.desktopRestore~=nil

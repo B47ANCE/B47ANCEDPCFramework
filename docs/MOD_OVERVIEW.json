@@ -2,9 +2,9 @@
   "schema": 1,
   "id": "local-2c6a6aca81aa",
   "name": "B47ANCED PC Framework",
-  "version": "0.3.0-dev.1",
+  "version": "0.5.0-dev.2",
   "reviewed": true,
-  "source_digest": "b867b5363766436baaf883095d59658a6c826c84de3c5703bc72b24b51d845be",
+  "source_digest": "745b65ee4d7efb4f4e8f12641233caa189355ea7ab54f75a4da0b8a0c33118f3",
   "features": [
     {
       "status": "Source",
@@ -20,16 +20,43 @@
     },
     {
       "status": "Source",
-      "text": "Original bulky CRT/pixel art, retained drive/tool/media-app tasks, minimize/restore, Show Desktop, per-panel close and application resume callbacks; API 1 preserved."
+      "text": "Public UI API 1 and drawing-assets API 1: reusable native PC controls, one hosted app window, palette, scalable/custom icons, layout/focus and lifecycle guards."
+    },
+    {
+      "status": "Source",
+      "text": "Additive installed-app registration and capability query; opt-in Component Gallery consumer; legacy media API 1 retained."
+    },
+    {
+      "status": "Source",
+      "text": "Public nested tabs, wrapping action toolbars and font-sized status bars, demonstrated in the opt-in local gallery and tested offline."
+    },
+    {
+      "status": "Source",
+      "text": "CD program API 1: physical-media descriptor registration, explicit authorized EXE launch, server list/authorize/resolve, exact identity/version checks and opt-in client/server examples. Private snapshots stay server-side; no burning or code loaded from CDs."
+    },
+    {
+      "status": "Planned",
+      "text": "Feature roadmap proposes multiwindow, richer UI controls and provider dashboards; shared mail/notes, repairs and remote control remain separate authority/API design work."
+    },
+    {
+      "status": "Source",
+      "text": "Combined public SDK/CD program API with original bulky CRT and retained tasks, minimize/restore, Show Desktop and hidden-window input safety. Quartermaster installer uses actual registered CD program authorization; installation state remains consumer-owned."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED. G7/stable G8 BLOCKED. No Workshop item assigned. Apps retain gameplay authority and persistence.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.5.0-dev.1. G7/stable G8 BLOCKED. One hosted content window; no Workshop item. UI assets and callback guards grant no gameplay authority; roadmap proposals are not implemented.",
   "evidence": [
     "README.md",
     "docs/API.md",
     "docs/ARCHITECTURE.md",
     "docs/TESTING.md",
-    "docs/POWERED_PC_API.json"
+    "docs/POWERED_PC_API.json",
+    "docs/UI_API.md",
+    "docs/ROADMAP.md",
+    "examples/ComponentGallery.lua",
+    "docs/CD_PROGRAM_API.md",
+    "examples/CDProgram.lua",
+    "examples/CDProgramServer.lua",
+    "docs/TESTING.md"
   ],
   "relations": []
 }

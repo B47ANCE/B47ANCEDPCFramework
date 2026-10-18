@@ -26,5 +26,12 @@
     },
     "reuse": "Owned B47ANCE original code; generalized as framework presentation, no Quartermaster runtime imports",
     "runtime": "NOT TESTED"
+  },
+  "sdk_cd_integration": {
+    "source_commit": "10041fc77124b9845a946474400f66e718c1b030",
+    "source_version": "0.5.0-dev.1",
+    "combined_with_crt_commit": "12d320c86a3e22f6db32dc69051167fef589d097",
+    "reuse": "Owned B47ANCE API/UI/asset implementation; original upstream branches preserved; no external-mod code/assets",
+    "runtime": "NOT TESTED"
   }
 }
