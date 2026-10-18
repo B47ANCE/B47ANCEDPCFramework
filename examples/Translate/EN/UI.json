@@ -1,0 +1,14 @@
+{
+  "UI_PCGallery_Title": "Component Gallery",
+  "UI_PCGallery_Editor": "Preview editor",
+  "UI_PCGallery_About": "About this example",
+  "UI_PCGallery_Heading": "PC Framework controls — local presentation example",
+  "UI_PCGallery_Value": "Example document",
+  "UI_PCGallery_Document": "Document",
+  "UI_PCGallery_Folder": "Folder",
+  "UI_PCGallery_Settings": "Settings",
+  "UI_PCGallery_Add": "Add preview row",
+  "UI_PCGallery_Status": "Preview rows are local and are discarded when this app closes.",
+  "UI_PCCD_Title": "CD Program Example",
+  "UI_PCCD_Ready": "The server validated this mounted program CD."
+}

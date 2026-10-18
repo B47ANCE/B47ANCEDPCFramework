@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.5.0-dev.2] - 2026-10-17
+
+- Reconcile the public UI/CD program APIs with the retained CRT/taskbar presentation for the Quartermaster installer consumer. Preserve original branches, registration API 1 and server CD validation.
+- Source-only integration; offline evidence and native gates are recorded in docs/TESTING.md.
+
+## [0.5.0-dev.1] - 2026-10-17
+
+- Compatible MINOR iteration toward 0.5.0: public CD-program registration and server authorization helpers. Legacy application/media API 1 and binding schema 1 remain supported.
+- Add `registerCDProgram`, `cdProgramVersion`/`cd-programs` discovery, shared hosted lifecycle and one-shot launch guards with exact version/item/binding checks.
+- Add server `CDPrograms` list/authorize/resolve over real DriveService bindings; private snapshots stay server-side. No burning, item moves, persisted format or transport changes.
+- Add executable opt-in client/server examples, server/client/end-to-end offline regressions, English fallback status strings and full API/authority documentation.
+- Native SP/dedicated NOT TESTED. G7/stable G8 BLOCKED.
+
+## [0.4.0-dev.1] - 2026-10-17
+
+- Compatible MINOR iteration from 0.3.0-dev.1 toward 0.4.0; public API versions and persistence schemas remain unchanged. Stable release remains gated.
+- Begin the UI roadmap with public `tabView`, wrapping `toolbar` and font-sized `statusBar` components; additive UI API 1 capabilities retain legacy consumers.
+- Extend the opt-in gallery with editor/about tabs, toolbar actions and status output; only local preview state is edited.
+- Offline tests cover selection, page visibility/focus, disabled actions, descriptor isolation, invalid IDs and 14/24/32/42-font layouts at narrow/wide widths. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED.
+
+## [0.3.0-dev.1] - 2026-10-17
+
+- Add public UI API 1 and drawing-assets API 1 for modular PC panels, hosted windows, controls, palette and scalable icons.
+- Add descriptor-based installed apps and guarded UI callbacks without changing legacy application API 1, Quartermaster hooks, media commands or saved binding schemas.
+- Supply an opt-in component gallery, consumer guide and feature roadmap that separates implemented UI from proposed gameplay integrations.
+- Compatible MINOR SDK expansion. Source/offline evidence only; native SP/dedicated NOT TESTED, G7/stable G8 BLOCKED. No package/deployment/Workshop upload.
+
 ## [0.2.0-dev.1] - 2026-10-17
 
 - Accept every verified vanilla PC orientation and other placed tiles declaring native `CustomName=Computer`, replacing the single-sprite restriction.
@@ -10,3 +37,9 @@
 
 - Initial standalone computer framework development: desktop, device validation, registered apps and reusable server drive bindings extracted from owned Quartermaster code.
 - Native SP/dedicated NOT TESTED. G7 and stable G8 BLOCKED.
+
+### Historical parallel CRT branch checkpoint — 0.3.0-dev.1
+
+- Port the original bulky CRT, pixel icons and retained taskbar from the owned Quartermaster presentation into the independent framework. Retain device, drive and app ownership boundaries.
+- Add independent drive/tool/app tasks, minimize/restore, Show Desktop and authenticated resume hooks; preserve existing registration API 1, empty standalone desktop, wrong-media refusal and application callbacks.
+- Source-only compatible UI addition. Native/dedicated NOT TESTED; no packaging, deployment or publication.

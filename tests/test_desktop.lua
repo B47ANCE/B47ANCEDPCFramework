@@ -16,7 +16,16 @@ function W:addToUIManager() self.added=true end;function W:removeFromUIManager()
 function W:insertNewLineOfButtons(...) self.joypadButtonsY[#self.joypadButtonsY+1]={...} end
 function W:clear() self.options={};self.selected=1 end
 function W:addOptionWithData(text,data) self.options[#self.options+1]={text=text,data=data} end
+function W:setText(text) self.text=text end;function W:getInternalText() return self.text or '' end
+function W:setTextRGBA(r,g,b,a) self.glyphColor={r=r,g=g,b=b,a=a} end
+function W:addItem(text,item) self.items=self.items or {};self.items[#self.items+1]={text=text,item=item,height=self.itemheight,itemindex=#self.items+1};return self.items[#self.items] end
 for _,name in ipairs({'ISPanel','ISPanelJoypad','ISCollapsableWindowJoypad','ISButton','ISScrollingListBox','ISTextEntryBox','ISComboBox'}) do _G[name]=W;package.loaded['ISUI/'..name]=W end
+local Entry=setmetatable({},{__index=W})
+function Entry:new(text,x,y,w,h) local entry=W.new(self,x,y,w,h);entry.text=text;return entry end
+ISTextEntryBox=Entry;package.loaded['ISUI/ISTextEntryBox']=Entry
+local Combo=setmetatable({},{__index=W})
+function Combo:new(x,y,w,h,target,onChange) local combo=W.new(self,x,y,w,h);combo.target=target;combo.onChange=onChange;return combo end
+ISComboBox=Combo;package.loaded['ISUI/ISComboBox']=Combo
 UIFont={Small=1,Medium=2};Keyboard={KEY_ESCAPE=1};Joypad={BButton=2}
 getTextManager=function() return {getFontHeight=function() return 14 end,MeasureStringX=function(_,_,s) return #s*7 end} end
 getText=function(k) return k end;setJoypadFocus=function() end
@@ -28,10 +37,10 @@ assert(B47ANCEDQuartermaster==nil and B47ANCEDUI==nil,'standalone loaded Quarter
 local bare=assert(P.open(0,computer));assert(bare.application=='desktop' and not bare.content and not bare.writerIcon:isVisible())
 bare:prerender();for _,row in ipairs(bare.joypadButtonsY) do for _,button in ipairs(row) do assert(button:isVisible(),'hidden tool in controller focus') end end
 bare:openDrive();assert(not bare.mounted and not bare.content.run.enable);bare:runDisc();bare:close()
-local reads,closes=0,0;local available=true;local pending
+local reads,closes=0,0;local available=true;local allowed=true;local pending
 P.registerApplication('fixture',function()
  if not available then return end
- return {file='FIXTURE.EXE',canRun=function(i) return i:getFullType()=='Fixture.Media' end,
+ return {file='FIXTURE.EXE',canUse=function() return allowed end,canRun=function(i) return i:getFullType()=='Fixture.Media' end,
  drive=function(command,args,reply)
   if command=='list' then pending=reply else reply({status='ok'}) end
  end,read=function() reads=reads+1 end,close=function() closes=closes+1 end}
@@ -46,6 +55,11 @@ screen:applyDrive({status='ok',mounted={id=41,name='Other',fullType='Wrong.Media
 screen:runDisc();assert(reads==1,'wrong media ran registered app')
 screen:close();old({status='ok',mounted={id=41,name='Late',fullType='Fixture.Media',drive='drive'}})
 assert(not C.active[0] and closes==1,'late response revived closed screen')
+local denied=assert(P.open(0,computer,'fixture'));denied:openDrive()
+pending({status='ok',mounted={id=42,name='Fixture',fullType='Fixture.Media',drive='drive'}})
+allowed=false;denied:runDisc()
+assert(not C.active[0] and reads==1,'Run bypassed application permission loss before next render')
+allowed=true
 available=false;assert(not P.open(0,computer,'fixture'))
 local standalone=assert(P.open(0,computer));assert(standalone.application=='desktop')
 SandboxVars.B47ANCEDPCFramework.Enabled=false;standalone:prerender();assert(not C.active[0])
