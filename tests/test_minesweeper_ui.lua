@@ -1,6 +1,11 @@
 local PC=require 'B47ANCEDPCFramework/API';local f=PC_FIXTURE
 assert(require('B47ANCEDPCFramework/Apps/Minesweeper')(PC)=='b47pc.minesweeper','bundled installer not idempotent')
 local host=assert(PC.open(0,f.computer,'b47pc.minesweeper'))
+assert(host.hooks.icon=='minesweeper' and PC.Assets.hasIcon('minesweeper'),'bundled app lost its custom icon')
+local listed=false;for _,entry in ipairs(host.desktopHost.entries) do
+ if entry.id=='b47pc.minesweeper' then assert(entry.icon=='minesweeper');listed=true end
+end
+assert(listed,'Minesweeper icon missing from common desktop')
 assert(not host.content and not host.driveIcon:isVisible(),'Minesweeper required a disc or auto-launched')
 local w=assert(host:openProgram());host:prerender();assert(w.boardFits and #w.tiles==81 and w.game.state=='ready')
 f.advance(150);w.tiles[1].onRightMouseUp();assert(w.game.flags==1 and w.game.state=='ready')

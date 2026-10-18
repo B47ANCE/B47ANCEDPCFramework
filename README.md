@@ -2,7 +2,7 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.9.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.9.0-dev.2. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
 Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
 
@@ -20,7 +20,7 @@ Use a powered PC and launch Minesweeper from the shared desktop or Start menu. T
 
 ## Public mod API and modular UI assets
 
-Import `B47ANCEDPCFramework/API`, `B47ANCEDPCFramework/UI` or `B47ANCEDPCFramework/Assets` from your own client mod. Public UI API 1 supplies PC panels, hosted windows, buttons, icon buttons, text entries, dropdowns, lists, labels, tabs, wrapping toolbars, status bars, layout/focus and safe window lifecycle helpers. Assets API 1 supplies palette copies, bevels and seven scalable original icons, plus namespaced custom drawing registrations. `registerApp` provides installed apps without a CD; the existing factory/media API 1 remains compatible with Quartermaster.
+Import `B47ANCEDPCFramework/API`, `B47ANCEDPCFramework/UI` or `B47ANCEDPCFramework/Assets` from your own client mod. Public UI API 1 supplies PC panels, hosted windows, buttons, icon buttons, text entries, dropdowns, lists, labels, tabs, wrapping toolbars, status bars, layout/focus and safe window lifecycle helpers. Assets API 1 supplies palette copies, bevels and eight scalable original icons, plus namespaced custom drawing registrations. `registerApp` provides installed apps without a CD; the existing factory/media API 1 remains compatible with Quartermaster.
 
 `registerCDProgram` adds physical-CD programs with explicit EXE launch, version/media matching and the same hosted UI guards. Server `CDPrograms.new` lists, authorizes and resolves programs through a genuine-item DriveService. See the [CD program API, authority contract and examples](docs/CD_PROGRAM_API.md). The API supplies no CD burning or client-owned gameplay authority.
 

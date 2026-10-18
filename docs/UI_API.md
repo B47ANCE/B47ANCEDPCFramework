@@ -1,6 +1,6 @@
 # Public PC UI and drawing assets
 
-Project Version: 0.9.0-dev.1
+Project Version: 0.9.0-dev.2
 
 Application API **1**, UI API **1**, drawing-assets API **1**. This is a client presentation SDK for trusted Lua mods. Consumers enable `B47ANCEDPCFramework` as a loader dependency and import it; they do not vendor the framework source or copy its global UI objects. No separate Java, texture generator or external OS runtime is required.
 
@@ -83,7 +83,7 @@ The SDK deliberately does not introduce game-balance settings. Coordinates, icon
 
 `Assets.palette()` returns fresh color tables; `Assets.color(name)` returns one copy. Tokens: `case`, `grey`, `light`, `shadow`, `black`, `white`, `blue`, `teal`, `muted`. Changing a returned table does not reskin other apps or the desktop. Global theme replacement is not part of API 1.
 
-`Assets.icons()` returns a sorted fresh list. Built-in IDs: **computer, disc, writer, application, folder, document, settings**. `hasIcon(id)` checks availability. `drawIcon(widget,id,x,y,size)` draws original Lua geometry at the requested square size (default 40). Unknown IDs, invalid sizes or out-of-bounds geometry fail explicitly. There are no copied OS icon sheets or generated bitmap dependencies.
+`Assets.icons()` returns a sorted fresh list. Built-in IDs: **computer, disc, writer, application, folder, document, settings, minesweeper**. `hasIcon(id)` checks availability. `drawIcon(widget,id,x,y,size)` draws original Lua geometry at the requested square size (default 40). Unknown IDs, invalid sizes or out-of-bounds geometry fail explicitly. There are no copied OS icon sheets or generated bitmap dependencies.
 
 ```lua
 Assets.registerIcon('yourmod.alert',function(rect)
@@ -108,3 +108,5 @@ CD-backed descriptors reuse the same context/window implementation as installed 
 The shipped [Minesweeper app](MINESWEEPER.md) is a production consumer of `registerApp`, hosted contexts and public UI/assets. It registers at client startup and is included in the framework ZIP, unlike the opt-in Component Gallery/CD examples. Its disposable board and mood effects are now server-owned; the UI submits intent through the bundled app transport. See [mood authority](MINESWEEPER_MOOD.md).
 
 The approved CRT shell and refreshed original pixel icons in 0.9.0-dev.1 use Lua rectangles/text only; the seven icon IDs and nine public palette roles are unchanged. See UNIFIED_DESKTOP.md for app-only retirement, cleanup error handling, bounded provider/catalog polling and native acceptance gates.
+
+In 0.9.0-dev.2 the additive `minesweeper` asset depicts an original miniature minefield with an exposed mine, count and blue flag. The bundled app uses it on the shared desktop and taskbar. Its editable source is `Assets.lua`; it uses existing palette roles and rectangle rendering without bitmap dependencies. Assets API remains 1. Offline geometry checks cover 16, 20, 40, 56 and 80 pixels; native pixels remain a runtime gate.

@@ -38,6 +38,20 @@ function drawings.application(r)
  r(21,13,17,26,'black');r(23,15,13,22,'light');r(25,17,9,3,'blue')
  for y=23,32,4 do r(25,y,2,2,'teal');r(29,y,5,2,'shadow') end
 end
+-- Original miniature minefield: exposed mine, covered tile, count and blue flag.
+function drawings.minesweeper(r)
+ r(0,1,39,38,'black');r(1,2,37,36,'grey');r(2,3,35,2,'light');r(2,3,2,33,'light')
+ r(3,36,34,1,'shadow');r(36,4,1,32,'shadow')
+ for _,x in ipairs({4,20}) do for _,y in ipairs({5,21}) do
+  r(x,y,16,16,'shadow');r(x+1,y+1,14,14,'grey')
+ end end
+ r(20,5,15,2,'white');r(20,5,2,15,'white');r(22,7,12,12,'light')
+ r(10,7,4,13,'black');r(5,12,14,4,'black');r(7,9,10,10,'black')
+ r(6,8,3,3,'black');r(15,8,3,3,'black');r(6,17,3,3,'black');r(15,17,3,3,'black')
+ r(9,10,3,3,'white')
+ r(10,25,3,8,'teal');r(8,26,2,2,'teal');r(8,33,7,2,'teal')
+ r(28,23,2,11,'black');r(23,23,5,6,'blue');r(21,25,2,2,'blue');r(23,34,11,2,'black')
+end
 function drawings.folder(r) r(1,7,17,7,'light');r(1,12,36,21,'grey');r(4,15,32,17,'light') end
 function drawings.document(r) r(7,1,25,33,'light');for y=8,26,6 do r(11,y,17,2,'shadow') end end
 function drawings.settings(r) r(1,3,36,29,'grey');for x=8,30,11 do r(x,7,2,21,'shadow');r(x-3,x==19 and 11 or 20,8,4,'light') end end

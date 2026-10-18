@@ -1,6 +1,6 @@
 # Bundled Minesweeper
 
-Project Version: 0.9.0-dev.1
+Project Version: 0.9.0-dev.2
 
 Minesweeper is installed with PC Framework under app ID `b47pc.minesweeper`. Use a powered accessible PC and select Minesweeper from the shared desktop or Start menu. Opening the desktop does not start the app. No CD or Quartermaster is required. Other installed apps and CD programs remain available on that same desktop and taskbar.
 
@@ -28,3 +28,5 @@ Validation commands: `python -B scripts/check_versions.py`; `python -B tests/run
 [TESTED OFFLINE] Native-shaped host tests are not native execution. [RUNTIME GATE] Native SP/dedicated NOT TESTED; project dedicated G7 and stable-release G8 remain BLOCKED. Mood effects are gameplay and require dedicated validation; offline tests cannot prove owner stat synchronization or persistence. Validate actual enabled-mod startup, powered-PC discovery, multi-app selection, pointer/controller play, minimize/resize, split-screen and power/logoff closure on disposable saves. Development packaging is distribution evidence only.
 
 In 0.8.0-dev.1 the common PC access check also supports occupied native furniture directly in front of the PC, including during native rest. Opening/playing does not clear the rest queue or stand the player up. Server board/mood authorization still revalidates actual seated reach, power and permissions. See SEATED_PC.md; simultaneous native endurance recovery and mood relief remain SP/dedicated acceptance gates.
+
+The 0.9.0-dev.2 presentation checkpoint gives Minesweeper its own original minefield icon on the shared desktop and taskbar. The public asset ID is `minesweeper`; `client/B47ANCEDPCFramework/Assets.lua` is its editable Lua geometry source. This is a PATCH-level visual refinement within the pending 0.9.0 MINOR iteration. Registration, gameplay, sandbox settings, server authority and persistence are unchanged.

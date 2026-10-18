@@ -12,7 +12,7 @@ local draws={};local canvas={drawRect=function(_,x,y,w,h,a,r,g,b)
  assert(x==x and y==y and w>0 and h>0 and a==1 and r>=0 and r<=1);draws[#draws+1]={x=x,y=y,w=w,h=h}
 end}
 for _,id in ipairs(A.icons()) do
- for _,size in ipairs({20,40,80}) do
+ for _,size in ipairs({16,20,40,56,80}) do
   draws={};A.drawIcon(canvas,id,10,20,size);assert(#draws>0)
   for _,d in ipairs(draws) do assert(d.x>=10 and d.y>=20 and d.x+d.w<=10+size and d.y+d.h<=20+size) end
  end
