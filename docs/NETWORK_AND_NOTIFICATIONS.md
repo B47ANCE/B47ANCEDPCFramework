@@ -4,7 +4,7 @@ Project Version: 0.11.0-dev.1
 
 This compatible MINOR adds Connections API 1, Notification API 1 and a bundled
 PC Network application. Existing desktop, CD program and media APIs remain 1.
-This is source development, not a new Workshop upload.
+Prepared for authorized MP testing distribution; see WORKSHOP_PUBLICATION.md for the exact uploaded commit and receipt.
 
 ## PC Network
 
