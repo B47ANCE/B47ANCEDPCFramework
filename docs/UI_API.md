@@ -1,6 +1,6 @@
 # Public PC UI and drawing assets
 
-Project Version: 0.9.0-dev.2
+Project Version: 0.9.0-dev.3
 
 Application API **1**, UI API **1**, drawing-assets API **1**. This is a client presentation SDK for trusted Lua mods. Consumers enable `B47ANCEDPCFramework` as a loader dependency and import it; they do not vendor the framework source or copy its global UI objects. No separate Java, texture generator or external OS runtime is required.
 
