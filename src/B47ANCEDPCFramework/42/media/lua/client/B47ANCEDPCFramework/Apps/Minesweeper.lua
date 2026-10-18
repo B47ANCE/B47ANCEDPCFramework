@@ -1,25 +1,50 @@
--- Bundled installed app. Only local presentation/puzzle state is owned here.
+-- Bundled installed app. Board and mood effects are server-authoritative.
 local Game=require 'B47ANCEDPCFramework/Apps/MinesweeperGame'
+local Client=require 'B47ANCEDPCFramework/MinesweeperClient'
 local installed=false
 local function tr(key,...) return getText('UI_B47PC_Mines_'..key,...) end
 return function(PC)
  local id='b47pc.minesweeper';if installed then return id end
  PC.registerApp({id=id,titleKey='UI_B47PC_Mines_Title',icon='application',create=function(ctx)
   local UI,A=ctx.ui,ctx.assets;local started,finished;local flagMode=false;local panel
+  local token,seq,cancel,pending,pendingAt,issue;local generation=0;local reliefUntil=0
   local function elapsed()
    return started and math.max(0,math.floor(((finished or getTimestampMs())-started)/1000)) or 0
   end
   local function update()
+   if pending and getTimestampMs()-pendingAt>15000 then
+    if cancel then cancel() end;generation=generation+1;pending=false;issue='Unavailable'
+    Client.stop(ctx.player,token);token=nil
+   end
    local g=panel.game
    if g.state~='ready' and not started then started=getTimestampMs() end
    if (g.state=='won' or g.state=='lost') and not finished then finished=getTimestampMs() end
    panel.counter:setText(tr('Counter',g.mines-g.flags,elapsed()))
-   panel.status:setText(tr(g.state))
+   panel.status:setText(tr(pending and 'Pending' or issue or getTimestampMs()<reliefUntil and 'Relief' or g.state))
    panel.mode.title=tr(flagMode and 'FlagMode' or 'RevealMode')
   end
+  local function submit(command,args)
+   if pending then return end
+   generation=generation+1;local current=generation;pending=true;pendingAt=getTimestampMs();issue=false
+   cancel=Client.request(ctx.player,command,args,ctx.guard(function(result)
+    if generation~=current then return end;pending=false;cancel=nil
+    local board=Client.view(result)
+    if board then
+     panel.game=board;token=result.token;seq=result.seq
+     if command=='start' then started=nil;finished=nil;flagMode=false end
+     if result.relief then reliefUntil=getTimestampMs()+3000 end
+    else issue=result and result.status=='busy' and 'Busy' or 'Unavailable' end
+    update()
+   end))
+   update()
+  end
+  local function newGame()
+   local sq=ctx.computer:getSquare()
+   submit('start',{computer={x=sq:getX(),y=sq:getY(),z=sq:getZ(),index=ctx.computer:getObjectIndex()}})
+  end
   local function act(x,y,flag)
-   if not panel.boardFits then return end
-   if flag then panel.game:flag(x,y) else panel.game:reveal(x,y) end;update()
+   if not panel.boardFits or not token then return end
+   submit('move',{token=token,seq=seq+1,action=flag and 'flag' or 'reveal',x=x,y=y})
   end
   panel=ctx.window({onResize=function(w,width,height)
    local m=UI.metrics();local gap=12;local usable=math.max(1,width-24)
@@ -37,11 +62,11 @@ return function(PC)
    end;if #row>0 then rows[#rows+1]=row end end
    w.small:setVisible(not w.boardFits);UI.place(w.small,gap,top,usable,m.font+4)
    UI.focus(w,rows)
-  end,onUpdate=update})
+  end,onUpdate=update,onClose=function()
+   generation=generation+1;if cancel then cancel() end;Client.stop(ctx.player,token);token=nil
+  end})
   panel.game=Game.new();panel.tiles={}
-  panel.newGame=UI.button(panel,{textKey='UI_B47PC_Mines_New',onClick=ctx.guard(function()
-   panel.game=Game.new();started=nil;finished=nil;flagMode=false;update()
-  end)})
+  panel.newGame=UI.button(panel,{textKey='UI_B47PC_Mines_New',onClick=ctx.guard(newGame)})
   panel.mode=UI.button(panel,{textKey='UI_B47PC_Mines_RevealMode',onClick=ctx.guard(function() flagMode=not flagMode;update() end)})
   panel.counter=UI.label(panel,{})
   panel.status=UI.statusBar(panel,{})
@@ -68,7 +93,7 @@ return function(PC)
    end
    panel.tiles[#panel.tiles+1]=b
   end end
-  update();return panel
+  newGame();return panel
  end})
  installed=true;return id
 end

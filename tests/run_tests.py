@@ -18,7 +18,7 @@ for path in LUA.rglob('*.lua'):
     for name in re.findall(r"require\s*\(?\s*['\"]([^'\"]+)",code):
         if name.startswith('B47ANCEDPC'):
             assert any((LUA/side/(name+'.lua')).is_file() for side in ('client','shared','server')),(path,name)
-for name in ('test_minesweeper.lua','test_core.lua','test_cd_programs_server.lua','test_devices.lua','test_desktop.lua','test_public_ui.lua','test_composites.lua','test_example.lua','test_cd_programs_client.lua','test_cd_program_example.lua','test_minesweeper_ui.lua'):
+for name in ('test_minesweeper.lua','test_core.lua','test_minesweeper_mood.lua','test_minesweeper_network.lua','test_cd_programs_server.lua','test_devices.lua','test_desktop.lua','test_public_ui.lua','test_composites.lua','test_example.lua','test_cd_programs_client.lua','test_cd_program_example.lua','test_minesweeper_ui.lua'):
     lua.execute((ROOT/'tests'/name).read_text(encoding='utf-8'))
 english=json.loads((LUA/'shared/Translate/EN/UI.json').read_text(encoding='utf-8'))
 example_text='\n'.join(p.read_text(encoding='utf-8') for p in (ROOT/'examples').glob('*.lua'))
@@ -32,7 +32,7 @@ for path in (LUA/'client/B47ANCEDPCFramework').rglob('*.lua'):
         assert key in english,(path,key)
     for key in re.findall(r"tr\('([^']+)'",code):
         assert 'UI_B47PC_'+('Mines_' if path.name=='Minesweeper.lua' else '')+key in english,(path,key)
-for state in ('ready','playing','won','lost'):
+for state in ('ready','playing','won','lost','Pending','Unavailable','Busy','Relief'):
     assert 'UI_B47PC_Mines_'+state in english
 for locale in (LUA/'shared/Translate').iterdir():
     assert json.loads((locale/'UI.json').read_text(encoding='utf-8'))==english

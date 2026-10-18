@@ -1,6 +1,6 @@
 # Public CD program API 1
 
-Project Version: 0.6.0-dev.1
+Project Version: 0.7.0-dev.1
 
 CD programs are trusted Lua supplied by installed mods. A physical CD identifies compatible program data; it never supplies executable Lua, paths to load, or operating-system code. Application, UI and drawing-assets API 1 remain compatible. Query `PC.supports('cd-programs')` and `PC.getAPIInfo().cdProgramVersion == 1` before using this additive contract.
 

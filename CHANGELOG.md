@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.0-dev.1] - 2026-10-17
+
+- Compatible MINOR gameplay addition toward 0.7.0: server-authoritative Minesweeper play and configurable boredom/unhappiness relief. Public app APIs remain unchanged.
+- Move pure board rules to shared Lua; retain the require name and validate all game moves on server/SP authority. Redact hidden cells and correlate/cancel client replies.
+- Default active-play benefits: remove 2 boredom and 1 unhappiness per 30 qualifying real seconds, with native clamping and owner stat synchronization. Add five localized server sandbox settings for enable/rates/interval/activity grace.
+- Exclude idle windows, flag spam, resets and replayed requests; recheck PC power/access/reach, sequence, actor and session validity. No client stat setter or persisted reward record.
+- Add authority/transport regressions, exact-build API evidence and gameplay documentation. Historical 0.6 package retained unchanged; no automatic repackaging/deployment.
+- Native SP/dedicated NOT TESTED; gameplay G7/stable G8 BLOCKED.
+
 ## [0.6.0-dev.1] - 2026-10-17
 
 - Compatible MINOR addition toward 0.6.0: bundle an installed, local Minesweeper PC app. Existing public APIs and binding/persistence schemas remain unchanged.

@@ -2,7 +2,7 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.6.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.7.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
 Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
 
@@ -14,7 +14,7 @@ Enable `B47ANCEDPCFramework` on the server and every client alongside dependent 
 
 ## Bundled Minesweeper
 
-Use a powered PC and launch Minesweeper from its desktop/Start entry; when several apps are registered, select its computer context-menu entry first. The installed 9×9/10-mine game needs no CD. It includes a safe first reveal, flood reveal, flags, number chording, win/loss, a timer and New game. Mouse right-click and the Reveal/Flag mode provide flagging. Each player has a disposable local board; there are no shared scores, rewards or world effects. [Controls, lifecycle and validation](docs/MINESWEEPER.md).
+Use a powered PC and launch Minesweeper from its desktop/Start entry; when several apps are registered, select its computer context-menu entry first. The installed 9×9/10-mine game needs no CD. It includes a safe first reveal, flood reveal, flags, number chording, win/loss, a timer and New game. Mouse right-click and the Reveal/Flag mode provide flagging. Each player has a disposable server-owned board. Validated active play reduces boredom and unhappiness (greater happiness), with server sandbox controls. Defaults are 2 boredom and 1 unhappiness point per 30 active seconds; idle/reset/flag spam earns nothing. No shared scores or item rewards. [Controls, lifecycle and validation](docs/MINESWEEPER.md).
 
 ## Public mod API and modular UI assets
 

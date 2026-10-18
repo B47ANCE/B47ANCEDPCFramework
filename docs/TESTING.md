@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.6.0-dev.1
+Project Version: 0.7.0-dev.1
 
 [TESTED OFFLINE, Windows/Python/Lupa Lua 5.1] `python -B scripts/check_versions.py` and `python -B tests/run_tests.py` pass. Host dependency: `lupa==2.6`; it is not a game dependency. Native-shaped doubles prove only the listed offline behaviors.
 
@@ -36,3 +36,7 @@ The full Quartermaster/Rooms offline regression command above also passes agains
 Bundled Minesweeper 0.6.0-dev.1: `python -B tests/run_tests.py` executes pure board rules across every first-click location, exact mine/neighbor invariants, flood reveal, flags/cap, win/loss, correct/incorrect chording and invalid input. Native-shaped app tests exercise actual startup registration, explicit no-CD launch, right-click/mode flagging, minimize/reset, 14/24/32/42-font layouts, narrow-window fallback, focus rows, closed-window and power guards. Player-facing keys including nested app modules are checked; 29 locales retain the existing English fallback policy. `MINESWEEPER_INPUT_API.json` records source-only input observations for installed build 25485521; native dispatch remains NOT TESTED.
 
 The user requested a development ZIP. `python -B scripts/build.py` runs version/tests and exact manifest packaging, then ZIP CRC/member/content/hash verification and `python -B scripts/check_versions.py --release`. Packaging does not pass native runtime gates, deploy mods or upload to Workshop. Inspect its ignored `.provenance.json` for exact source SHA/dirty state, member hashes and archive hash. Native SP/dedicated G7 and stable G8 remain blocked.
+
+Minesweeper mood 0.7.0-dev.1: the suite adds server-board/reward and transport regressions in test_minesweeper_mood.lua and test_minesweeper_network.lua. It exercises server-only validation, hidden-cell redaction, sequential/replayed intent, elapsed progress, configured rates/default fallback, idle/flag/reset exclusion, disabling/power/expiry, stale stop, native-shaped stat removal/clamp and sync calls, missing-sync refusal, authenticated dispatch, target/correlation, cancellation/expiry and prior UI cases. MINESWEEPER_MOOD_API.json records exact-build source/binding evidence. These are offline tests; actual mood replication/persistence, SP and dedicated behavior are NOT TESTED. Gameplay G7/stable G8 remain BLOCKED. No new package/deploy/upload or actual save mutation is part of this iteration.
+
+The full Quartermaster/Rooms offline suite also passes against the final 0.7 mood-service source, using the paired command documented above. This remains offline compatibility evidence and does not validate native stat effects.
