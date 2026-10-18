@@ -10,7 +10,7 @@ You can also use a PC while resting in native furniture directly in front of it.
 
 Other mods register trusted Lua apps. Quartermaster supplies `QUARTERMASTER.EXE` and its CD Writer through this interface; its ledger contents, permissions, inventory conversion and network authority stay in Quartermaster. Opening the screen or mounting a CD never automatically runs an app. All available apps now share one desktop and Start menu. Their windows remain on the same taskbar when switching apps. The shell uses the approved beige B47 / CRT 93 design, original pixel icons and physical logoff control. [Shared desktop, CD providers and lifecycle](docs/UNIFIED_DESKTOP.md).
 
-Enable `B47ANCEDPCFramework` on the server and every client alongside dependent apps. A first public Workshop MP testing upload is authorized; its assigned item ID will be recorded in WORKSHOP_ID.txt after creation. Quartermaster is not a dependency of this framework.
+Enable `B47ANCEDPCFramework` on the server and every client alongside dependent apps. The [public Workshop MP testing build](https://steamcommunity.com/sharedfiles/filedetails/?id=3822042011) is item 3822042011; WORKSHOP_ID.txt is the canonical identity. SteamCMD upload succeeded; native SP/dedicated remain NOT TESTED. Quartermaster is not a dependency of this framework.
 
 `B47ANCEDPCFramework.Enabled` is the server sandbox switch (default true). Disabling it closes screens and refuses device validation without deleting app records. App-specific gameplay settings remain with their apps. Computer identity, adjacent/seated reach, scan bounds and polling limits are implementation constraints, not user-adjustable gameplay values.
 
