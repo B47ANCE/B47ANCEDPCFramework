@@ -1,6 +1,6 @@
 # Features and functionality brainstorm
 
-Project Version: 0.6.0-dev.1
+Project Version: 0.8.0-dev.1
 
 The framework should provide a reusable PC shell and UI kit. Optional apps should provide the gameplay. This lets one powered PC host several mods without each mod duplicating desktop art, input handling or lifecycle code. The following are design proposals, not promises that their engine integrations exist.
 
@@ -11,6 +11,7 @@ The framework should provide a reusable PC shell and UI kit. Optional apps shoul
 | Now | Powered PCs, real storage-media binding, Quartermaster ledger/CD Writer integration | **Implemented source / offline tested** | Existing server-owned drive adapters, exact real-media validation, app-owned snapshots/transactions. Native SP/dedicated pending. |
 | Now | Tabs, wrapping toolbar and status bar | **Implemented source / offline tested** in 0.4.0-dev.1; opt-in gallery demonstrates page focus and local actions | Local presentation; no shared state or new sandbox settings. |
 | Now | Public CD-program registration, explicit EXE launch, server list/authorize/resolve and client/server examples | **Implemented source / offline tested** in 0.5.0-dev.1 | Physical binding and private program snapshots stay with authenticated server adapters; CD contents never execute Lua. Burning and generic file installation remain proposed. |
+| Now | Use PCs while resting in furniture directly in front | **Implemented source / offline tested** in 0.8.0-dev.1 | Native seating/rest remains engine-owned; shared server/device checks validate actual occupied furniture and bounded barrier reach. Native SP/dedicated pending. |
 | Next | Tree views, context menus, modal prompts, property grids | **Proposed** | Public presentation components with the same keyboard/controller, resize and translation contract. No shared state required. |
 | Next | Better app discovery: desktop/Start launcher across all installed apps, missing-provider explanations, API-version diagnostics | **Proposed**; current app selection uses the context menu plus selected app's desktop | Bounded local metadata, no private server data. Missing/disabled apps should explain availability without exposing hidden records. |
 | Next | Multiple windows, per-window taskbar buttons, drag/snap, restore previous size | **Proposed**; current host has one content window | Local session state. Opt-in per-player presentation preferences; power/logoff must close every child and cancel app work. |
@@ -22,7 +23,7 @@ The framework should provide a reusable PC shell and UI kit. Optional apps shoul
 | App | LAN bulletin board, mail, survivor directory or local network map | **Proposed** | Server-owned channels, membership/privacy, bounded message retention, abuse/rate limits and authoritative routing. Physical range/connectivity options require an independently verified design. |
 | App | CD/document browser, logs, archives, printable reports and media catalog | **Partially founded** by drive adapters; generic files/printing **proposed** | Physical media IDs and copy/write costs must be server-validated. A virtual document model must never masquerade as vanilla item ownership or load arbitrary Lua. |
 | App | Electronics skill checks, repairs, missing components, overheating or equipment upgrades | **Proposed gameplay** | Server action grants, real items, cancellation/refund journals, sandbox defaults/bounds and old-save behavior are required before implementation. Not hidden core constants. |
-| Now | Bundled installed Minesweeper: 9x9 board, flags/chords, timer and local lifecycle | **Implemented source / offline tested** in 0.6.0-dev.1 | Per-context disposable local puzzle. No shared scores, rewards, save writes or gameplay authority. |
+| Now | Bundled installed Minesweeper: 9x9 board, flags/chords, timer and local lifecycle | **Implemented source / offline tested** in 0.7.0-dev.1 | Server-owned disposable board with configurable boredom/unhappiness relief in 0.7.0-dev.1; no shared scores or item rewards. |
 | App | Calculator, clock, journal drafts and more local games | **Proposed** | Mostly local UI; use actual world time where appropriate. Shared scores/rewards become server gameplay and need explicit authority/configuration. |
 | Research | Cameras, live remote views, alarms and remote doors/machines | **Blocked on capability/authority research** | Do not invent camera capture, unloaded-world simulation or remote-control APIs. Where safe Lua routes are absent, offer authorized text/status snapshots or manual local controls. |
 

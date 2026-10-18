@@ -6,3 +6,47 @@ option B47ANCEDPCFramework.Enabled
  page = B47ANCEDPCFramework,
  translation = B47ANCEDPCFramework_Enabled,
 }
+
+option B47ANCEDPCFramework.MinesweeperMoodEffects
+{
+ type = boolean,
+ default = true,
+ page = B47ANCEDPCFramework,
+ translation = B47ANCEDPCFramework_MinesweeperMoodEffects,
+}
+option B47ANCEDPCFramework.MinesweeperBoredomRelief
+{
+ type = integer,
+ min = 0,
+ max = 10,
+ default = 2,
+ page = B47ANCEDPCFramework,
+ translation = B47ANCEDPCFramework_MinesweeperBoredomRelief,
+}
+option B47ANCEDPCFramework.MinesweeperUnhappinessRelief
+{
+ type = integer,
+ min = 0,
+ max = 10,
+ default = 1,
+ page = B47ANCEDPCFramework,
+ translation = B47ANCEDPCFramework_MinesweeperUnhappinessRelief,
+}
+option B47ANCEDPCFramework.MinesweeperReliefInterval
+{
+ type = integer,
+ min = 10,
+ max = 300,
+ default = 30,
+ page = B47ANCEDPCFramework,
+ translation = B47ANCEDPCFramework_MinesweeperReliefInterval,
+}
+option B47ANCEDPCFramework.MinesweeperActivityTimeout
+{
+ type = integer,
+ min = 5,
+ max = 120,
+ default = 30,
+ page = B47ANCEDPCFramework,
+ translation = B47ANCEDPCFramework_MinesweeperActivityTimeout,
+}

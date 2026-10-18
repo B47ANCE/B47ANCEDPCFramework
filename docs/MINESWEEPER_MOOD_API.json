@@ -1,0 +1,78 @@
+{
+  "api_library": "Project Zomboid vanilla Lua/exposed engine APIs",
+  "receiver_type": "IsoPlayer Stats and exposed SyncPlayerStatsPacket / Lua global",
+  "symbol": "Minesweeper mood removal and vanilla stat synchronization",
+  "signature": "actor:getStats():remove(CharacterStat.BOREDOM, amount); remove(CharacterStat.UNHAPPINESS, amount); SyncPlayerStatsPacket.getBitMaskForStat(stat); syncPlayerStats(actor, mask)",
+  "signature_scope": "observed_vanilla_call_and_explicit_exposure",
+  "game_version": "42.21.0",
+  "steam_build": "25485521",
+  "side": "server",
+  "returns": "Stats.remove returns a changed boolean through add/set; set clamps to stat bounds. getBitMaskForStat returns the ordered-stat bitmask. syncPlayerStats returns no value. Live Lua conversion/replication NOT TESTED.",
+  "mutation": "Authenticated server/SP authority changes player stats; vanilla SyncPlayerStats targets the owner. No custom Java runtime or client setter.",
+  "status": "VERIFIED",
+  "runtime_status": "NOT_TESTED",
+  "verified_on": "2026-10-17",
+  "evidence": [
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/server/Farming/SFarmingSystem.lua",
+      "sha256": "28576002bbab0e0561c713bc6b8e2d829d6cd7b917f5b8a702cbfcef46b39914",
+      "lines": [
+        336,
+        342
+      ],
+      "statement": "Vanilla server harvesting removes boredom and unhappiness through enum Stats.remove."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/server/Farming/SFarmingSystem.lua",
+      "sha256": "28576002bbab0e0561c713bc6b8e2d829d6cd7b917f5b8a702cbfcef46b39914",
+      "lines": [
+        499,
+        504
+      ],
+      "statement": "Vanilla server calls syncPlayerStats after changing a stat."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/Fireplace/ISOvenUI.lua",
+      "sha256": "f4810738df267b681362a7b05bdec4aaa421186be8b0ceb897d5b79c848dad00",
+      "lines": [
+        169,
+        169
+      ],
+      "statement": "Vanilla client sends a command with the native player as first argument."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/server/ClientCommands.lua",
+      "sha256": "c9de3d3024a46e2b3ab1670c11f98885647bfb6d73114ff7896bf41e263923fd",
+      "lines": [
+        1296,
+        1307
+      ],
+      "statement": "Vanilla server callback receives module, command, native player and arguments and is registered on OnClientCommand."
+    },
+    {
+      "kind": "native_inspection",
+      "path": "projectzomboid.jar",
+      "sha256": "e1a69eb743ede60b213a0fe7f8b83d4fcab773036d256cc4543a336f3b058a33",
+      "lines": [
+        1,
+        1
+      ],
+      "statement": "Exposer.exposeAll passes SyncPlayerStatsPacket to setExposed. Public static getBitMaskForStat computes the ordered-stat bit. GlobalObject.syncPlayerStats sends the vanilla stat packet from server to the target actor; write/parse select those entries. Stats.remove delegates to add/set, with native clamp."
+    },
+    {
+      "kind": "native_inspection",
+      "path": "zombie/characters/Stats.class",
+      "sha256": "7582a8d4a181c513f1a7596eb7f3d11c9a2a7da81ff02212650a599418c2038b",
+      "lines": [
+        1,
+        1
+      ],
+      "statement": "Installed loose mutation/clamp and parse/write methods were compared to the jar; get has an installed optimization. No runtime or effective classloader proof."
+    }
+  ],
+  "notes": "Observed vanilla calls plus explicit class exposure/native inspection only. Installed loose Stats differs from jar: inspected set/remove/add/parse/write operations match; get includes an installed optimization. Effective native/classloader behavior and save persistence remain runtime gates; no game file was changed."
+}

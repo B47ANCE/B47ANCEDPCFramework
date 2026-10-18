@@ -1,5 +1,15 @@
 {
   "Sandbox_B47ANCEDPCFramework": "B47ANCED PC Framework",
   "Sandbox_B47ANCEDPCFramework_Enabled": "Enable computers",
-  "Sandbox_B47ANCEDPCFramework_Enabled_tooltip": "Allow powered desktop use and framework device validation. Existing application records are retained when disabled. Default: enabled."
+  "Sandbox_B47ANCEDPCFramework_Enabled_tooltip": "Allow powered desktop use and framework device validation. Existing application records are retained when disabled. Default: enabled.",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperMoodEffects": "Minesweeper mood benefits",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperMoodEffects_tooltip": "Allow the server to reduce boredom and unhappiness during validated active Minesweeper play. Default: enabled. No benefit for idle windows or flag toggling.",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperBoredomRelief": "Minesweeper boredom relief",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperBoredomRelief_tooltip": "Boredom points removed per completed active-play interval. Default: 2. Range: 0 to 10, step 1. Server authoritative.",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperUnhappinessRelief": "Minesweeper happiness benefit",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperUnhappinessRelief_tooltip": "Unhappiness points removed per completed active-play interval. Lower unhappiness means greater happiness. Default: 1. Range: 0 to 10, step 1. Server authoritative.",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperReliefInterval": "Minesweeper benefit interval (seconds)",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperReliefInterval_tooltip": "Real seconds of validated active reveal progress required per benefit. Default: 30. Range: 10 to 300, step 1. Resetting never awards a benefit.",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperActivityTimeout": "Minesweeper active-play grace (seconds)",
+  "Sandbox_B47ANCEDPCFramework_MinesweeperActivityTimeout_tooltip": "Maximum gap between reveal progress events that counts as active play. A longer gap clears accumulated time. Default: 30. Range: 5 to 120, step 1."
 }

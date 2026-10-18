@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.8.0-dev.1] - 2026-10-17
+
+- Compatible MINOR expansion toward 0.8.0: allow PC use from occupied native furniture directly in front of the PC, including while resting. Existing direct adjacency and public API/schema versions remain unchanged.
+- Validate native seating state/data, loaded furniture identity, PC facing, bounded body offset and both short barrier checks through shared Device; retain power, safehouse and app privacy authorization. No client seat claim, custom state packet or migration.
+- Open without clearing queued rest or initiating walking from a seat; desktop and server operations revalidate loss of access. Add four-orientation and adversarial seat/server/UI regressions plus exact-build API evidence.
+- Framework and paired Quartermaster/Rooms offline checks pass. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED. No package/deploy/upload.
+
+## [0.7.0-dev.1] - 2026-10-17
+
+- Compatible MINOR gameplay addition toward 0.7.0: server-authoritative Minesweeper play and configurable boredom/unhappiness relief. Public app APIs remain unchanged.
+- Move pure board rules to shared Lua; retain the require name and validate all game moves on server/SP authority. Redact hidden cells and correlate/cancel client replies.
+- Default active-play benefits: remove 2 boredom and 1 unhappiness per 30 qualifying real seconds, with native clamping and owner stat synchronization. Add five localized server sandbox settings for enable/rates/interval/activity grace.
+- Exclude idle windows, flag spam, resets and replayed requests; recheck PC power/access/reach, sequence, actor and session validity. No client stat setter or persisted reward record.
+- Add authority/transport regressions, exact-build API evidence and gameplay documentation. Historical 0.6 package retained unchanged; no automatic repackaging/deployment.
+- Native SP/dedicated NOT TESTED; gameplay G7/stable G8 BLOCKED.
+
 ## [0.6.0-dev.1] - 2026-10-17
 
 - Compatible MINOR addition toward 0.6.0: bundle an installed, local Minesweeper PC app. Existing public APIs and binding/persistence schemas remain unchanged.

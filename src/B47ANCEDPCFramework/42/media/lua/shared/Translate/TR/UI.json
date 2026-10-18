@@ -42,5 +42,9 @@
   "UI_B47PC_Mines_Help": "Reveal: select tile. Flag: right-click or use Mode: Flag. Open number: chord.",
   "UI_B47PC_Mines_FlagMark": "F",
   "UI_B47PC_Mines_WrongMark": "X",
-  "UI_B47PC_Mines_MineMark": "*"
+  "UI_B47PC_Mines_MineMark": "*",
+  "UI_B47PC_Mines_Pending": "Starting game / applying move...",
+  "UI_B47PC_Mines_Unavailable": "Game unavailable. Choose New game to reconnect.",
+  "UI_B47PC_Mines_Busy": "Please try that move again.",
+  "UI_B47PC_Mines_Relief": "Playing improved your mood."
 }

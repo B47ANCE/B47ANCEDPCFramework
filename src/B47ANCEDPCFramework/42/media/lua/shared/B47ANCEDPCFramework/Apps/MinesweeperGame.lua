@@ -1,4 +1,4 @@
--- Disposable local puzzle only. No world state, rewards, save or networking.
+-- Pure board rules; authoritative gameplay sessions are owned by the server service.
 local Game={width=9,height=9,mines=10}
 function Game.new(random)
  local g={width=9,height=9,mines=10,state='ready',flags=0,revealed=0,cells={}}
