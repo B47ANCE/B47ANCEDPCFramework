@@ -1,6 +1,6 @@
 # Source and authority
 
-Project Version: 0.9.0-dev.3
+Project Version: 0.9.0-dev.4
 
 [VERIFIED source] `src/B47ANCEDPCFramework` is authoritative. `42/media/lua/client/B47ANCEDPCFramework` owns the desktop, app registry and world menu/navigation. `B47ANCEDPCUI` is an isolated copy of B47ANCE's owned embedded UI helpers, renamed to avoid overriding app UI or appearance files. Shared `Device.lua` recognizes all four native desktop orientations and other `CustomName=Computer` tiles, then validates loaded identity, adjacency, native power and multiplayer safehouse access. Shared `DriveService.lua` is called only through a consumer's authenticated server service. No `require` or reverse dependency on Quartermaster exists in runtime source.
 

@@ -1,6 +1,6 @@
 # Using a PC from a seat
 
-Project Version: 0.9.0-dev.3
+Project Version: 0.9.0-dev.4
 
 Use native Rest on furniture directly in front of a powered PC, then use the PC's normal context action. The desktop and its installed/CD apps can open while that rest action is queued. The framework does not clear timed actions, stand the player up, change endurance, or set native rest/seating flags. If a seated player cannot reach the PC, the context action does not initiate walking. Ordinary adjacent access is unchanged.
 

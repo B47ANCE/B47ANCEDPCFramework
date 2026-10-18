@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.9.0-dev.4] - 2026-10-18
+
+- PATCH-level branding checkpoint within the pending 0.9.0 iteration: replace the fallback Workshop thumbnail and in-game poster with the user-supplied PC artwork, plus a text-free computer icon crop. Preserve the supplied original and export provenance.
+- Gameplay, public APIs, sandbox settings and save formats are unchanged. Artwork checks and package integrity are offline evidence; native SP/dedicated remain NOT TESTED, G7/stable G8 BLOCKED.
+
 ## [0.9.0-dev.3] - 2026-10-17
 
 - PATCH-level publication metadata/tooling checkpoint within the pending 0.9.0 MINOR iteration. Prepare the explicitly authorized first public Workshop MP testing item, canonical player-facing prose, exact fallback thumbnail and guarded package-to-staging manifest.

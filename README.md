@@ -2,7 +2,7 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.9.0-dev.3. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.9.0-dev.4. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
 Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
 
@@ -40,4 +40,6 @@ See [application API and authority contract](docs/API.md), [source provenance an
 
 Mod ID: `B47ANCEDPCFramework`. Created by B47ANCE. Original owned code extracted from [Quartermaster](https://github.com/B47ANCE/B47ANCEDQuartermaster), with an isolated framework UI namespace and exact team fallback artwork. No Workshop ID has been invented.
 
-Publication preparation: canonical Workshop prose is in docs/WORKSHOP_DESCRIPTION.md and docs/WORKSHOP_CHANGELOG.md. The original standard B47 thumbnail is copied byte-for-byte to preview-client.png. After scripts/build.py, scripts/prepare_workshop.py stages exact package bytes and writes a source/package/VDF manifest without uploading or restarting Steam. First-item creation requires the explicit --create-public flag and refuses an existing WORKSHOP_ID.txt. Later submissions preserve existing visibility.
+Publication preparation: canonical Workshop prose is in docs/WORKSHOP_DESCRIPTION.md and docs/WORKSHOP_CHANGELOG.md. The current approved PC Framework cover is exported to preview-client.png; original source and export provenance are retained in assets/branding. After scripts/build.py, scripts/prepare_workshop.py stages exact package bytes and writes a source/package/VDF manifest without uploading or restarting Steam. First-item creation requires the explicit --create-public flag and refuses an existing WORKSHOP_ID.txt. Later submissions preserve existing visibility.
+
+Artwork checkpoint 0.9.0-dev.4 uses the user-supplied B47ANCE'd PC Framework illustration for the Workshop preview and in-game poster, with a computer-only small icon. Editable source, export settings and hashes are in assets/branding; artwork replaces the earlier fallback independently for all three approved roles. No gameplay behavior changes.
