@@ -1,0 +1,38 @@
+{
+  "api_library": "Project Zomboid vanilla Lua/exposed engine APIs",
+  "receiver_type": "ISUIElement (client Lua UI base hook)",
+  "symbol": "onRightMouseUp",
+  "signature": "ISUIElement:onRightMouseUp(x, y)",
+  "signature_scope": "observed_vanilla_declaration",
+  "game_version": "42.21.0",
+  "steam_build": "25485521",
+  "side": "client",
+  "returns": "Base hook has no return value; concrete consumer handlers may consume input. Native ISButton routing remains NOT TESTED.",
+  "mutation": "Client input callback only; mod handler changes disposable local puzzle state. No gameplay/network/persistence authority.",
+  "status": "VERIFIED",
+  "runtime_status": "NOT_TESTED",
+  "verified_on": "2026-10-17",
+  "evidence": [
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISUIElement.lua",
+      "sha256": "2de4720f995ae35e76a1465c6690ad17fe272e33dec3b106e49c475310440f8f",
+      "lines": [
+        1555,
+        1557
+      ],
+      "statement": "Base Lua UI declares the right mouse-up hook with x/y arguments."
+    },
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISEquippedItem.lua",
+      "sha256": "9ee7932e2b00d55e653b4988ba11e0452ae1829ed11de2978564a6d542ca5c68",
+      "lines": [
+        716,
+        721
+      ],
+      "statement": "Vanilla assigns an instance-specific right mouse-up handler on an initialized UI descendant."
+    }
+  ],
+  "notes": "Observed base callback declaration and vanilla assignment to an ISImage descendant. Source evidence does not prove mouse/controller dispatch in the mod or native UI hit testing."
+}

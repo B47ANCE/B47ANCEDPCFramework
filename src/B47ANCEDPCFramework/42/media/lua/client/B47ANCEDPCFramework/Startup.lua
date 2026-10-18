@@ -1,4 +1,5 @@
 local P=require 'B47ANCEDPCFramework/API'
+require('B47ANCEDPCFramework/Apps/Minesweeper')(P)
 local Device=require 'B47ANCEDPCFramework/Device'
 local pending={}
 require 'TimedActions/ISTimedActionQueue'

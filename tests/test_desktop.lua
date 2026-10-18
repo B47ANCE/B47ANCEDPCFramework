@@ -16,7 +16,16 @@ function W:addToUIManager() self.added=true end;function W:removeFromUIManager()
 function W:insertNewLineOfButtons(...) self.joypadButtonsY[#self.joypadButtonsY+1]={...} end
 function W:clear() self.options={};self.selected=1 end
 function W:addOptionWithData(text,data) self.options[#self.options+1]={text=text,data=data} end
+function W:setText(text) self.text=text end;function W:getInternalText() return self.text or '' end
+function W:setTextRGBA(r,g,b,a) self.glyphColor={r=r,g=g,b=b,a=a} end
+function W:addItem(text,item) self.items=self.items or {};self.items[#self.items+1]={text=text,item=item,height=self.itemheight,itemindex=#self.items+1};return self.items[#self.items] end
 for _,name in ipairs({'ISPanel','ISPanelJoypad','ISCollapsableWindowJoypad','ISButton','ISScrollingListBox','ISTextEntryBox','ISComboBox'}) do _G[name]=W;package.loaded['ISUI/'..name]=W end
+local Entry=setmetatable({},{__index=W})
+function Entry:new(text,x,y,w,h) local entry=W.new(self,x,y,w,h);entry.text=text;return entry end
+ISTextEntryBox=Entry;package.loaded['ISUI/ISTextEntryBox']=Entry
+local Combo=setmetatable({},{__index=W})
+function Combo:new(x,y,w,h,target,onChange) local combo=W.new(self,x,y,w,h);combo.target=target;combo.onChange=onChange;return combo end
+ISComboBox=Combo;package.loaded['ISUI/ISComboBox']=Combo
 UIFont={Small=1,Medium=2};Keyboard={KEY_ESCAPE=1};Joypad={BButton=2}
 getTextManager=function() return {getFontHeight=function() return 14 end,MeasureStringX=function(_,_,s) return #s*7 end} end
 getText=function(k) return k end;setJoypadFocus=function() end
@@ -56,10 +65,10 @@ package.loaded['TimedActions/ISTimedActionQueue']=true;package.loaded['TimedActi
 local Startup=require 'B47ANCEDPCFramework/Startup';assert(registered.tick and registered.menu)
 local entries={};local menu={addOption=function(_,label,_,fn) entries[#entries+1]={label=label,fn=fn} end}
 Startup.menu(0,menu,{computer},false);assert(#entries==1,'disabled app exposed context action')
-entries[1].fn();assert(C.active[0] and C.active[0].application=='desktop');C.active[0]:close()
+entries[1].fn();assert(C.active[0] and C.active[0].application=='b47pc.minesweeper' and not C.active[0].content);C.active[0]:close()
 available=true;P.registerApplication('second',function() return {} end,'Second')
-entries={};Startup.menu(0,menu,{computer},false);assert(#entries==3,'multiple available apps not selectable')
-entries[3].fn();assert(C.active[0].application=='second');C.active[0]:close()
+entries={};Startup.menu(0,menu,{computer},false);assert(#entries==4,'multiple available apps not selectable')
+entries[4].fn();assert(C.active[0].application=='second');C.active[0]:close()
 SandboxVars.B47ANCEDPCFramework.Enabled=false;entries={};Startup.menu(0,menu,{computer},false);assert(#entries==0)
 SandboxVars.B47ANCEDPCFramework.Enabled=true
 print('PASS OFFLINE standalone desktop: zero Quartermaster imports, empty host, registered app, no auto-run, wrong-media refusal, disabled app fallback, late replies, singleton cleanup and sandbox disable')

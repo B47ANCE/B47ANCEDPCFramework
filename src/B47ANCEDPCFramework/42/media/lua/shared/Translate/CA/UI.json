@@ -26,5 +26,21 @@
   "UI_B47PC_ScreenSmall": "The computer desktop needs more screen space. Increase resolution or reduce the UI font size.",
   "UI_B47PC_ComputerApplications": "Applications",
   "UI_B47PC_busy": "Another application operation is active. Finish or cancel it first.",
-  "UI_B47PC_ComputerOpenApplication": "Use computer: %1"
+  "UI_B47PC_ComputerOpenApplication": "Use computer: %1",
+  "UI_B47PC_ComputerCheckingCD": "Checking CD program with server...",
+  "UI_B47PC_ComputerRunTimedOut": "CD program check timed out. Try Run application again.",
+  "UI_B47PC_Mines_Title": "Minesweeper",
+  "UI_B47PC_Mines_New": "New game",
+  "UI_B47PC_Mines_RevealMode": "Mode: Reveal",
+  "UI_B47PC_Mines_FlagMode": "Mode: Flag",
+  "UI_B47PC_Mines_Counter": "Mines left: %1   Time: %2 s",
+  "UI_B47PC_Mines_ready": "9 x 9 / 10 mines. Reveal a tile to start.",
+  "UI_B47PC_Mines_playing": "Clear every safe tile. Select a number to chord its flagged neighbors.",
+  "UI_B47PC_Mines_won": "You cleared the board! Choose New game to play again.",
+  "UI_B47PC_Mines_lost": "Mine hit. Choose New game to try again.",
+  "UI_B47PC_Mines_Small": "Enlarge this window or reduce the UI font size to show the board.",
+  "UI_B47PC_Mines_Help": "Reveal: select tile. Flag: right-click or use Mode: Flag. Open number: chord.",
+  "UI_B47PC_Mines_FlagMark": "F",
+  "UI_B47PC_Mines_WrongMark": "X",
+  "UI_B47PC_Mines_MineMark": "*"
 }
