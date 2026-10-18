@@ -50,3 +50,21 @@ option B47ANCEDPCFramework.MinesweeperActivityTimeout
  page = B47ANCEDPCFramework,
  translation = B47ANCEDPCFramework_MinesweeperActivityTimeout,
 }
+
+option B47ANCEDPCFramework.ConnectionsEnabled
+{
+ type = boolean,
+ default = true,
+ page = B47ANCEDPCFramework,
+ translation = B47ANCEDPCFramework_ConnectionsEnabled,
+}
+
+option B47ANCEDPCFramework.PairingHours
+{
+ type = integer,
+ default = 24,
+ min = 1,
+ max = 168,
+ page = B47ANCEDPCFramework,
+ translation = B47ANCEDPCFramework_PairingHours,
+}

@@ -11,5 +11,9 @@
   "Sandbox_B47ANCEDPCFramework_MinesweeperReliefInterval": "Minesweeper benefit interval (seconds)",
   "Sandbox_B47ANCEDPCFramework_MinesweeperReliefInterval_tooltip": "Real seconds of validated active reveal progress required per benefit. Default: 30. Range: 10 to 300, step 1. Resetting never awards a benefit.",
   "Sandbox_B47ANCEDPCFramework_MinesweeperActivityTimeout": "Minesweeper active-play grace (seconds)",
-  "Sandbox_B47ANCEDPCFramework_MinesweeperActivityTimeout_tooltip": "Maximum gap between reveal progress events that counts as active play. A longer gap clears accumulated time. Default: 30. Range: 5 to 120, step 1."
+  "Sandbox_B47ANCEDPCFramework_MinesweeperActivityTimeout_tooltip": "Maximum gap between reveal progress events that counts as active play. A longer gap clears accumulated time. Default: 30. Range: 5 to 120, step 1.",
+  "Sandbox_B47ANCEDPCFramework_ConnectionsEnabled": "Computer networks",
+  "Sandbox_B47ANCEDPCFramework_ConnectionsEnabled_tooltip": "Enable visited-PC pairing, public endpoints and connected-PC services. Connections do not grant inventory permissions.",
+  "Sandbox_B47ANCEDPCFramework_PairingHours": "Pairing invitation duration",
+  "Sandbox_B47ANCEDPCFramework_PairingHours_tooltip": "In-game hours before a private pairing invitation expires. Start pairing on one PC, then visit another to connect. Public PCs do not require an invitation."
 }

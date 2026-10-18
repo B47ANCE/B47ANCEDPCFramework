@@ -1,10 +1,14 @@
+## PC Network and notifications (development source)
+
+Pair computers by visiting each PC, or opt into public pairing. Network Status shows online/offline endpoints; connections do not grant inventory access. Apps can post taskbar notifications through API 1 and inspect authorized real CDs incrementally. Current source is not yet uploaded.
+
 # B47ANCED PC Framework
 
 ## Overview
 A shared Windows '93 computer desktop for Project Zomboid, inside a front-facing beige CRT monitor and horizontal computer base. The teal desktop, Start menu and taskbar share one monitor screen. Installed apps appear together and keep their windows when switching. Quartermaster adds its own ledger and CD Writer apps; this framework also runs on its own.
 
 MP testing build - dedicated multiplayer NOT TESTED
-Development version 0.10.0-dev.1. Offline regression checks pass; native single-player and dedicated multiplayer acceptance remain pending. Back up saves and use matching versions on server and clients.
+Development version 0.11.0-dev.1. Offline regression checks pass; native single-player and dedicated multiplayer acceptance remain pending. Back up saves and use matching versions on server and clients.
 
 ## Features
 - Front-facing 2D PC shell with drive bays, front vents and a local logoff power button. No keyboard or mouse artwork. Uniform resizing preserves the 4:3 monitor and hardware proportions.

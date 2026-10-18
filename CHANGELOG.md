@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.11.0-dev.1] - 2026-10-18
+
+- Add Notification API 1, Connections API 1, visited-PC pairing/public endpoints, Network Setup/status screens and bounded read-only adapter media scans. Preserve existing app/media APIs.
+- Native and dedicated multiplayer NOT TESTED; no deployment/publication.
+
 ## [0.10.0-dev.1] - 2026-10-18
 
 - Compatible MINOR UI addition: show the desktop PC from a straight-on 2D view, including beige CRT and horizontal system unit, with no keyboard or mouse artwork. Render the shared desktop/apps only inside the monitor.

@@ -1,6 +1,6 @@
 # Features and functionality brainstorm
 
-Project Version: 0.10.0-dev.1
+Project Version: 0.11.0-dev.1
 
 The framework should provide a reusable PC shell and UI kit. Optional apps should provide the gameplay. This lets one powered PC host several mods without each mod duplicating desktop art, input handling or lifecycle code. The following are design proposals, not promises that their engine integrations exist.
 

@@ -2,7 +2,7 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.10.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.11.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
 Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
 
@@ -13,6 +13,14 @@ Other mods register trusted Lua apps. Quartermaster supplies `QUARTERMASTER.EXE`
 Enable `B47ANCEDPCFramework` on the server and every client alongside dependent apps. The [public Workshop MP testing build](https://steamcommunity.com/sharedfiles/filedetails/?id=3822042011) is item 3822042011; WORKSHOP_ID.txt is the canonical identity. SteamCMD upload succeeded; native SP/dedicated remain NOT TESTED. Quartermaster is not a dependency of this framework.
 
 `B47ANCEDPCFramework.Enabled` is the server sandbox switch (default true). Disabling it closes screens and refuses device validation without deleting app records. App-specific gameplay settings remain with their apps. Computer identity, adjacent/seated reach, scan bounds and polling limits are implementation constraints, not user-adjustable gameplay values.
+
+## Network status and notifications
+
+Open **PC Network** to see online/offline status across connected computers. Start pairing on one PC, then visit another and enter its address; repeat for multiple computers, or opt into public pairing. Private invitations expire and belong to the player who started them. Links persist but never grant inventory access or turn unloaded PCs into live devices. Power and current access determine online status.
+
+Apps can use **Notification API 1** for taskbar notices, deduplicated updates and guarded Open actions. **Connections API 1** supplies sender-validated persistent pairing and authorized online members. Reusable read-only media scans let apps inspect real local CDs without moving them. Quartermaster uses these APIs for low-stock alerts and its multi-building Base Ledger. [API, settings, privacy and validation](docs/NETWORK_AND_NOTIFICATIONS.md).
+
+This source version is not the previously uploaded Workshop package. No new build has been packaged, deployed or published in this iteration.
 
 ## Bundled Minesweeper
 

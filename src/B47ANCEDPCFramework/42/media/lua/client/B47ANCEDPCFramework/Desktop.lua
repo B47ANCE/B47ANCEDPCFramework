@@ -4,6 +4,7 @@ local UI=require 'B47ANCEDPCFramework/UI'
 local A=require 'B47ANCEDPCFramework/Assets'
 local Device=require 'B47ANCEDPCFramework/Device'
 local CRT=require 'B47ANCEDPCFramework/CRT'
+local Notifications=require 'B47ANCEDPCFramework/Notifications'
 local U=B47ANCEDPCUI;local D={}
 local function tr(k,...) return getText('UI_B47PC_'..k,...) end
 local function panel(parent)
@@ -74,7 +75,7 @@ function D.new(C,num,computer)
    rows[#rows+1]={self.previous,self.next}
   end
   local tasks={self.taskPrevious};for _,s in ipairs(self.order) do tasks[#tasks+1]=s.task end;tasks[#tasks+1]=self.taskNext
-  rows[#rows+1]=tasks;rows[#rows+1]={self.off};UI.focus(root,rows)
+  rows[#rows+1]=tasks;rows[#rows+1]={self.noticeButton,self.off};UI.focus(root,rows)
  end
  function d:addSession(hooks)
   local s={application=hooks.id,sessionKey=hooks.sessionKey or hooks.id,playerNum=num,computer=computer,hooks=hooks,desktopHost=self,root=root,minimized=true,closed=false}
@@ -128,7 +129,7 @@ function D.new(C,num,computer)
   return s
  end
  function d:retire(s)
-  if s.closed then return end;s.closed=true;self.sessions[s.sessionKey]=nil;self.catalogAt=nil
+  if s.closed then return end;Notifications.clear(s);s.closed=true;self.sessions[s.sessionKey]=nil;self.catalogAt=nil
   local state={};attempt(state,function() s:closeApp() end);attempt(state,s.hooks.close)
   desktop:removeChild(s.frame);root:removeChild(s.task);desktop:removeChild(s.writerIcon);desktop:removeChild(s.driveIcon)
   s.mounted=nil;s.removed=true
@@ -220,17 +221,19 @@ function D.new(C,num,computer)
    if s.content then UI.place(s.content,4,m.button+8,s.frame:getWidth()-8,s.frame:getHeight()-m.button-12) end
   end
   local taskX=self.homeButton.x+m.button+8;local space=g.x+g.width-taskX-4
+  space=space-2*m.button-8
   local capacity=math.max(1,math.floor((space-2*m.button-8)/math.max(100,m.font*6)))
   if self.focusTask then for i,s in ipairs(tasks) do if s==self.focusTask then self.taskPage=math.ceil(i/capacity);break end end;self.focusTask=nil end
   local taskPages=math.max(1,math.ceil(#tasks/capacity));self.taskPage=math.max(1,math.min(self.taskPage,taskPages))
   local taskPaged=taskPages>1;self.taskPrevious:setVisible(taskPaged);self.taskNext:setVisible(taskPaged)
   self.taskPrevious:setEnable(self.taskPage>1);self.taskNext:setEnable(self.taskPage<taskPages)
   if taskPaged then UI.place(self.taskPrevious,taskX,y+4,m.button,m.button);taskX=taskX+m.button+4 end
-  local taskWidth=math.min(190,math.max(1,(g.x+g.width-taskX-4-(taskPaged and m.button+4 or 0))/capacity-4))
+  local taskWidth=math.min(190,math.max(1,(g.x+g.width-taskX-12-2*m.button-(taskPaged and m.button+4 or 0))/capacity-4))
   for i,s in ipairs(tasks) do local n=i-(self.taskPage-1)*capacity-1;if n>=0 and n<capacity then s.task:setVisible(true);s.task.b47PCSelected=self.current==s and not s.minimized;UI.place(s.task,taskX+n*(taskWidth+4),y+4,taskWidth,m.button) end end
-  if taskPaged then UI.place(self.taskNext,g.x+g.width-m.button-4,y+4,m.button,m.button) end
+  if taskPaged then UI.place(self.taskNext,g.x+g.width-3*m.button-12,y+4,m.button,m.button) end
   for _,key in ipairs({'closeButton','pinButton','collapseButton','infoButton'}) do if root[key] then root[key]:setVisible(false) end end
  end
+ Notifications.mount(d,UI,A)
  root.prerender=function()
   if d.closed then return end
   if getSpecificPlayer(num)~=actor or not Device.computer(actor,computer,true) then d:close();return end
@@ -246,15 +249,18 @@ function D.new(C,num,computer)
    if s.updateSession then s:updateSession() end
    if s.content and s.content.updateComputer then s.content:updateComputer() end
   end
+  d:updateNotifications()
  end
  root.onJoypadDown=function(_,key)
   if key==Joypad.BButton then
+   if d.noticeExpanded then d.noticeExpanded=false;d.noticeToastUntil=0;setJoypadFocus(num,root);return end
    if menu:isVisible() then menu:setVisible(false);d:refreshFocus()
    elseif d.current and d.current.content and not d.current.minimized then d.current:desktop() else d:close() end
   else ISPanelJoypad.onJoypadDown(root,key) end
  end
  root:setWantKeyEvents(true);root.isKeyConsumed=function(_,key) return num==0 and key==Keyboard.KEY_ESCAPE end
  root.onKeyRelease=function(_,key)
+  if key==Keyboard.KEY_ESCAPE and d.noticeExpanded then d.noticeExpanded=false;d.noticeToastUntil=0;setJoypadFocus(num,root);return end
   if not root:isKeyConsumed(key) then return end
   if menu:isVisible() then root:onJoypadDown(Joypad.BButton)
   elseif d.current and d.current.content then d.current:closeApp() else root:onJoypadDown(Joypad.BButton) end

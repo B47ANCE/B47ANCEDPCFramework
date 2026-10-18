@@ -6,11 +6,13 @@ local Assets=require 'B47ANCEDPCFramework/Assets'
 local Context=require 'B47ANCEDPCFramework/ProgramContext'
 local CD=require 'B47ANCEDPCFramework/CDPrograms'
 P.UI=UI;P.Assets=Assets
-local features={['installed-apps']=true,['ui-controls']=true,['hosted-windows']=true,['drawing-assets']=true,['custom-icons']=true,['media-adapters']=true,['tabs']=true,['toolbars']=true,['status-bars']=true,['cd-programs']=true,['unified-desktop']=true,['retained-app-windows']=true,['crt-frame']=true}
+P.Notifications=require 'B47ANCEDPCFramework/Notifications'
+P.Connections=require 'B47ANCEDPCFramework/ConnectionsClient'
+local features={['pc-connections']=true,['notifications']=true,['installed-apps']=true,['ui-controls']=true,['hosted-windows']=true,['drawing-assets']=true,['custom-icons']=true,['media-adapters']=true,['tabs']=true,['toolbars']=true,['status-bars']=true,['cd-programs']=true,['unified-desktop']=true,['retained-app-windows']=true,['crt-frame']=true}
 function P.supports(name) return features[name]==true end
 function P.getAPIInfo()
  local copy={};for k,v in pairs(features) do copy[k]=v end
- return {frameworkVersion=P.version,applicationVersion=P.apiVersion,uiVersion=UI.version,assetsVersion=Assets.version,cdProgramVersion=CD.version,features=copy}
+ return {frameworkVersion=P.version,applicationVersion=P.apiVersion,uiVersion=UI.version,assetsVersion=Assets.version,notificationVersion=P.Notifications.version,connectionsVersion=P.Connections.version,cdProgramVersion=CD.version,features=copy}
 end
 local apps={};local titles={}
 function P.registerApplication(id,factory,title)
