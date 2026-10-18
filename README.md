@@ -20,7 +20,7 @@ Open **PC Network** to see online/offline status across connected computers. Sta
 
 Apps can use **Notification API 1** for taskbar notices, deduplicated updates and guarded Open actions. **Connections API 1** supplies sender-validated persistent pairing and authorized online members. Reusable read-only media scans let apps inspect real local CDs without moving them. Quartermaster uses these APIs for low-stock alerts and its multi-building Base Ledger. [API, settings, privacy and validation](docs/NETWORK_AND_NOTIFICATIONS.md).
 
-This source version is not the previously uploaded Workshop package. No new build has been packaged, deployed or published in this iteration.
+This source version is the authorized MP testing candidate. Native SP/dedicated acceptance is pending; upload and runtime evidence remain separate. See the publication record for the exact distributed commit.
 
 ## Bundled Minesweeper
 

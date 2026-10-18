@@ -4,7 +4,7 @@
   "name": "B47ANCED PC Framework",
   "version": "0.11.0-dev.1",
   "reviewed": true,
-  "source_digest": "e2ebd2f64d7c33554111cc6e9db6effe4c17d75d278ed7676cc680646059a10d",
+  "source_digest": "2944d3f333c17ef022badb1f0d225740b619b18e7a02d19f8d8d19f0c39259bf",
   "features": [
     {
       "status": "Source",
@@ -56,10 +56,10 @@
     },
     {
       "status": "Source",
-      "text": "Connections API 1 and PC Network status/pairing app; persistent private/public links never grant inventory access. Notification API 1 adds guarded taskbar notices. Source iteration not packaged/published."
+      "text": "Connections API 1 and PC Network status/pairing app; persistent private/public links never grant inventory access. Notification API 1 adds guarded taskbar notices. MP testing candidate; no native/dedicated acceptance claim."
     }
   ],
-  "limits": "Native SP/dedicated NOT TESTED for 0.11.0-dev.1; G7/stable G8 BLOCKED. Source iteration not packaged, deployed or published. Connected offline/unloaded PCs cannot supply live data. Notifications are local presentation; consumers own data authority. Existing Workshop item 3822042011 retains its prior uploaded version.",
+  "limits": "Native SP/dedicated NOT TESTED for 0.11.0-dev.1; G7/stable G8 BLOCKED. Prepared for authorized MP testing distribution; actual upload receipts remain separate. Connected offline/unloaded PCs cannot supply live data. Notifications are local presentation; consumers own data authority. Existing Workshop item 3822042011 retains its prior uploaded version.",
   "evidence": [
     "README.md",
     "docs/API.md",
