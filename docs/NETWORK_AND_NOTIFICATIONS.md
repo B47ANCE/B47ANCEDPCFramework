@@ -1,6 +1,6 @@
 # PC connections and notifications
 
-Project Version: 0.11.0-dev.1
+Project Version: 0.11.0-dev.2
 
 This compatible MINOR adds Connections API 1, Notification API 1 and a bundled
 PC Network application. Existing desktop, CD program and media APIs remain 1.
