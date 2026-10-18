@@ -1,8 +1,8 @@
-# B47ANCED PC Framework
+# B47ANCE'd PC Framework
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.11.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.11.0-dev.2. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
 Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
 

@@ -1,6 +1,6 @@
 # Validation
 
-Project Version: 0.11.0-dev.1
+Project Version: 0.11.0-dev.2
 
 Current Stock/network addition: [Network And Notifications](NETWORK_AND_NOTIFICATIONS.md). Source and offline fixtures only; native SP/dedicated NOT TESTED. No package/deployment/publication.
 

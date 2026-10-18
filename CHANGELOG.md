@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.11.0-dev.2] - 2026-10-18
+
+- Compatible branding correction: use B47ANCE'd PC Framework in the mod name, sandbox headings, README and Workshop title/description. Mod ID, API contracts and gameplay are unchanged.
+- Offline validation only; native SP/dedicated testing remains NOT TESTED. No package, deployment or publication for this correction.
+
 ## [0.11.0-dev.1] - 2026-10-18
 
 - Add Notification API 1, Connections API 1, visited-PC pairing/public endpoints, Network Setup/status screens and bounded read-only adapter media scans. Preserve existing app/media APIs.

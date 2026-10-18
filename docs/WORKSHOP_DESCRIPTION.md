@@ -1,10 +1,10 @@
-# B47ANCED PC Framework
+# B47ANCE'd PC Framework
 
 ## Overview
 A shared Windows '93 computer desktop for Project Zomboid, inside a front-facing beige CRT monitor and horizontal computer base. The teal desktop, Start menu and taskbar share one monitor screen. Installed apps appear together and keep their windows when switching. Quartermaster adds its own ledger and CD Writer apps; this framework also runs on its own.
 
 MP testing build - dedicated multiplayer NOT TESTED
-Development version 0.11.0-dev.1. Offline regression checks pass; native single-player and dedicated multiplayer acceptance remain pending. Back up saves and use matching versions on server and clients.
+Development version 0.11.0-dev.2. Offline regression checks pass; native single-player and dedicated multiplayer acceptance remain pending. Back up saves and use matching versions on server and clients.
 
 ## Features
 - PC Network: pair by visiting computers or opt into public connections. Network Status shows online/offline endpoints; connections never grant inventory access or live data from unloaded buildings.

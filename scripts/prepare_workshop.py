@@ -49,7 +49,7 @@ def prepare(create_public=False):
     preview = stage / 'preview.png'
     preview.write_bytes((ROOT / 'preview-client.png').read_bytes())
     fields = dict(appid='108600', publishedfileid=item, contentfolder=str(stage / 'Contents'),
-                  previewfile=str(preview), title='B47ANCED PC Framework', description=description, changenote=note)
+                  previewfile=str(preview), title="B47ANCE'd PC Framework", description=description, changenote=note)
     if create_public:
         fields['visibility'] = '0'
     def escape(value):
