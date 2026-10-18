@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.10.0-dev.1] - 2026-10-18
+
+- Compatible MINOR UI addition: show the whole desktop PC from a straight-on 2D view, including beige CRT, horizontal system unit, keyboard and mouse. Render the shared desktop/apps only inside the monitor.
+- Uniformly scale and center the editable Lua geometry; retain native resizing/input, shared app/task state and power/logoff behavior. No new engine APIs, gameplay, sandbox, saved format or public callback changes.
+- Includes the true-alpha small icon correction from 0.9.0-dev.5; thumbnail and poster stay unchanged. Native SP/dedicated NOT TESTED; G7/stable G8 BLOCKED.
+
 ## [0.9.0-dev.5] - 2026-10-18
 
 - PATCH-level icon correction within pending 0.9.0: remove the computer icon background using genuine PNG alpha; preserve interior screen/vent shading and the current thumbnail/poster bytes. Retain the opaque source and transparent derivative separately.

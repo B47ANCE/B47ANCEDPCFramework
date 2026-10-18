@@ -1,6 +1,6 @@
 # Application API 1
 
-Project Version: 0.9.0-dev.5
+Project Version: 0.10.0-dev.1
 
 The public SDK now also exposes **UI API 1** and **drawing-assets API 1** through `require 'B47ANCEDPCFramework/UI'`, `require 'B47ANCEDPCFramework/Assets'`, `PC.UI` and `PC.Assets`. Use descriptor-based `PC.registerApp` for installed, non-media apps. See the [public UI contract, controls, assets, lifecycle and working example](UI_API.md). The factory/media API below remains supported unchanged. [Feature ideas and implementation status](ROADMAP.md).
 

@@ -2,7 +2,7 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.9.0-dev.5. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.10.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
 Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
 
@@ -47,3 +47,5 @@ Artwork checkpoint 0.9.0-dev.4 uses the user-supplied B47ANCE'd PC Framework ill
 The 0.9.0-dev.4 artwork upload succeeded. Steam displayed a temporary automated-content-review notice at verification; the configured visibility remains public. See docs/WORKSHOP_PUBLICATION.md for exact source/package hashes and the observed availability limit. Native runtime acceptance remains NOT TESTED.
 
 Icon correction 0.9.0-dev.5 removes the small computer icon's exterior backdrop into genuine PNG transparency. The approved 512px thumbnail/poster remain byte-identical. The original opaque crop and current transparent derivative are retained separately in assets/branding, with icon-only export, alpha/corner checks and exact hashes. No gameplay or API changes.
+
+Full PC UI 0.10.0-dev.1 shows a straight-on 2D desktop setup: CRT, horizontal system unit, keyboard and mouse. Apps run inside the 4:3 monitor; uniform resizing preserves hardware proportions and the case power button keeps its existing logoff action. Client presentation only; APIs, server commands, sandbox behavior and saves stay unchanged. Includes the true-alpha small icon. This source iteration is not automatically deployed or published.

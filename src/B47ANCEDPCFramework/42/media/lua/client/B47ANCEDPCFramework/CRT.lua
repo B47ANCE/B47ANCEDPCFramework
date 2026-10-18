@@ -1,28 +1,29 @@
--- Original Lua geometry adapted from the user's approved B47 / CRT 93 design.
+-- Front-facing full PC, independently drawn from the user's approved PC artwork.
 -- No bitmap, OS asset or additional engine drawing API is required.
 require 'B47ANCEDPCUI/Renderer'
 local R=B47ANCEDPCUI.Renderer
 local F={}
 local function color(r,g,b) return {r=r/255,g=g/255,b=b/255,a=1} end
-local P={body=color(212,208,181),edge=color(151,149,126),shade=color(187,183,158),light=color(233,230,205),
- dark=color(62,64,48),rim=color(112,114,91),black=color(8,18,16),green=color(105,165,90)}
+local P={body=color(204,184,145),edge=color(121,103,73),shade=color(171,148,111),light=color(234,218,182),
+ dark=color(61,54,39),rim=color(89,83,61),black=color(8,18,16),green=color(105,165,90),key=color(217,207,180)}
 local shapes={
- {color='edge',points={4,52,18,38,30,38,30,17,44,3,899,3,914,17,914,680,900,694,16,694,4,680}},
- {color='body',points={34,20,48,6,896,6,908,18,908,677,895,689,46,689,34,677}},
- {color='shade',points={18,42,31,42,31,665,18,680,7,668,7,54}},
- {color='edge',points={72,68,83,54,842,54,855,68,855,569,841,583,82,583,72,570}},
- {color='rim',points={76,70,86,59,838,59,850,70,850,567,838,578,86,578,76,568}},
- {color='dark',points={82,72,88,66,836,66,844,73,844,564,836,572,89,572,82,565}},
- {color='black',points={86,76,92,70,831,70,838,77,838,560,831,567,92,567,86,561}},
- {color='dark',points={392,694,513,694,513,735,392,735}},
- {color='shade',points={399,695,506,695,506,735,399,735}},
- {color='edge',points={184,744,196,733,275,733,284,723,638,723,648,733,732,733,747,746,747,768,734,780,198,780,184,768}},
- {color='body',points={190,741,200,736,731,736,740,745,740,764,729,773,200,773,190,765}}
+ {color='edge',points={40,20,60,0,940,0,960,20,960,688,940,708,60,708,40,688}},
+ {color='body',points={46,23,63,6,937,6,954,23,954,684,937,702,63,702,46,684}},
+ {color='shade',points={430,704,570,704,570,722,430,722}},
+ {color='edge',points={86,48,100,34,900,34,914,48,914,648,900,662,100,662,86,648}},
+ {color='rim',points={91,50,103,39,897,39,909,50,909,646,897,657,103,657,91,646}},
+ {color='black',points={96,51,103,44,897,44,904,51,904,645,897,652,103,652,96,645}},
+ {color='edge',points={50,732,60,722,940,722,950,732,950,822,940,832,60,832,50,822}},
+ {color='body',points={56,734,63,728,937,728,944,734,944,818,937,826,63,826,56,818}},
+ {color='edge',points={65,860,75,850,830,850,840,860,840,978,830,988,75,988,65,978}},
+ {color='body',points={71,863,78,856,827,856,834,863,834,975,827,982,78,982,71,975}},
+ {color='edge',points={894,850,932,850,950,868,956,956,944,978,886,978,874,958,878,868}},
+ {color='body',points={896,856,930,856,944,870,950,954,940,972,890,972,880,956,884,870}}
 }
 -- Scan once in normalized authoring coordinates; render cached horizontal spans.
 local spans={}
 for _,shape in ipairs(shapes) do
- local points=shape.points;local low,high=780,0
+ local points=shape.points;local low,high=1000,0
  for i=2,#points,2 do low=math.min(low,points[i]);high=math.max(high,points[i]) end
  local runs={};local last
  for y=low,high-1 do
@@ -41,29 +42,52 @@ for _,shape in ipairs(shapes) do
  end
  spans[#spans+1]={color=P[shape.color],runs=runs}
 end
+local function transform(w,h)
+ local scale=math.min(w/1000,h/1000)
+ return scale,math.floor((w-1000*scale)/2),math.floor((h-1000*scale)/2)
+end
 function F.geometry(w,h,metrics)
- local x,y=math.floor(w*88/920),math.floor(h*70/780)
- local width,height=math.floor(w*748/920),math.floor(h*494/780)
+ local scale,ox,oy=transform(w,h)
+ local function box(x,y,a,b) return {x=ox+math.floor(x*scale),y=oy+math.floor(y*scale),width=math.floor(a*scale),height=math.floor(b*scale)} end
+ local screen=box(100,48,800,600);local x,y,width,height=screen.x,screen.y,screen.width,screen.height
  local bar=metrics.button+8;local status=metrics.font+10
  return {x=x,y=y,width=width,height=height,desktopHeight=math.max(1,height-bar-status),bar=bar,status=status,
-  powerX=math.floor(w*810/920),powerY=math.floor(h*644/780),powerWidth=math.max(28,math.floor(w*36/920)),powerHeight=math.max(28,math.floor(h*34/780))}
+  powerX=ox+math.floor(856*scale),powerY=oy+math.floor(753*scale),powerWidth=math.max(28,math.floor(40*scale)),powerHeight=math.max(28,math.floor(40*scale)),
+  parts={monitor=box(40,0,920,708),systemUnit=box(50,722,900,110),keyboard=box(65,850,775,138),mouse=box(874,850,82,128)}}
 end
 function F.draw(widget,w,h)
- local sx,sy=w/920,h/780
- local function rect(x,y,a,b,c) R.rect(widget,math.floor(x*sx),math.floor(y*sy),math.ceil(a*sx),math.ceil(b*sy),c) end
+ local scale,ox,oy=transform(w,h)
+ local function rect(x,y,a,b,c) R.rect(widget,ox+math.floor(x*scale),oy+math.floor(y*scale),math.ceil(a*scale),math.ceil(b*scale),c) end
  for _,shape in ipairs(spans) do for _,run in ipairs(shape.runs) do rect(run.x,run.y,run.w,run.h,shape.color) end end
- rect(47,7,849,2,P.light);rect(36,21,2,653,P.light);rect(905,22,2,641,P.shade)
- rect(8,69,2,593,P.light);rect(13,112,3,11,P.edge)
- rect(56,635,838,2,P.edge);rect(56,638,838,48,P.shade)
- rect(57,684,836,2,P.body);rect(772,638,2,47,P.edge)
- for i=0,8 do rect(74+i*10,656,5,3,P.rim) end
- rect(790,656,5,3,P.green)
- rect(410,592,100,21,P.dark)
- local scale=math.min(sx,sy);local font=B47ANCEDPCUI.Theme.metrics().font
+ rect(64,7,873,3,P.light);rect(47,24,3,658,P.light);rect(949,24,4,658,P.shade)
+ for i=0,16 do rect(68+i*49,16+(i%3)*5,5,3,P.shade) end
+ for i=0,12 do rect(81+i*11,678,6,3,P.rim) end
+ rect(808,677,7,5,P.green);rect(435,670,130,23,P.dark)
+ local font=B47ANCEDPCUI.Theme.metrics().font
  if scale>=.8 then
-  local caption='B47 / CRT 93';local width=getTextManager():MeasureStringX(B47ANCEDPCUI.Theme.fonts.body,caption)
-  R.text(widget,caption,460*sx-width/2,602*sy-font/2,P.light)
+  local caption=R.fit('B47 / CRT 93',122*scale);local width=getTextManager():MeasureStringX(B47ANCEDPCUI.Theme.fonts.body,caption)
+  R.text(widget,caption,ox+500*scale-width/2,oy+682*scale-font/2,P.light)
  end
- rect(402,705,3,18,P.light)
+ -- Horizontal case: floppy drive, CD tray, front vents and existing logoff control.
+ rect(64,729,872,3,P.light);rect(57,735,3,81,P.light);rect(60,819,876,5,P.shade)
+ rect(89,745,179,55,P.edge);rect(93,749,171,47,P.shade);rect(106,761,144,9,P.black)
+ rect(111,774,103,3,P.light);rect(238,778,12,10,P.body)
+ rect(300,744,382,57,P.edge);rect(305,749,372,47,P.body);rect(317,761,346,5,P.black)
+ rect(316,782,313,2,P.shade);rect(649,777,15,12,P.shade);rect(318,778,6,3,P.green)
+ for row=0,5 do for col=0,8 do rect(714+col*12,747+row*9,8,3,P.dark) end end
+ rect(846,744,60,61,P.shade);rect(915,758,6,5,P.green)
+ -- Keyboard and mouse stay decorative; all native app input remains in the CRT.
+ rect(400,832,4,18,P.dark);rect(950,792,26,4,P.dark);rect(972,792,4,43,P.dark)
+ rect(912,831,64,4,P.dark);rect(912,832,4,18,P.dark)
+ local function key(x,y,a,b)
+  rect(x,y,a,b,P.edge);rect(x+1,y+1,a-3,b-3,P.key);rect(x+1,y+1,a-3,2,P.light)
+ end
+ for n=0,14 do key(84+n*32,865,25,11) end
+ for row=0,3 do for col=0,14-row do key(84+row*5+col*33,886+row*20,28,16) end end
+ key(84,966,58,11);key(149,966,58,11);key(214,966,230,11);key(451,966,58,11);key(516,966,58,11)
+ for row=0,1 do for col=0,2 do key(613+col*31,886+row*20,26,16) end end
+ key(644,936,26,16);for col=0,2 do key(613+col*31,956,26,16) end
+ for row=0,3 do for col=0,2 do key(722+col*32,886+row*20,27,16) end end
+ rect(886,900,57,3,P.edge);rect(912,858,3,43,P.edge);rect(907,866,13,24,P.dark);rect(910,869,7,17,P.shade)
 end
 return F
