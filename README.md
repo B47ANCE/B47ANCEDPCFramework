@@ -2,15 +2,19 @@
 
 Standalone Lua-only computer framework for Project Zomboid Build 42.21.
 
-Development version: 0.5.0-dev.1. Source only; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
+Development version: 0.6.0-dev.1. Development build; native SP and dedicated multiplayer NOT TESTED. G7 and stable G8 BLOCKED.
 
-Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and shows an empty desktop when no application is installed. No arbitrary executable code, filesystem access or external OS assets are loaded.
+Use any powered placed PC (all four vanilla desktop orientations, plus other tiles tagged `CustomName=Computer`) to open an original Windows '93 desktop. The framework supplies the computer screen, drive browser, taskbar, Start menu, application hosting, keyboard/controller handling and reusable server drive bindings. It runs without Quartermaster and includes Minesweeper as an installed app. No arbitrary executable code, filesystem access or external OS assets are loaded.
 
 Other mods register trusted Lua apps. Quartermaster supplies `QUARTERMASTER.EXE` and its CD Writer through this interface; its ledger contents, permissions, inventory conversion and network authority stay in Quartermaster. Opening the screen or mounting a CD never automatically runs an app. Multiple registered apps can be selected from the computer context menu.
 
 Enable `B47ANCEDPCFramework` on the server and every client alongside dependent apps. This repository has no assigned Workshop item; Workshop installation is not yet available. Quartermaster is not a dependency of this framework.
 
 `B47ANCEDPCFramework.Enabled` is the server sandbox switch (default true). Disabling it closes screens and refuses device validation without deleting app records. App-specific gameplay settings remain with their apps. Computer identity, adjacency, scan bounds and polling limits are implementation constraints, not user-adjustable gameplay values.
+
+## Bundled Minesweeper
+
+Use a powered PC and launch Minesweeper from its desktop/Start entry; when several apps are registered, select its computer context-menu entry first. The installed 9×9/10-mine game needs no CD. It includes a safe first reveal, flood reveal, flags, number chording, win/loss, a timer and New game. Mouse right-click and the Reveal/Flag mode provide flagging. Each player has a disposable local board; there are no shared scores, rewards or world effects. [Controls, lifecycle and validation](docs/MINESWEEPER.md).
 
 ## Public mod API and modular UI assets
 
@@ -22,7 +26,7 @@ See the [consumer guide and complete public API](docs/UI_API.md), [opt-in Compon
 
 ## Development
 
-Authoritative source: `src/B47ANCEDPCFramework`. Root `VERSION` is canonical. `scripts/production-files.json` inventories shipped files. `dist/current/` is generated packaging output; it is ignored and has not been built. The framework includes no custom Java/JAR/native runtime dependency. Python and Lupa are host-only test tools.
+Authoritative source: `src/B47ANCEDPCFramework`. Root `VERSION` is canonical. `scripts/production-files.json` inventories shipped files. `dist/current/` is generated packaging output; it is ignored and built only on explicit request. The framework includes no custom Java/JAR/native runtime dependency. Python and Lupa are host-only test tools.
 
 ```powershell
 python -m pip install -r requirements-dev.txt

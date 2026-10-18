@@ -1,6 +1,6 @@
 # Application API 1
 
-Project Version: 0.5.0-dev.1
+Project Version: 0.6.0-dev.1
 
 The public SDK now also exposes **UI API 1** and **drawing-assets API 1** through `require 'B47ANCEDPCFramework/UI'`, `require 'B47ANCEDPCFramework/Assets'`, `PC.UI` and `PC.Assets`. Use descriptor-based `PC.registerApp` for installed, non-media apps. See the [public UI contract, controls, assets, lifecycle and working example](UI_API.md). The factory/media API below remains supported unchanged. [Feature ideas and implementation status](ROADMAP.md).
 
@@ -46,3 +46,5 @@ Applications retain ownership of join/reconnect handshakes, peer compatibility, 
 ## Supported computers
 
 `require('B47ANCEDPCFramework/Device').isComputerSprite(sprite)` recognizes the four installed vanilla desktop orientations or exact sprite `CustomName=Computer` metadata. `Device.computer(actor,object,near)` additionally enforces loaded world-object identity, the server Enabled setting, current electricity, safehouse access and optional same-floor adjacent reachability. This recognition automatically applies to Quartermaster's server adapter; no client-selected sprite identifier authorizes an operation. App privacy callbacks remain additional requirements. Computer-like translated labels, arbitrary sprite-name substrings and inventory items are not identity evidence.
+
+Client Startup now registers bundled `b47pc.minesweeper` via public `registerApp`. It is a CD-free local puzzle and introduces no gameplay service or API-version change. Opening a PC still does not auto-launch an app; select its icon/Start entry. With multiple apps, select the desired app through the existing world context menu. See [Minesweeper](MINESWEEPER.md).

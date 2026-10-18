@@ -1,6 +1,6 @@
 # Public PC UI and drawing assets
 
-Project Version: 0.5.0-dev.1
+Project Version: 0.6.0-dev.1
 
 Application API **1**, UI API **1**, drawing-assets API **1**. This is a client presentation SDK for trusted Lua mods. Consumers enable `B47ANCEDPCFramework` as a loader dependency and import it; they do not vendor the framework source or copy its global UI objects. No separate Java, texture generator or external OS runtime is required.
 
@@ -104,3 +104,5 @@ Low-level components: `Assets.panel(widget,x,y,width,height,colorToken)`, `bevel
 [TESTED OFFLINE] Independent consumer tests cover public imports, palette/metric isolation, built-in/custom icons at several sizes, native constructors/callback shape, controls, focus, resize/font layout, explicit launch, synchronous/stale replies, permission/power loss, and builder/cleanup errors. The legacy Quartermaster regression suite is exercised against the new SDK. [RUNTIME GATE] Native pixels, keyboard/controller focus, split-screen behavior and dedicated multiplayer remain NOT TESTED; G7/stable G8 remain BLOCKED. No consumer publication or deployment is implied by this API.
 
 CD-backed descriptors reuse the same context/window implementation as installed apps. [CD program API 1](CD_PROGRAM_API.md) adds `ctx.program`/`ctx.media` identity copies only after server authorization, and guards also check mounted-media identity. Use `registerCDProgram` for this flow; `registerApp` stays the installed/non-media entry point.
+
+The shipped [Minesweeper app](MINESWEEPER.md) is a production consumer of `registerApp`, hosted contexts and public UI/assets. It registers at client startup and is included in the framework ZIP, unlike the opt-in Component Gallery/CD examples. Its disposable puzzle has no server-owned domain data or rewards.

@@ -1,6 +1,6 @@
 # Features and functionality brainstorm
 
-Project Version: 0.5.0-dev.1
+Project Version: 0.6.0-dev.1
 
 The framework should provide a reusable PC shell and UI kit. Optional apps should provide the gameplay. This lets one powered PC host several mods without each mod duplicating desktop art, input handling or lifecycle code. The following are design proposals, not promises that their engine integrations exist.
 
@@ -22,7 +22,8 @@ The framework should provide a reusable PC shell and UI kit. Optional apps shoul
 | App | LAN bulletin board, mail, survivor directory or local network map | **Proposed** | Server-owned channels, membership/privacy, bounded message retention, abuse/rate limits and authoritative routing. Physical range/connectivity options require an independently verified design. |
 | App | CD/document browser, logs, archives, printable reports and media catalog | **Partially founded** by drive adapters; generic files/printing **proposed** | Physical media IDs and copy/write costs must be server-validated. A virtual document model must never masquerade as vanilla item ownership or load arbitrary Lua. |
 | App | Electronics skill checks, repairs, missing components, overheating or equipment upgrades | **Proposed gameplay** | Server action grants, real items, cancellation/refund journals, sandbox defaults/bounds and old-save behavior are required before implementation. Not hidden core constants. |
-| App | Calculator, clock, journal drafts, small puzzles and local games | **Proposed** | Mostly local UI; use actual world time where appropriate. Shared scores/rewards become server gameplay and need explicit authority/configuration. |
+| Now | Bundled installed Minesweeper: 9x9 board, flags/chords, timer and local lifecycle | **Implemented source / offline tested** in 0.6.0-dev.1 | Per-context disposable local puzzle. No shared scores, rewards, save writes or gameplay authority. |
+| App | Calculator, clock, journal drafts and more local games | **Proposed** | Mostly local UI; use actual world time where appropriate. Shared scores/rewards become server gameplay and need explicit authority/configuration. |
 | Research | Cameras, live remote views, alarms and remote doors/machines | **Blocked on capability/authority research** | Do not invent camera capture, unloaded-world simulation or remote-control APIs. Where safe Lua routes are absent, offer authorized text/status snapshots or manual local controls. |
 
 Recommended next sequence: validate the public SDK in the native client; validate the new tab/toolbar/status controls, then add dialogs and a better multi-app launcher; define a small read-only provider contract; then build one opt-in dashboard with its own server validation. Multiwindow and shared communications should follow only after ownership and lifecycle tests are clear.

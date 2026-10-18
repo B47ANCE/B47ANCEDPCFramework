@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0-dev.1] - 2026-10-17
+
+- Compatible MINOR addition toward 0.6.0: bundle an installed, local Minesweeper PC app. Existing public APIs and binding/persistence schemas remain unchanged.
+- Add original 9x9/10-mine board rules: safe first reveal, zero flood, capped flags, number chording, win/loss and reset.
+- Use the public hosted UI API for flags/reveal mode, timer/status, font-aware tiles, controller focus and small-window fallback. Startup registers the app without launching it or requiring a CD.
+- Add model/UI regressions, localized English fallback keys and exact-build input source evidence. Boards are disposable local state with no scores/rewards/save or world effects.
+- Development package requested; native SP/dedicated NOT TESTED. G7/stable G8 BLOCKED.
+
 ## [0.5.0-dev.1] - 2026-10-17
 
 - Compatible MINOR iteration toward 0.5.0: public CD-program registration and server authorization helpers. Legacy application/media API 1 and binding schema 1 remain supported.

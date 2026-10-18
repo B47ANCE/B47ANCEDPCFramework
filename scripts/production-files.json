@@ -3,6 +3,8 @@
   "42/media/AnimSets/.keep",
   "42/media/actiongroups/.keep",
   "42/media/lua/client/B47ANCEDPCFramework/API.lua",
+  "42/media/lua/client/B47ANCEDPCFramework/Apps/Minesweeper.lua",
+  "42/media/lua/client/B47ANCEDPCFramework/Apps/MinesweeperGame.lua",
   "42/media/lua/client/B47ANCEDPCFramework/Assets.lua",
   "42/media/lua/client/B47ANCEDPCFramework/ComputerUI.lua",
   "42/media/lua/client/B47ANCEDPCFramework/ProgramContext.lua",

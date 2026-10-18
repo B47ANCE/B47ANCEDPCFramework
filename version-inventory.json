@@ -41,6 +41,10 @@
     {
       "path": "docs/CD_PROGRAM_API.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/MINESWEEPER.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

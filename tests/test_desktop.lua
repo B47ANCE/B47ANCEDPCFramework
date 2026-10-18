@@ -65,10 +65,10 @@ package.loaded['TimedActions/ISTimedActionQueue']=true;package.loaded['TimedActi
 local Startup=require 'B47ANCEDPCFramework/Startup';assert(registered.tick and registered.menu)
 local entries={};local menu={addOption=function(_,label,_,fn) entries[#entries+1]={label=label,fn=fn} end}
 Startup.menu(0,menu,{computer},false);assert(#entries==1,'disabled app exposed context action')
-entries[1].fn();assert(C.active[0] and C.active[0].application=='desktop');C.active[0]:close()
+entries[1].fn();assert(C.active[0] and C.active[0].application=='b47pc.minesweeper' and not C.active[0].content);C.active[0]:close()
 available=true;P.registerApplication('second',function() return {} end,'Second')
-entries={};Startup.menu(0,menu,{computer},false);assert(#entries==3,'multiple available apps not selectable')
-entries[3].fn();assert(C.active[0].application=='second');C.active[0]:close()
+entries={};Startup.menu(0,menu,{computer},false);assert(#entries==4,'multiple available apps not selectable')
+entries[4].fn();assert(C.active[0].application=='second');C.active[0]:close()
 SandboxVars.B47ANCEDPCFramework.Enabled=false;entries={};Startup.menu(0,menu,{computer},false);assert(#entries==0)
 SandboxVars.B47ANCEDPCFramework.Enabled=true
 print('PASS OFFLINE standalone desktop: zero Quartermaster imports, empty host, registered app, no auto-run, wrong-media refusal, disabled app fallback, late replies, singleton cleanup and sandbox disable')
